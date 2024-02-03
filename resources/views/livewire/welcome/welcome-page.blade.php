@@ -1,25 +1,21 @@
 <div>
-    <div class="mx-auto max-w-full space-y-8 bg-blue-800 px-4 py-32 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="block text-5xl font-black text-yellow-400 sm:text-6xl md:text-7xl lg:text-8xl">
-                College Research and Development Services
-            </h1>
-        </div>
+    <div class="mx-auto max-w-full bg-white px-4 py-8 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
+            <div class="my-4 space-y-4">
+                <h1 class="block text-6xl font-black text-blue-800 lg:text-7xl">
+                    College Research and Development Services
+                </h1>
+                <p class="text-4xl font-bold text-gray-900 lg:text-5xl">
+                    Dalubhasaan ng Lungsod ng Lucena
+                </p>
+            </div>
 
-        <div class="text-center">
-            <p class="block text-2xl font-bold text-gray-100 sm:text-3xl md:text-4xl lg:text-5xl">
-                Dalubhasaan ng Lungsod ng Lucena
-            </p>
-        </div>
-
-        <div class="text-center">
-            <p class="block text-base font-medium text-gray-100 sm:text-lg md:text-xl lg:text-2xl">
-                Welcome to the DLL-CRDS Research Repository, providing free access to research papers by Dalubcenians,
-                for
-                Dalubcenians.
-            </p>
+            <div class="my-4 space-y-4">
+                <x-featured-image class="w-full rounded-md" alt="Featured Image" />
+            </div>
         </div>
     </div>
+
     <div class="mx-auto max-w-full px-4 pb-8 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 py-8">
             <h1 class="text-4xl font-black text-gray-900">
