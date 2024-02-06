@@ -9,7 +9,7 @@ class HomePage extends Component
 {
     public function render()
     {
-        $latestResearches = Research::with(['department', 'adviser'])
+        $latestResearches = Research::with('department')
             ->where('published', true)
             ->latest('date_submitted')
             ->take(6)

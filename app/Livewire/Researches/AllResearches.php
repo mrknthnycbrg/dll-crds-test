@@ -39,7 +39,7 @@ class AllResearches extends Component
             $years = null;
         }
 
-        $researches = Research::with(['department', 'adviser'])
+        $researches = Research::with('department')
             ->where('published', true)
             ->when($this->selectedDepartment, function ($query) {
                 $query->where('department_id', $this->selectedDepartment);

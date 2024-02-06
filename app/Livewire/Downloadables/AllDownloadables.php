@@ -30,10 +30,10 @@ class AllDownloadables extends Component
         }
 
         $downloadables = Downloadable::where('published', true)
-            ->latest('date_published')
             ->when($this->selectedYear, function ($query) {
                 $query->whereYear('date_published', $this->selectedYear);
             })
+            ->latest('date_published')
             ->paginate(6);
 
         return view('livewire.downloadables.all-downloadables', compact('downloadables', 'years'))

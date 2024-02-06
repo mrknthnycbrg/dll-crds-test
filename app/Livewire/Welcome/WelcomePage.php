@@ -3,19 +3,45 @@
 namespace App\Livewire\Welcome;
 
 use App\Models\Post;
+use Illuminate\Support\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class WelcomePage extends Component
 {
+    use WithPagination;
+
+    public $selectedYear;
+
     public function render()
     {
-        $latestPosts = Post::with('category')
-            ->where('published', true)
-            ->latest('date_published')
-            ->take(6)
-            ->get();
+        $latestPublished = Post::where('published', true)->max('date_published');
 
-        return view('livewire.welcome.welcome-page', compact('latestPosts'))
+        $earliestPublished = Post::where('published', true)->min('date_published');
+
+        if ($latestPublished && $earliestPublished) {
+            $latestYear = Carbon::parse($latestPublished)->year;
+            $earliestYear = Carbon::parse($earliestPublished)->year;
+
+            $yearRange = range($latestYear, $earliestYear);
+            $years = array_combine($yearRange, $yearRange);
+        } else {
+            $years = null;
+        }
+
+        $posts = Post::where('published', true)
+            ->when($this->selectedYear, function ($query) {
+                $query->whereYear('date_published', $this->selectedYear);
+            })
+            ->latest('date_published')
+            ->paginate(6);
+
+        return view('livewire.welcome.welcome-page', compact('posts', 'years'))
             ->layout('layouts.guest');
+    }
+
+    public function updatedSelectedYear()
+    {
+        $this->resetPage();
     }
 }

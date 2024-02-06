@@ -24,6 +24,7 @@ class Search extends Component
                     $query->join('departments', 'researches.department_id', '=', 'departments.id')
                         ->join('advisers', 'researches.adviser_id', '=', 'advisers.id')
                         ->select('researches.*', 'departments.name', 'advisers.name')
+                        ->with('department')
                         ->where('published', true)
                         ->latest('date_submitted');
                 })
