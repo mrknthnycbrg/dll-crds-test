@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-4xl font-black text-gray-900">
+        <h1 class="text-3xl font-black text-gray-900">
             Profile
         </h1>
     </x-slot>

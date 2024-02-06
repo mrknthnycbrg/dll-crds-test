@@ -1,24 +1,28 @@
 <div>
-    <nav class="border-b border-gray-200 bg-white" x-data="{ open: false }">
+    <nav class="bg-white" x-data="{ open: false }">
         <!-- Primary Navigation Menu -->
         <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
                 <!-- Logo -->
-                <div class="flex shrink-0 items-center">
+                <div class="flex shrink-0">
                     <a class="group flex items-center space-x-2" href="{{ route('welcome') }}" wire:navigate>
                         <x-application-logo class="size-10 block" />
-                        <span class="text-xl font-black text-black group-hover:text-blue-800 group-focus:text-blue-800">
-                            {{ config('app.name', 'DLL-CRDS') }}
-                        </span>
+                        <div class="flex flex-col">
+                            <p
+                                class="block border-b border-gray-900 text-sm font-black text-gray-900 group-hover:text-blue-800 group-focus:text-blue-800">
+                                College Research and Development Services
+                            </p>
+                            <p
+                                class="block text-xs font-bold text-gray-900 group-hover:text-blue-800 group-focus:text-blue-800">
+                                Dalubhasaan ng Lungsod ng Lucena
+                            </p>
+                        </div>
                     </a>
                 </div>
 
                 <div class="flex">
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
-                            News
-                        </x-nav-link>
                         @auth
                             <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                                 Home
@@ -45,9 +49,6 @@
         <!-- Responsive Navigation Menu -->
         <div class="hidden sm:hidden" :class="{ 'block': open, 'hidden': !open }">
             <div class="space-y-1 pb-3 pt-2">
-                <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
-                    News
-                </x-responsive-nav-link>
                 @auth
                     <x-responsive-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                         Home

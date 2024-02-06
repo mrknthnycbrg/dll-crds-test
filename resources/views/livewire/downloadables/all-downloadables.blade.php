@@ -1,11 +1,11 @@
 <div>
     <x-slot name="header">
-        <h1 class="text-4xl font-black text-gray-900">
+        <h1 class="text-3xl font-black text-gray-900">
             Resources
         </h1>
     </x-slot>
 
-    <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-full px-4 pb-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
             <div class="mb-8">
                 <x-label for="year" value="Year" />
@@ -18,25 +18,25 @@
             @forelse ($downloadables as $downloadable)
                 <x-card href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
                     wire:key="{{ $downloadable->id }}">
-                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
+                    <h3 class="text-lg font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $downloadable->name }}
-                    </h2>
-                    <p class="text-xs font-thin text-gray-700">
-                        {{ $downloadable->formattedDate() }}
-                    </p>
+                    </h3>
                     <p class="text-sm font-light text-gray-700">
                         {{ $downloadable->formattedDescription() }}
                     </p>
+                    <p class="text-xs font-thin text-gray-700">
+                        {{ $downloadable->formattedDate() }}
+                    </p>
                 </x-card>
             @empty
-                <p class="text-xl font-bold text-gray-700">
+                <p class="text-lg font-bold text-gray-700">
                     No resources yet.
                 </p>
             @endforelse
         </div>
 
         <div class="space-y-2 pt-8">
-            {{ $downloadables->links() }}
+            {{ $downloadables->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 </div>

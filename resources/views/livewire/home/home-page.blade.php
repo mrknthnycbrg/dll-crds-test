@@ -19,9 +19,9 @@
             @forelse ($latestResearches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
+                    <h3 class="text-lg font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
-                    </h2>
+                    </h3>
                     <p class="text-base font-medium text-gray-700">
                         {{ optional($research->department)->name }}
                     </p>
@@ -33,7 +33,7 @@
                     </p>
                 </x-card>
             @empty
-                <p class="text-xl font-bold text-gray-700">
+                <p class="text-lg font-bold text-gray-700">
                     No researches yet.
                 </p>
             @endforelse

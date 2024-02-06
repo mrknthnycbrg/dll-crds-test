@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h1 class="text-4xl font-black text-gray-900">
+        <h1 class="text-3xl font-black text-gray-900">
             Researches
         </h1>
     </x-slot>
@@ -30,28 +30,28 @@
             @forelse ($researches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    <h2 class="text-xl font-bold text-gray-700 group-hover:text-blue-800">
+                    <h3 class="text-lg font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
-                    </h2>
+                    </h3>
                     <p class="text-base font-medium text-gray-700">
                         {{ optional($research->department)->name }}
-                    </p>
-                    <p class="text-xs font-thin text-gray-700">
-                        {{ $research->formattedDate() }}
                     </p>
                     <p class="text-sm font-light text-gray-700">
                         {{ $research->formattedAbstract() }}
                     </p>
+                    <p class="text-xs font-thin text-gray-700">
+                        {{ $research->formattedDate() }}
+                    </p>
                 </x-card>
             @empty
-                <p class="text-xl font-bold text-gray-700">
+                <p class="text-lg font-bold text-gray-700">
                     No researches yet.
                 </p>
             @endforelse
         </div>
 
         <div class="space-y-2 pt-8">
-            {{ $researches->links() }}
+            {{ $researches->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 </div>

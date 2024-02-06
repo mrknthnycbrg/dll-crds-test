@@ -1,15 +1,22 @@
 <div>
-    <nav class="border-b border-gray-200 bg-white" x-data="{ open: false }">
+    <nav class="bg-white" x-data="{ open: false }">
         <!-- Primary Navigation Menu -->
         <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
                 <!-- Logo -->
-                <div class="flex shrink-0 items-center">
+                <div class="flex shrink-0">
                     <a class="group flex items-center space-x-2" href="{{ route('welcome') }}" wire:navigate>
                         <x-application-logo class="size-10 block" />
-                        <span class="text-xl font-black text-black group-hover:text-blue-800 group-focus:text-blue-800">
-                            {{ config('app.name', 'DLL-CRDS') }}
-                        </span>
+                        <div class="flex flex-col">
+                            <p
+                                class="block border-b border-gray-900 text-sm font-black text-gray-900 group-hover:text-blue-800 group-focus:text-blue-800">
+                                College Research and Development Services
+                            </p>
+                            <p
+                                class="block text-xs font-bold text-gray-900 group-hover:text-blue-800 group-focus:text-blue-800">
+                                Dalubhasaan ng Lungsod ng Lucena
+                            </p>
+                        </div>
                     </a>
                 </div>
 
@@ -25,8 +32,8 @@
                         <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
                             Resources
                         </x-nav-link>
-                        <x-nav-link href="{{ route('ask') }}" wire:navigate :active="request()->routeIs('ask')">
-                            Ask AI
+                        <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                            Tools
                         </x-nav-link>
                     </div>
 
@@ -85,8 +92,8 @@
                 <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
                     Resources
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('ask') }}" wire:navigate :active="request()->routeIs('ask')">
-                    Ask AI
+                <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                    Tools
                 </x-responsive-nav-link>
             </div>
 
