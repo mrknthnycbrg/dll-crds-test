@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\FileDownloadable;
 use App\Http\Controllers\FileResearch;
-use App\Livewire\Ask\AskPage;
 use App\Livewire\Downloadables\AllDownloadables;
 use App\Livewire\Downloadables\ShowDownloadable;
 use App\Livewire\Home\HomePage;
-use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\ShowPost;
 use App\Livewire\Researches\AllResearches;
 use App\Livewire\Researches\ShowResearch;
+use App\Livewire\Tools\ToolsPage;
 use App\Livewire\Welcome\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', WelcomePage::class)->name('welcome');
-Route::get('/news', AllPosts::class)->name('all-posts');
 Route::get('/news/{slug}', ShowPost::class)->name('show-post');
 
 Route::middleware([
@@ -40,5 +38,5 @@ Route::middleware([
     Route::get('/resources', AllDownloadables::class)->name('all-downloadables');
     Route::get('/resources/{slug}', ShowDownloadable::class)->name('show-downloadable');
     Route::get('/resources/file/{slug}', FileDownloadable::class)->name('file-downloadable');
-    Route::get('/ask', AskPage::class)->name('ask');
+    Route::get('/tools', ToolsPage::class)->name('tools');
 });
