@@ -35,7 +35,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header>
-                    <div class="mx-auto max-w-full space-y-2 px-4 py-8 sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-full space-y-2 bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

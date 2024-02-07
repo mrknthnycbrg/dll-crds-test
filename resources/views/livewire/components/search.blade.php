@@ -1,5 +1,5 @@
 <div>
-    <div class="flex justify-center pt-8">
+    <div class="flex justify-center py-8">
         <div class="relative flex w-full items-center sm:w-full md:w-2/3 lg:w-1/3">
             <x-input class="block w-full pl-10 placeholder-gray-500" type="text" wire:model.live.debounce="search"
                 placeholder="Explore researches" />
@@ -10,7 +10,7 @@
     </div>
 
     @if ($search)
-        <div class="space-y-2 py-8">
+        <div class="space-y-2 pb-8">
             <h2 class="text-3xl font-black text-gray-900">
                 Search Results
             </h2>
