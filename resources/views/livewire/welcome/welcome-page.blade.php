@@ -23,14 +23,6 @@
             </h1>
         </div>
 
-        <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
-            <div class="mb-8">
-                <x-label for="year" value="Year" />
-                <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
-                    :default="'All Years'" :options="$years" />
-            </div>
-        </div>
-
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
             @forelse ($posts as $post)
                 <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
