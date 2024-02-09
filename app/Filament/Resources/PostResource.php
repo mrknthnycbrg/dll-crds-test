@@ -72,7 +72,7 @@ class PostResource extends Resource
                         Section::make()
                             ->schema([
                                 Forms\Components\FileUpload::make('image_path')
-                                    ->label('Featured Image')
+                                    ->label('Image')
                                     ->image()
                                     ->imageEditor()
                                     ->imageEditorAspectRatios([
@@ -83,7 +83,7 @@ class PostResource extends Resource
                                     ])
                                     ->openable()
                                     ->disk('public')
-                                    ->directory('post-files'),
+                                    ->directory('post-images'),
                             ]),
                     ])
                     ->columnSpan(2),

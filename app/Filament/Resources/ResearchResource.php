@@ -72,12 +72,25 @@ class ResearchResource extends Resource
 
                         Section::make()
                             ->schema([
-                                Forms\Components\FileUpload::make('pdf_path')
-                                    ->label('PDF File')
+                                Forms\Components\FileUpload::make('file_path')
+                                    ->label('File')
                                     ->openable()
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->disk('public')
                                     ->directory('research-files'),
+                                Forms\Components\FileUpload::make('image_path')
+                                    ->label('Image')
+                                    ->image()
+                                    ->imageEditor()
+                                    ->imageEditorAspectRatios([
+                                        null,
+                                        '16:9',
+                                        '4:3',
+                                        '1:1',
+                                    ])
+                                    ->openable()
+                                    ->disk('public')
+                                    ->directory('research-images'),
                             ]),
                     ])
                     ->columnSpan(2),
