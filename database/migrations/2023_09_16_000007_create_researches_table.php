@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('slug')->nullable()->unique();
             $table->string('author')->nullable();
             $table->string('keyword')->nullable();
-            $table->string('pdf_path')->nullable();
+            $table->string('file_path')->nullable();
+            $table->string('image_path')->nullable();
             $table->longText('abstract')->nullable()->fullText();
             $table->foreignId('department_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('adviser_id')->nullable()->constrained()->restrictOnDelete();
