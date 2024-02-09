@@ -64,5 +64,42 @@
                 @endif
             @endif
         </div>
+
+        <div class="flex items-center justify-between space-y-2 pb-8">
+            <h2 class="text-2xl font-black text-gray-900">
+                Abstract Similarity Checker
+            </h2>
+        </div>
+
+        <div class="flex flex-col items-center pb-8">
+            <form class="flex w-full items-center justify-center space-x-2 pb-8"
+                wire:submit.prevent="abstractCheckerResponse">
+                <x-input class="block w-full" type="text" placeholder="Enter an abstract to check for similarity"
+                    required wire:model="abstractCheckInput" />
+                <x-button wire:target="abstractCheckerResponse" wire:loading.attr="disabled">
+                    Check
+                </x-button>
+            </form>
+
+            @if (!empty($similarAbstracts))
+                <div class="w-full space-y-4">
+                    <h2 class="text-xl font-bold text-gray-900">Similar Abstracts:</h2>
+                    @foreach ($similarAbstracts as $similarAbstract)
+                        <ul class="list-disc pl-8">
+                            <li>
+                                <span class="font-bold">{{ $similarAbstract['abstract'] }}</span>
+                                - {{ $similarAbstract['percentage'] }} similarity
+                            </li>
+                        </ul>
+                    @endforeach
+                </div>
+            @else
+                @if (!empty($abstractCheckInput))
+                    <div class="w-full space-y-4">
+                        <p class="text-gray-700">No similar abstracts.</p>
+                    </div>
+                @endif
+            @endif
+        </div>
     </div>
 </div>
