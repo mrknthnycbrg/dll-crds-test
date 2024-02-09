@@ -9,51 +9,40 @@ use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AllResearches extends Component
+class DepartmentResearches extends Component
 {
     use WithPagination;
 
-    public $selectedDepartment;
+    public $department;
 
     public $selectedAdviser;
 
     public $selectedYear;
 
+    public function mount($slug)
+    {
+        $this->department = Department::where('slug', $slug)->firstOrFail();
+    }
+
     public function render()
     {
-        $departmentsQuery = Department::whereHas('researches', function ($query) {
-            $query->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
-            });
-        });
-
-        $departments = $departmentsQuery->pluck('name', 'id');
-
         $advisersQuery = Adviser::whereHas('researches', function ($query) {
-            $query->when($this->selectedDepartment, function ($query) {
-                $query->where('department_id', $this->selectedDepartment);
-            })->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
-            });
+            $query->where('department_id', $this->department->id);
+        })->when($this->selectedYear, function ($query) {
+            $query->whereYear('date_submitted', $this->selectedYear);
         });
 
         $advisers = $advisersQuery->pluck('name', 'id');
 
         $latestPublished = Research::where('published', true)
-            ->when($this->selectedDepartment, function ($query) {
-                $query->where('department_id', $this->selectedDepartment);
-            })
+            ->where('department_id', $this->department->id)
             ->when($this->selectedAdviser, function ($query) {
                 $query->where('adviser_id', $this->selectedAdviser);
             })
             ->max('date_submitted');
 
         $earliestPublished = Research::where('published', true)
-            ->when($this->selectedDepartment, function ($query) {
-                $query->where('department_id', $this->selectedDepartment);
-            })
+            ->where('department_id', $this->department->id)
             ->when($this->selectedAdviser, function ($query) {
                 $query->where('adviser_id', $this->selectedAdviser);
             })
@@ -70,10 +59,8 @@ class AllResearches extends Component
         }
 
         $researches = Research::with('department')
+            ->where('department_id', $this->department->id)
             ->where('published', true)
-            ->when($this->selectedDepartment, function ($query) {
-                $query->where('department_id', $this->selectedDepartment);
-            })
             ->when($this->selectedAdviser, function ($query) {
                 $query->where('adviser_id', $this->selectedAdviser);
             })
@@ -83,14 +70,9 @@ class AllResearches extends Component
             ->latest('date_submitted')
             ->paginate(6);
 
-        return view('livewire.researches.all-researches', compact('researches', 'departments', 'advisers', 'years'))
+        return view('livewire.researches.department-researches', compact('researches', 'advisers', 'years'))
             ->layout('layouts.app')
-            ->title('Researches - DLL-CRDS');
-    }
-
-    public function updatedSelectedDepartment()
-    {
-        $this->resetPage();
+            ->title($this->department->name.' - DLL-CRDS');
     }
 
     public function updatedSelectedAdviser()

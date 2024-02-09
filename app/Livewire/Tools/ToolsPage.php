@@ -14,7 +14,11 @@ class ToolsPage extends Component
 
     public $titleCheckInput = '';
 
+    public $abstractCheckInput = '';
+
     public $similarTitles = [];
+
+    public $similarAbstracts = [];
 
     public function response()
     {
@@ -35,7 +39,9 @@ class ToolsPage extends Component
         $this->similarTitles = [];
 
         if (! empty($this->titleCheckInput)) {
-            $allTitles = Research::where('published', true)->pluck('title')->map(fn ($title) => trim($title));
+            $allTitles = Research::where('published', true)
+                ->pluck('title')
+                ->map(fn ($title) => trim($title));
 
             $inputTitle = trim($this->titleCheckInput);
 
@@ -49,6 +55,34 @@ class ToolsPage extends Component
 
                     $this->similarTitles[] = [
                         'title' => $title,
+                        'percentage' => $formattedPercentage,
+                    ];
+                }
+            });
+        }
+    }
+
+    public function abstractCheckerResponse()
+    {
+        $this->similarAbstracts = [];
+
+        if (! empty($this->abstractCheckInput)) {
+            $allAbstracts = Research::where('published', true)
+                ->pluck('abstract')
+                ->map(fn ($abstract) => trim(strip_tags($abstract)));
+
+            $inputAbstract = trim(strip_tags($this->abstractCheckInput));
+
+            $allAbstracts->each(function ($abstract) use ($inputAbstract) {
+                similar_text(strtolower($inputAbstract), strtolower($abstract), $percentage);
+
+                if ($percentage >= 50) {
+                    $formattedPercentage = $percentage == round($percentage)
+                        ? number_format($percentage, 0).'%'
+                        : number_format($percentage, 2, '.', '').'%';
+
+                    $this->similarAbstracts[] = [
+                        'abstract' => $abstract,
                         'percentage' => $formattedPercentage,
                     ];
                 }
