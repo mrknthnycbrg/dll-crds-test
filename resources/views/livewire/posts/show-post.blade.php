@@ -15,9 +15,5 @@
         <div class="prose max-w-none">
             {!! $post->content !!}
         </div>
-
-        <p class="text-sm font-medium text-gray-700">
-            {{ optional($post->category)->name }}
-        </p>
     </div>
 </div>

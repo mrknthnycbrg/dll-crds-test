@@ -8,6 +8,12 @@
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
             <div class="mb-4">
+                <x-label for="category" value="Category" />
+                <x-select class="mt-1 block w-full" id="category" wire:model.live.debounce="selectedCategory"
+                    :default="'All Categories'" :options="$categories" />
+            </div>
+
+            <div class="mb-4">
                 <x-label for="adviser" value="Adviser" />
                 <x-select class="mt-1 block w-full" id="adviser" wire:model.live.debounce="selectedAdviser"
                     :default="'All Advisers'" :options="$advisers" />
