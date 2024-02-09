@@ -28,8 +28,8 @@ class Category extends Model
         'name',
     ];
 
-    public function posts(): HasMany
+    public function researches(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Research::class);
     }
 }

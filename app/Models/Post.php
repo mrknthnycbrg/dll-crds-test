@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -31,7 +30,6 @@ class Post extends Model
         'slug',
         'image_path',
         'content',
-        'category_id',
         'published',
         'date_published',
     ];
@@ -45,11 +43,6 @@ class Post extends Model
         'published' => 'boolean',
         'date_published' => 'date',
     ];
-
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public function formattedImage()
     {

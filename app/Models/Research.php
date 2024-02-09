@@ -38,6 +38,7 @@ class Research extends Model
         'image_path',
         'abstract',
         'department_id',
+        'category_id',
         'adviser_id',
         'published',
         'date_submitted',
@@ -56,6 +57,11 @@ class Research extends Model
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function adviser(): BelongsTo
