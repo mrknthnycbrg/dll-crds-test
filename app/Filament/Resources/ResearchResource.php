@@ -142,6 +142,23 @@ class ResearchResource extends Resource
                                             ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),
                                     ]),
+                                Forms\Components\Select::make('category_id')
+                                    ->label('Category')
+                                    ->placeholder('Select category')
+                                    ->relationship('category', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
+                                    ->markAsRequired(false)
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label('Name')
+                                            ->placeholder('Enter name')
+                                            ->required()
+                                            ->markAsRequired(false)
+                                            ->unique(ignorable: fn ($record) => $record),
+                                    ]),
                                 Forms\Components\Select::make('adviser_id')
                                     ->label('Adviser')
                                     ->placeholder('Select adviser')
@@ -192,6 +209,11 @@ class ResearchResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('department.name')
                     ->label('Department')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -264,6 +286,12 @@ class ResearchResource extends Resource
                 Tables\Filters\SelectFilter::make('department')
                     ->label('Department')
                     ->relationship('department', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
+                Tables\Filters\SelectFilter::make('category')
+                    ->label('Category')
+                    ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
                     ->native(false),

@@ -35,7 +35,7 @@ class PostResource extends Resource
 
     protected static ?string $navigationLabel = 'Posts';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
 
     protected static ?string $navigationGroup = 'Post Management';
 
@@ -102,23 +102,6 @@ class PostResource extends Resource
                                     ->format('Y-m-d')
                                     ->native(false)
                                     ->closeOnDateSelection(),
-                                Forms\Components\Select::make('category_id')
-                                    ->label('Category')
-                                    ->placeholder('Select category')
-                                    ->relationship('category', 'name')
-                                    ->searchable()
-                                    ->preload()
-                                    ->required()
-                                    ->markAsRequired(false)
-                                    ->native(false)
-                                    ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Name')
-                                            ->placeholder('Enter name')
-                                            ->required()
-                                            ->markAsRequired(false)
-                                            ->unique(ignorable: fn ($record) => $record),
-                                    ]),
                             ]),
                     ])
                     ->columnSpan(1),
@@ -141,11 +124,6 @@ class PostResource extends Resource
                 Tables\Columns\IconColumn::make('published')
                     ->label('Published')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('Category')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable()
@@ -207,12 +185,6 @@ class PostResource extends Resource
 
                         return $indicators;
                     }),
-                Tables\Filters\SelectFilter::make('category')
-                    ->label('Category')
-                    ->relationship('category', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->native(false),
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Published')
                     ->placeholder('All posts')

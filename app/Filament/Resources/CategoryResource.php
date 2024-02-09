@@ -29,11 +29,11 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationLabel = 'Categories';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 3;
 
-    protected static ?string $navigationGroup = 'Post Management';
+    protected static ?string $navigationGroup = 'Research Management';
 
-    protected static ?string $navigationParentItem = 'Posts';
+    protected static ?string $navigationParentItem = 'Researches';
 
     public static function form(Form $form): Form
     {
