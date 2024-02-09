@@ -3,6 +3,7 @@
 namespace App\Livewire\Researches;
 
 use App\Models\Adviser;
+use App\Models\Category;
 use App\Models\Department;
 use App\Models\Research;
 use Illuminate\Support\Carbon;
@@ -15,6 +16,8 @@ class DepartmentResearches extends Component
 
     public $department;
 
+    public $selectedCategory;
+
     public $selectedAdviser;
 
     public $selectedYear;
@@ -26,23 +29,50 @@ class DepartmentResearches extends Component
 
     public function render()
     {
+
+        $categoriesQuery = Category::whereHas('researches', function ($query) {
+            $query->when($this->department, function ($query) {
+                $query->where('department_id', $this->department->id);
+            })->when($this->selectedAdviser, function ($query) {
+                $query->where('adviser_id', $this->selectedAdviser);
+            })->when($this->selectedYear, function ($query) {
+                $query->whereYear('date_submitted', $this->selectedYear);
+            });
+        });
+
+        $categories = $categoriesQuery->pluck('name', 'id');
+
         $advisersQuery = Adviser::whereHas('researches', function ($query) {
-            $query->where('department_id', $this->department->id);
-        })->when($this->selectedYear, function ($query) {
-            $query->whereYear('date_submitted', $this->selectedYear);
+            $query->when($this->department, function ($query) {
+                $query->where('department_id', $this->department->id);
+            })->when($this->selectedCategory, function ($query) {
+                $query->where('category_id', $this->selectedCategory);
+            })->when($this->selectedYear, function ($query) {
+                $query->whereYear('date_submitted', $this->selectedYear);
+            });
         });
 
         $advisers = $advisersQuery->pluck('name', 'id');
 
         $latestPublished = Research::where('published', true)
-            ->where('department_id', $this->department->id)
+            ->when($this->department, function ($query) {
+                $query->where('department_id', $this->department->id);
+            })
+            ->when($this->selectedCategory, function ($query) {
+                $query->where('category_id', $this->selectedCategory);
+            })
             ->when($this->selectedAdviser, function ($query) {
                 $query->where('adviser_id', $this->selectedAdviser);
             })
             ->max('date_submitted');
 
         $earliestPublished = Research::where('published', true)
-            ->where('department_id', $this->department->id)
+            ->when($this->department, function ($query) {
+                $query->where('department_id', $this->department->id);
+            })
+            ->when($this->selectedCategory, function ($query) {
+                $query->where('category_id', $this->selectedCategory);
+            })
             ->when($this->selectedAdviser, function ($query) {
                 $query->where('adviser_id', $this->selectedAdviser);
             })
@@ -61,6 +91,9 @@ class DepartmentResearches extends Component
         $researches = Research::with('department')
             ->where('department_id', $this->department->id)
             ->where('published', true)
+            ->when($this->selectedCategory, function ($query) {
+                $query->where('category_id', $this->selectedCategory);
+            })
             ->when($this->selectedAdviser, function ($query) {
                 $query->where('adviser_id', $this->selectedAdviser);
             })
@@ -70,9 +103,14 @@ class DepartmentResearches extends Component
             ->latest('date_submitted')
             ->paginate(6);
 
-        return view('livewire.researches.department-researches', compact('researches', 'advisers', 'years'))
+        return view('livewire.researches.department-researches', compact('researches', 'categories', 'advisers', 'years'))
             ->layout('layouts.app')
             ->title($this->department->name.' - DLL-CRDS');
+    }
+
+    public function updatedSelectedCategory()
+    {
+        $this->resetPage();
     }
 
     public function updatedSelectedAdviser()
