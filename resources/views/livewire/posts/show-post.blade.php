@@ -6,13 +6,16 @@
         <p class="text-sm font-medium text-gray-700">
             {{ $post->formattedDate() }}
         </p>
+
         @if ($post->image_path)
-            <img class="w-4xl mx-auto aspect-video rounded-md object-cover" src="{{ $post->formattedImage() }}"
+            <img class="mx-auto aspect-video max-w-4xl rounded-md object-cover" src="{{ $post->formattedImage() }}"
                 alt="{{ $post->title }}">
         @endif
+
         <div class="prose max-w-none">
             {!! $post->content !!}
         </div>
+
         <p class="text-sm font-medium text-gray-700">
             {{ optional($post->category)->name }}
         </p>

@@ -42,6 +42,10 @@
                     <p class="text-xs font-thin text-gray-700">
                         {{ $research->formattedDate() }}
                     </p>
+                    @if ($research->image_path)
+                        <img class="mx-auto aspect-video w-full rounded-md object-cover"
+                            src="{{ $research->formattedImage() }}" alt="{{ $research->title }}">
+                    @endif
                 </x-card>
             @empty
                 <p class="text-lg font-bold text-gray-700">

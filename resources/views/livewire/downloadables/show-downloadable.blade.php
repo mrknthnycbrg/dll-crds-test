@@ -6,9 +6,11 @@
         <p class="text-sm font-medium text-gray-700">
             {{ $downloadable->formattedDate() }}
         </p>
+
         <div class="prose max-w-none">
             {!! $downloadable->description !!}
         </div>
+
         @if ($downloadable->file_path)
             <x-button wire:click="file">
                 Download File

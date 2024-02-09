@@ -3,6 +3,12 @@
         <h1 class="text-3xl font-black text-gray-900">
             {{ $research->title }}
         </h1>
+
+        @if ($research->image_path)
+            <img class="mx-auto aspect-video max-w-4xl rounded-md object-cover" src="{{ $research->formattedImage() }}"
+                alt="{{ $research->title }}">
+        @endif
+
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">
                 Department:
@@ -36,10 +42,12 @@
         <p class="text-base font-extrabold text-gray-900">
             Abstract:
         </p>
+
         <div class="prose max-w-none">
             {!! $research->abstract !!}
         </div>
-        @if ($research->pdf_path)
+
+        @if ($research->file_path)
             <x-button wire:click="file">
                 View
             </x-button>
