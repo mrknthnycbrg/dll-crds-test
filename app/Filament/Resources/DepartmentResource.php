@@ -8,12 +8,14 @@ use App\Models\Research;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class DepartmentResource extends Resource
 {
@@ -48,6 +50,12 @@ class DepartmentResource extends Resource
                                     ->placeholder('Enter name')
                                     ->required()
                                     ->markAsRequired(false)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                Forms\Components\TextInput::make('slug')
+                                    ->label('Slug')
+                                    ->disabled()
+                                    ->dehydrated()
                                     ->unique(ignorable: fn ($record) => $record),
                             ]),
                     ])
@@ -63,6 +71,11 @@ class DepartmentResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
