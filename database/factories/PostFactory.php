@@ -30,7 +30,7 @@ class PostFactory extends Factory
             'slug' => Str::slug($title),
             'image_path' => null,
             'content' => $this->faker->unique()->realText(1000),
-            'category_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 5),
             'published' => true,
             'date_published' => $this->faker->dateTimeBetween('-4 years'),
         ];

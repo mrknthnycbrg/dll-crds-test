@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Department>
@@ -25,7 +26,8 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->realText(25),
+            'name' => $name = $this->faker->unique()->realText(25),
+            'slug' => Str::slug($name),
         ];
     }
 }

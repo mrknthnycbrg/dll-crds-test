@@ -12,6 +12,6 @@ class NumberSeeder extends Seeder
      */
     public function run(): void
     {
-        Number::factory(25)->create();
+        Number::factory(20)->create();
     }
 }

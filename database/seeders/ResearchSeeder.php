@@ -12,6 +12,6 @@ class ResearchSeeder extends Seeder
      */
     public function run(): void
     {
-        Research::factory(100)->create();
+        Research::factory(20)->create();
     }
 }

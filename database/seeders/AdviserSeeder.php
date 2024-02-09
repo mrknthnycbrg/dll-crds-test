@@ -12,6 +12,6 @@ class AdviserSeeder extends Seeder
      */
     public function run(): void
     {
-        Adviser::factory(20)->create();
+        Adviser::factory(5)->create();
     }
 }

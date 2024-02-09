@@ -33,7 +33,7 @@ class ResearchFactory extends Factory
             'pdf_path' => null,
             'abstract' => $this->faker->unique()->realText(2000),
             'department_id' => $this->faker->numberBetween(1, 8),
-            'adviser_id' => $this->faker->numberBetween(1, 20),
+            'adviser_id' => $this->faker->numberBetween(1, 5),
             'published' => true,
             'date_submitted' => $this->faker->dateTimeBetween('-4 years'),
         ];
