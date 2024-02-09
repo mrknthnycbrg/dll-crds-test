@@ -10,23 +10,23 @@ class CategoryChart extends ChartWidget
 {
     use HasWidgetShield;
 
-    protected static ?int $sort = 6;
+    protected static ?int $sort = 5;
 
     protected int|string|array $columnSpan = 'full';
 
     protected static ?string $maxHeight = '300px';
 
-    protected static ?string $heading = 'Posts by Category';
+    protected static ?string $heading = 'Researches by Category';
 
     protected function getData(): array
     {
-        $data = Category::withCount('posts')->get();
+        $data = Category::withCount('researches')->get();
 
         return [
             'datasets' => [
                 [
                     'label' => 'Categories',
-                    'data' => $data->pluck('posts_count')->toArray(),
+                    'data' => $data->pluck('researches_count')->toArray(),
                     'backgroundColor' => ['#1e40af', '#3730a3', '#2563eb', '#4f46e5', '#60a5fa', '#818cf8', '#1d4ed8', '#4338ca', '#3b82f6', '#6366f1'],
                     'borderColor' => '#93c5fd',
                     'animation' => [
