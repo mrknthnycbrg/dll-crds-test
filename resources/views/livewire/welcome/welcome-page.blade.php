@@ -18,7 +18,7 @@
 
     <div class="mx-auto max-w-full px-4 pb-8 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 py-8">
-            <h1 class="text-4xl font-black text-gray-900">
+            <h1 class="text-3xl font-black text-gray-900">
                 News
             </h1>
         </div>

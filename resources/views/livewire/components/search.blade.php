@@ -14,7 +14,7 @@
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         @if ($search)
             <div class="space-y-2 pb-8">
-                <h1 class="text-4xl font-black text-gray-900">
+                <h1 class="text-3xl font-black text-gray-900">
                     Search Results
                 </h1>
             </div>
@@ -48,7 +48,7 @@
             </div>
         @else
             <div class="space-y-2">
-                <h1 class="text-4xl font-black text-gray-900">
+                <h1 class="text-3xl font-black text-gray-900">
                     Latest Researches
                 </h1>
             </div>
