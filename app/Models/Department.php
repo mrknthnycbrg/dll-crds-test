@@ -26,6 +26,7 @@ class Department extends Model
      */
     protected $fillable = [
         'name',
+        'slug',
     ];
 
     public function researches(): HasMany
