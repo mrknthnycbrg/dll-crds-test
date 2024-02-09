@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug')->nullable()->unique();
             $table->string('image_path')->nullable();
             $table->longText('content')->nullable()->fullText();
-            $table->foreignId('category_id')->nullable()->constrained()->restrictOnDelete();
             $table->boolean('published')->default(false);
             $table->date('date_published')->nullable();
             $table->timestamps();

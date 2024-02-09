@@ -34,6 +34,7 @@ class ResearchFactory extends Factory
             'image_path' => null,
             'abstract' => $this->faker->unique()->realText(2000),
             'department_id' => $this->faker->numberBetween(1, 8),
+            'category_id' => $this->faker->numberBetween(1, 5),
             'adviser_id' => $this->faker->numberBetween(1, 5),
             'published' => true,
             'date_submitted' => $this->faker->dateTimeBetween('-4 years'),
