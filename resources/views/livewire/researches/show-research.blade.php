@@ -17,15 +17,27 @@
         </p>
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">
+                Adviser:
+            </span>
+            {{ optional($research->adviser)->name }}
+        </p>
+        <p class="text-base text-gray-700">
+            <span class="font-extrabold text-gray-900">
                 Category:
             </span>
             {{ optional($research->category)->name }}
         </p>
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">
-                Adviser:
+                Client:
             </span>
-            {{ optional($research->adviser)->name }}
+            {{ optional($research->client)->name }}
+        </p>
+        <p class="text-base text-gray-700">
+            <span class="font-extrabold text-gray-900">
+                Award:
+            </span>
+            {{ optional($research->award)->name }}
         </p>
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">

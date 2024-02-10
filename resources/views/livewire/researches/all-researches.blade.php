@@ -6,11 +6,17 @@
     </x-slot>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-3">
+        <div class="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
             <div class="mb-4">
                 <x-label for="department" value="Department" />
                 <x-select class="mt-1 block w-full" id="department" wire:model.live.debounce="selectedDepartment"
                     :default="'All Departments'" :options="$departments" />
+            </div>
+
+            <div class="mb-4">
+                <x-label for="adviser" value="Adviser" />
+                <x-select class="mt-1 block w-full" id="adviser" wire:model.live.debounce="selectedAdviser"
+                    :default="'All Advisers'" :options="$advisers" />
             </div>
 
             <div class="mb-4">
@@ -20,9 +26,15 @@
             </div>
 
             <div class="mb-4">
-                <x-label for="adviser" value="Adviser" />
-                <x-select class="mt-1 block w-full" id="adviser" wire:model.live.debounce="selectedAdviser"
-                    :default="'All Advisers'" :options="$advisers" />
+                <x-label for="client" value="Client" />
+                <x-select class="mt-1 block w-full" id="client" wire:model.live.debounce="selectedClient"
+                    :default="'All Clients'" :options="$clients" />
+            </div>
+
+            <div class="mb-4">
+                <x-label for="award" value="Award" />
+                <x-select class="mt-1 block w-full" id="award" wire:model.live.debounce="selectedAward"
+                    :default="'All Awards'" :options="$awards" />
             </div>
 
             <div class="mb-8">
