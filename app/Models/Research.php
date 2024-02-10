@@ -38,8 +38,10 @@ class Research extends Model
         'image_path',
         'abstract',
         'department_id',
-        'category_id',
         'adviser_id',
+        'category_id',
+        'client_id',
+        'award_id',
         'published',
         'date_submitted',
     ];
@@ -59,14 +61,24 @@ class Research extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function adviser(): BelongsTo
+    {
+        return $this->belongsTo(Adviser::class);
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function adviser(): BelongsTo
+    public function client(): BelongsTo
     {
-        return $this->belongsTo(Adviser::class);
+        return $this->belongsTo(Client::class);
+    }
+
+    public function award(): BelongsTo
+    {
+        return $this->belongsTo(Award::class);
     }
 
     #[SearchUsingFullText(['abstract'])]
@@ -79,6 +91,9 @@ class Research extends Model
             'abstract' => '',
             'departments.name' => '',
             'advisers.name' => '',
+            'categories.name' => '',
+            'clients.name' => '',
+            'awards.name' => '',
         ];
     }
 
