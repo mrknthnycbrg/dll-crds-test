@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->longText('abstract')->nullable()->fullText();
             $table->foreignId('department_id')->nullable()->constrained()->restrictOnDelete();
-            $table->foreignId('category_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('adviser_id')->nullable()->constrained()->restrictOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained()->restrictOnDelete();
+            $table->foreignId('client_id')->nullable()->constrained()->restrictOnDelete();
+            $table->foreignId('award_id')->nullable()->constrained()->restrictOnDelete();
             $table->boolean('published')->default(false);
             $table->date('date_submitted')->nullable();
             $table->timestamps();
