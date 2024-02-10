@@ -22,7 +22,17 @@ class Search extends Component
                 ->query(function ($query) {
                     $query->join('departments', 'researches.department_id', '=', 'departments.id')
                         ->join('advisers', 'researches.adviser_id', '=', 'advisers.id')
-                        ->select('researches.*', 'departments.name', 'advisers.name')
+                        ->join('categories', 'researches.category_id', '=', 'categories.id')
+                        ->join('clients', 'researches.client_id', '=', 'clients.id')
+                        ->join('awards', 'researches.award_id', '=', 'awards.id')
+                        ->select(
+                            'researches.*',
+                            'departments.name',
+                            'advisers.name',
+                            'categories.name',
+                            'clients.name',
+                            'awards.name'
+                        )
                         ->with('department')
                         ->where('published', true)
                         ->latest('date_submitted');
