@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NumberResource\Pages;
-use App\Models\Number;
-use App\Models\User;
+use App\Filament\Resources\AwardResource\Pages;
+use App\Models\Award;
+use App\Models\Research;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -15,25 +15,25 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class NumberResource extends Resource
+class AwardResource extends Resource
 {
-    protected static ?string $model = Number::class;
+    protected static ?string $model = Award::class;
 
-    protected static ?string $slug = 'numbers';
+    protected static ?string $slug = 'awards';
 
-    protected static ?string $modelLabel = 'number';
+    protected static ?string $modelLabel = 'award';
 
-    protected static ?string $pluralModelLabel = 'numbers';
+    protected static ?string $pluralModelLabel = 'awards';
 
-    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
-    protected static ?string $navigationLabel = 'Numbers';
+    protected static ?string $navigationLabel = 'Awards';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 6;
 
-    protected static ?string $navigationGroup = 'User Management';
+    protected static ?string $navigationGroup = 'Research Management';
 
-    protected static ?string $navigationParentItem = 'Users';
+    protected static ?string $navigationParentItem = 'Researches';
 
     public static function form(Form $form): Form
     {
@@ -43,21 +43,13 @@ class NumberResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
-                                Forms\Components\TextInput::make('id_number')
-                                    ->label('ID Number')
-                                    ->placeholder('Enter number')
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Name')
+                                    ->placeholder('Enter name')
                                     ->required()
                                     ->markAsRequired(false)
                                     ->unique(ignorable: fn ($record) => $record),
-                                Forms\Components\Select::make('user_id')
-                                    ->label('User (Optional)')
-                                    ->placeholder('Select user')
-                                    ->relationship('user', 'email')
-                                    ->searchable()
-                                    ->preload()
-                                    ->native(false),
-                            ])
-                            ->columns(2),
+                            ]),
                     ])
                     ->columnSpanFull(),
             ]);
@@ -67,12 +59,9 @@ class NumberResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_number')
-                    ->label('ID Number')
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Name')
                     ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user.email')
-                    ->label('User')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
@@ -101,8 +90,8 @@ class NumberResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number updated')
-                            ->body('A number has been updated successfully.')
+                            ->title('Award updated')
+                            ->body('An award has been updated successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -111,19 +100,19 @@ class NumberResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number deleted')
-                            ->body('A number has been deleted successfully.')
+                            ->title('Award deleted')
+                            ->body('An award has been deleted successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
-                    ->before(function (Tables\Actions\DeleteAction $action, Number $record) {
-                        $userId = $record->user_id;
+                    ->before(function (Tables\Actions\DeleteAction $action, Award $record) {
+                        $id = $record->id;
 
-                        if (User::where('id', $userId)->exists()) {
+                        if (Research::where('award_id', $id)->exists()) {
                             Notification::make()
-                                ->title('Number not deleted')
-                                ->body('A number is not allowed to be deleted.')
+                                ->title('Award not deleted')
+                                ->body('An award is not allowed to be deleted.')
                                 ->danger()
                                 ->send()
                                 ->sendToDatabase(auth()->user());
@@ -135,8 +124,8 @@ class NumberResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number force deleted')
-                            ->body('A number has been force deleted successfully.')
+                            ->title('Award force deleted')
+                            ->body('An award has been force deleted successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -145,8 +134,8 @@ class NumberResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number restored')
-                            ->body('A number has been restored successfully.')
+                            ->title('Award restored')
+                            ->body('An award has been restored successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -156,14 +145,14 @@ class NumberResource extends Resource
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
             ])
-            ->defaultSort('id_number', 'desc')
+            ->defaultSort('name', 'asc')
             ->persistSortInSession();
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageNumbers::route('/'),
+            'index' => Pages\ManageAwards::route('/'),
         ];
     }
 

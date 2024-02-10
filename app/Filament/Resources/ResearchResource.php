@@ -140,6 +140,28 @@ class ResearchResource extends Resource
                                             ->placeholder('Enter name')
                                             ->required()
                                             ->markAsRequired(false)
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                        Forms\Components\TextInput::make('slug')
+                                            ->label('Slug')
+                                            ->disabled()
+                                            ->dehydrated()
+                                            ->unique(ignorable: fn ($record) => $record),
+                                    ]),
+                                Forms\Components\Select::make('adviser_id')
+                                    ->label('Adviser')
+                                    ->placeholder('Select adviser')
+                                    ->relationship('adviser', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->markAsRequired(false)
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label('Name')
+                                            ->placeholder('Enter name')
+                                            ->required()
+                                            ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),
                                     ]),
                                 Forms\Components\Select::make('category_id')
@@ -159,12 +181,30 @@ class ResearchResource extends Resource
                                             ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),
                                     ]),
-                                Forms\Components\Select::make('adviser_id')
-                                    ->label('Adviser')
-                                    ->placeholder('Select adviser')
-                                    ->relationship('adviser', 'name')
+                                Forms\Components\Select::make('client_id')
+                                    ->label('Client')
+                                    ->placeholder('Select client')
+                                    ->relationship('client', 'name')
                                     ->searchable()
                                     ->preload()
+                                    ->required()
+                                    ->markAsRequired(false)
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label('Name')
+                                            ->placeholder('Enter name')
+                                            ->required()
+                                            ->markAsRequired(false)
+                                            ->unique(ignorable: fn ($record) => $record),
+                                    ]),
+                                Forms\Components\Select::make('award_id')
+                                    ->label('Award')
+                                    ->placeholder('Select award')
+                                    ->relationship('award', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
                                     ->markAsRequired(false)
                                     ->native(false)
                                     ->createOptionForm([
@@ -212,13 +252,23 @@ class ResearchResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('adviser.name')
+                    ->label('Adviser')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('adviser.name')
-                    ->label('Adviser')
+                Tables\Columns\TextColumn::make('client.name')
+                    ->label('Client')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('award.name')
+                    ->label('Award')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -289,15 +339,27 @@ class ResearchResource extends Resource
                     ->searchable()
                     ->preload()
                     ->native(false),
+                Tables\Filters\SelectFilter::make('adviser')
+                    ->label('Adviser')
+                    ->relationship('adviser', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 Tables\Filters\SelectFilter::make('category')
                     ->label('Category')
                     ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
                     ->native(false),
-                Tables\Filters\SelectFilter::make('adviser')
-                    ->label('Adviser')
-                    ->relationship('adviser', 'name')
+                Tables\Filters\SelectFilter::make('client')
+                    ->label('Client')
+                    ->relationship('client', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
+                Tables\Filters\SelectFilter::make('award')
+                    ->label('Award')
+                    ->relationship('award', 'name')
                     ->searchable()
                     ->preload()
                     ->native(false),

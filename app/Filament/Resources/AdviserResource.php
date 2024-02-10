@@ -29,7 +29,7 @@ class AdviserResource extends Resource
 
     protected static ?string $navigationLabel = 'Advisers';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $navigationGroup = 'Research Management';
 
