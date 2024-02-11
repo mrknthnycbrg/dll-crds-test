@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FileDownloadable;
 use App\Http\Controllers\FileResearch;
+use App\Livewire\Collections\CollectionsPage;
 use App\Livewire\Downloadables\AllDownloadables;
 use App\Livewire\Downloadables\ShowDownloadable;
 use App\Livewire\Home\HomePage;
@@ -40,5 +41,6 @@ Route::middleware([
     Route::get('/resources', AllDownloadables::class)->name('all-downloadables');
     Route::get('/resources/{slug}', ShowDownloadable::class)->name('show-downloadable');
     Route::get('/resources/files/{slug}', FileDownloadable::class)->name('file-downloadable');
+    Route::get('/collections', CollectionsPage::class)->name('collections');
     Route::get('/tools', ToolsPage::class)->name('tools');
 });
