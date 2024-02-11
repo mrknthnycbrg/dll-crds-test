@@ -10,6 +10,7 @@ use App\Livewire\Posts\ShowPost;
 use App\Livewire\Researches\AllResearches;
 use App\Livewire\Researches\DepartmentResearches;
 use App\Livewire\Researches\ShowResearch;
+use App\Livewire\Submit\SubmitPage;
 use App\Livewire\Tools\ToolsPage;
 use App\Livewire\Welcome\WelcomePage;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +44,5 @@ Route::middleware([
     Route::get('/resources/files/{slug}', FileDownloadable::class)->name('file-downloadable');
     Route::get('/collections', CollectionsPage::class)->name('collections');
     Route::get('/tools', ToolsPage::class)->name('tools');
+    Route::get('/submit', SubmitPage::class)->name('submit')->middleware(['password.confirm']);
 });
