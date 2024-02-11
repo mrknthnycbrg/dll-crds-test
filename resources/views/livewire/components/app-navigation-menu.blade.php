@@ -32,6 +32,9 @@
                         <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
                             Resources
                         </x-nav-link>
+                        <x-nav-link href="{{ route('collections') }}" wire:navigate :active="request()->routeIs('collections')">
+                            Collections
+                        </x-nav-link>
                         <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
                             Tools
                         </x-nav-link>
@@ -91,6 +94,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
                     Resources
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('collections') }}" wire:navigate :active="request()->routeIs('collections')">
+                    Collections
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
                     Tools

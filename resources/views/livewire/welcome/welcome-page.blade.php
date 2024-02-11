@@ -27,7 +27,7 @@
             @forelse ($posts as $post)
                 <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
                     wire:key="{{ $post->id }}">
-                    <h3 class="text-lg font-bold text-gray-700 group-hover:text-blue-800">
+                    <h3 class="text-base font-bold text-gray-700 group-hover:text-blue-800">
                         {{ $post->title }}
                     </h3>
                     <p class="text-sm font-light text-gray-700">
@@ -55,7 +55,7 @@
 
     <div class="mx-auto max-w-full bg-gray-200 px-4 py-8 sm:px-6 lg:px-8">
         <div class="text-center">
-            <p class="text-base text-gray-700">
+            <p class="text-sm text-gray-700">
                 &copy; {{ date('Y') }} {{ config('app.name', 'DLL-CRDS') }}. All rights reserved.
             </p>
         </div>
