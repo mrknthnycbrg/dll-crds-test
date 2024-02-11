@@ -38,6 +38,9 @@
                         <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
                             Tools
                         </x-nav-link>
+                        <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                            Submit
+                        </x-nav-link>
                     </div>
 
                     <div class="hidden md:ms-4 md:flex md:items-center">
@@ -100,6 +103,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
                     Tools
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                    Submit
                 </x-responsive-nav-link>
             </div>
 
