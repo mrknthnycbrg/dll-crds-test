@@ -35,7 +35,7 @@ class PostResource extends Resource
 
     protected static ?string $navigationLabel = 'Posts';
 
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 8;
 
     protected static ?string $navigationGroup = 'Post Management';
 
@@ -62,6 +62,7 @@ class PostResource extends Resource
                                 Forms\Components\RichEditor::make('content')
                                     ->label('Content')
                                     ->placeholder('Enter content')
+                                    ->required()
                                     ->markAsRequired(false)
                                     ->disableToolbarButtons([
                                         'attachFiles',
@@ -81,7 +82,9 @@ class PostResource extends Resource
                                         '4:3',
                                         '1:1',
                                     ])
+                                    ->preserveFilenames()
                                     ->openable()
+                                    ->downloadable()
                                     ->disk('public')
                                     ->directory('post-images'),
                             ]),

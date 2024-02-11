@@ -29,7 +29,7 @@ class NumberResource extends Resource
 
     protected static ?string $navigationLabel = 'Numbers';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 11;
 
     protected static ?string $navigationGroup = 'User Management';
 

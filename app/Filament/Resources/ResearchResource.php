@@ -63,7 +63,6 @@ class ResearchResource extends Resource
                                 Forms\Components\RichEditor::make('abstract')
                                     ->label('Abstract')
                                     ->placeholder('Enter abstract')
-                                    ->markAsRequired(false)
                                     ->disableToolbarButtons([
                                         'attachFiles',
                                     ])
@@ -74,8 +73,10 @@ class ResearchResource extends Resource
                             ->schema([
                                 Forms\Components\FileUpload::make('file_path')
                                     ->label('File')
-                                    ->openable()
                                     ->acceptedFileTypes(['application/pdf'])
+                                    ->preserveFilenames()
+                                    ->openable()
+                                    ->downloadable()
                                     ->disk('public')
                                     ->directory('research-files'),
                                 Forms\Components\FileUpload::make('image_path')
@@ -88,7 +89,9 @@ class ResearchResource extends Resource
                                         '4:3',
                                         '1:1',
                                     ])
+                                    ->preserveFilenames()
                                     ->openable()
+                                    ->downloadable()
                                     ->disk('public')
                                     ->directory('research-images'),
                             ]),
@@ -132,7 +135,6 @@ class ResearchResource extends Resource
                                     ->relationship('department', 'name')
                                     ->searchable()
                                     ->preload()
-                                    ->markAsRequired(false)
                                     ->native(false)
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -154,7 +156,6 @@ class ResearchResource extends Resource
                                     ->relationship('adviser', 'name')
                                     ->searchable()
                                     ->preload()
-                                    ->markAsRequired(false)
                                     ->native(false)
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -170,8 +171,6 @@ class ResearchResource extends Resource
                                     ->relationship('category', 'name')
                                     ->searchable()
                                     ->preload()
-                                    ->required()
-                                    ->markAsRequired(false)
                                     ->native(false)
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -187,8 +186,6 @@ class ResearchResource extends Resource
                                     ->relationship('client', 'name')
                                     ->searchable()
                                     ->preload()
-                                    ->required()
-                                    ->markAsRequired(false)
                                     ->native(false)
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')
@@ -204,8 +201,6 @@ class ResearchResource extends Resource
                                     ->relationship('award', 'name')
                                     ->searchable()
                                     ->preload()
-                                    ->required()
-                                    ->markAsRequired(false)
                                     ->native(false)
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')

@@ -35,7 +35,7 @@ class DownloadableResource extends Resource
 
     protected static ?string $navigationLabel = 'Downloadables';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 9;
 
     protected static ?string $navigationGroup = 'Post Management';
 
@@ -62,7 +62,6 @@ class DownloadableResource extends Resource
                                 Forms\Components\RichEditor::make('description')
                                     ->label('Description')
                                     ->placeholder('Enter description')
-                                    ->markAsRequired(false)
                                     ->disableToolbarButtons([
                                         'attachFiles',
                                     ])
@@ -73,8 +72,11 @@ class DownloadableResource extends Resource
                             ->schema([
                                 Forms\Components\FileUpload::make('file_path')
                                     ->label('File')
+                                    ->required()
                                     ->markAsRequired(false)
+                                    ->preserveFilenames()
                                     ->openable()
+                                    ->downloadable()
                                     ->disk('public')
                                     ->directory('downloadable-files'),
                             ]),
