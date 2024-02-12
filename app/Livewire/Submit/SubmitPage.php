@@ -11,29 +11,30 @@ class SubmitPage extends Component
 {
     use WithFileUploads;
 
-    public $email;
+    public $user_email;
 
     public $file;
 
     public function mount()
     {
-        $this->email = Auth::user()->email;
+        $this->user_email = Auth::user()->email;
     }
 
     public function save()
     {
         $this->validate([
-            'email' => 'required|email',
+            'user_email' => 'required|email',
             'file' => 'required|file|mimes:pdf',
         ]);
 
         $originalFilename = $this->file->getClientOriginalName();
 
-        $filePath = $this->file->storePubliclyAs(path: 'submission-files', name: $originalFilename);
+        $filePath = $this->file->storeAs(path: 'submission-files', name: $originalFilename);
 
         Submission::create([
-            'email' => $this->email,
+            'user_email' => $this->user_email,
             'file_path' => $filePath,
+            'date_submitted' => now(),
         ]);
 
         return redirect('/submit')
