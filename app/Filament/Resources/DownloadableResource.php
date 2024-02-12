@@ -35,7 +35,7 @@ class DownloadableResource extends Resource
 
     protected static ?string $navigationLabel = 'Downloadables';
 
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 10;
 
     protected static ?string $navigationGroup = 'Post Management';
 

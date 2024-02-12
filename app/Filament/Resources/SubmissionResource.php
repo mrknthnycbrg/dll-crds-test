@@ -40,7 +40,7 @@ class SubmissionResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
-                                Forms\Components\TextInput::make('email')
+                                Forms\Components\TextInput::make('user_email')
                                     ->label('Email')
                                     ->placeholder('Enter email')
                                     ->email()
@@ -56,6 +56,12 @@ class SubmissionResource extends Resource
                                     ->downloadable()
                                     ->disk('public')
                                     ->directory('submission-files'),
+                                Forms\Components\DateTimePicker::make('date_submitted')
+                                    ->label('Date Submitted')
+                                    ->default(now())
+                                    ->maxDate(now())
+                                    ->native(false)
+                                    ->closeOnDateSelection(),
                             ]),
                     ])
                     ->columnSpanFull(),
@@ -66,18 +72,23 @@ class SubmissionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('email')
+                Tables\Columns\TextColumn::make('user_email')
                     ->label('Email')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('file_path')
-                    ->label('File Path')
+                    ->label('File')
                     ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('date_submitted')
+                    ->label('Date Submitted')
+                    ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Updated At')
                     ->dateTime()
@@ -129,7 +140,7 @@ class SubmissionResource extends Resource
             ])
             ->bulkActions([])
             ->emptyStateActions([])
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('date_submitted', 'desc')
             ->persistSortInSession();
     }
 

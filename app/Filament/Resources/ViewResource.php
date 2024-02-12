@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NumberResource\Pages;
-use App\Models\Number;
-use App\Models\User;
+use App\Filament\Resources\ViewResource\Pages;
+use App\Models\View;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -15,25 +14,23 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class NumberResource extends Resource
+class ViewResource extends Resource
 {
-    protected static ?string $model = Number::class;
+    protected static ?string $model = View::class;
 
-    protected static ?string $slug = 'numbers';
+    protected static ?string $slug = 'views';
 
-    protected static ?string $modelLabel = 'number';
+    protected static ?string $modelLabel = 'view';
 
-    protected static ?string $pluralModelLabel = 'numbers';
+    protected static ?string $pluralModelLabel = 'views';
 
-    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationIcon = 'heroicon-o-eye';
 
-    protected static ?string $navigationLabel = 'Numbers';
+    protected static ?string $navigationLabel = 'Views';
 
-    protected static ?int $navigationSort = 12;
+    protected static ?int $navigationSort = 8;
 
-    protected static ?string $navigationGroup = 'User Management';
-
-    protected static ?string $navigationParentItem = 'Users';
+    protected static ?string $navigationGroup = 'Research Management';
 
     public static function form(Form $form): Form
     {
@@ -43,21 +40,24 @@ class NumberResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
-                                Forms\Components\TextInput::make('id_number')
-                                    ->label('ID Number')
-                                    ->placeholder('Enter number')
+                                Forms\Components\TextInput::make('user_email')
+                                    ->label('Email')
+                                    ->placeholder('Enter email')
+                                    ->email()
                                     ->required()
-                                    ->markAsRequired(false)
-                                    ->unique(ignorable: fn ($record) => $record),
-                                Forms\Components\Select::make('user_id')
-                                    ->label('User (Optional)')
-                                    ->placeholder('Select user')
-                                    ->relationship('user', 'email')
-                                    ->searchable()
-                                    ->preload()
-                                    ->native(false),
-                            ])
-                            ->columns(2),
+                                    ->markAsRequired(false),
+                                Forms\Components\TextInput::make('research_title')
+                                    ->label('Title')
+                                    ->placeholder('Enter title')
+                                    ->required()
+                                    ->markAsRequired(false),
+                                Forms\Components\DateTimePicker::make('date_viewed')
+                                    ->label('Date Viewed')
+                                    ->default(now())
+                                    ->maxDate(now())
+                                    ->native(false)
+                                    ->closeOnDateSelection(),
+                            ]),
                     ])
                     ->columnSpanFull(),
             ]);
@@ -67,12 +67,17 @@ class NumberResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_number')
-                    ->label('ID Number')
+                Tables\Columns\TextColumn::make('user_email')
+                    ->label('User')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user.email')
-                    ->label('User')
+                Tables\Columns\TextColumn::make('research_title')
+                    ->label('Research')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('date_viewed')
+                    ->label('Date Viewed')
+                    ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
@@ -97,46 +102,22 @@ class NumberResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make()
-                    ->successNotification(null)
-                    ->after(function () {
-                        Notification::make()
-                            ->title('Number updated')
-                            ->body('A number has been updated successfully.')
-                            ->success()
-                            ->send()
-                            ->sendToDatabase(auth()->user());
-                    }),
                 Tables\Actions\DeleteAction::make()
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number deleted')
-                            ->body('A number has been deleted successfully.')
+                            ->title('View deleted')
+                            ->body('A view has been deleted successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
-                    })
-                    ->before(function (Tables\Actions\DeleteAction $action, Number $record) {
-                        $userId = $record->user_id;
-
-                        if (User::where('id', $userId)->exists()) {
-                            Notification::make()
-                                ->title('Number not deleted')
-                                ->body('A number is not allowed to be deleted.')
-                                ->danger()
-                                ->send()
-                                ->sendToDatabase(auth()->user());
-
-                            $action->cancel();
-                        }
                     }),
                 Tables\Actions\ForceDeleteAction::make()
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number force deleted')
-                            ->body('A number has been force deleted successfully.')
+                            ->title('View force deleted')
+                            ->body('A view has been force deleted successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -145,25 +126,23 @@ class NumberResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Number restored')
-                            ->body('A number has been restored successfully.')
+                            ->title('View restored')
+                            ->body('A view has been restored successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
             ])
             ->bulkActions([])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
-            ])
-            ->defaultSort('id_number', 'desc')
+            ->emptyStateActions([])
+            ->defaultSort('date_viewed', 'desc')
             ->persistSortInSession();
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageNumbers::route('/'),
+            'index' => Pages\ManageViews::route('/'),
         ];
     }
 
