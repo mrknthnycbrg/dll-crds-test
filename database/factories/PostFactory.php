@@ -26,8 +26,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $title = $this->faker->unique()->realText(100),
-            'slug' => Str::slug($title),
+            'title' => $this->faker->unique()->realText(100),
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['title']);
+            },
             'image_path' => null,
             'content' => $this->faker->unique()->realText(1000),
             'published' => true,

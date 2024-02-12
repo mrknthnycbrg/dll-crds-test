@@ -26,8 +26,10 @@ class DepartmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $name = $this->faker->unique()->realText(25),
-            'slug' => Str::slug($name),
+            'name' => $this->faker->unique()->realText(25),
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['name']);
+            },
         ];
     }
 }

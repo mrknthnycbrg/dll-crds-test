@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
+            $table->string('user_email');
             $table->string('file_path');
+            $table->timestamp('date_submitted');
             $table->timestamps();
             $table->softDeletes();
         });

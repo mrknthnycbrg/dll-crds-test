@@ -2,12 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\Adviser;
+use App\Models\Award;
+use App\Models\Category;
+use App\Models\Client;
+use App\Models\Department;
 use App\Models\Research;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Research>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<Research>
  */
 class ResearchFactory extends Factory
 {
@@ -26,18 +31,30 @@ class ResearchFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $title = $this->faker->unique()->realText(200),
-            'slug' => Str::slug($title),
+            'title' => $this->faker->unique()->realText(200),
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['title']);
+            },
             'author' => $this->faker->unique()->name(),
             'keyword' => $this->faker->words(3, true),
             'file_path' => null,
             'image_path' => null,
             'abstract' => $this->faker->unique()->realText(2000),
-            'department_id' => $this->faker->numberBetween(1, 8),
-            'adviser_id' => $this->faker->numberBetween(1, 5),
-            'category_id' => $this->faker->numberBetween(1, 5),
-            'client_id' => $this->faker->numberBetween(1, 5),
-            'award_id' => $this->faker->numberBetween(1, 5),
+            'department_id' => function () {
+                return Department::inRandomOrder()->first()->id;
+            },
+            'adviser_id' => function () {
+                return Adviser::inRandomOrder()->first()->id;
+            },
+            'category_id' => function () {
+                return Category::inRandomOrder()->first()->id;
+            },
+            'client_id' => function () {
+                return Client::inRandomOrder()->first()->id;
+            },
+            'award_id' => function () {
+                return Award::inRandomOrder()->first()->id;
+            },
             'published' => true,
             'date_submitted' => $this->faker->dateTimeBetween('-4 years'),
         ];
