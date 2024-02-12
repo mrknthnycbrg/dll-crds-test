@@ -17,8 +17,9 @@
 
         <form wire:submit.prevent="save">
             <div class="mb-4">
-                <x-label for="email" value="Email" />
-                <x-input class="mt-1 block w-full" id="email" name="email" type="email" wire:model="email" />
+                <x-label for="user_email" value="Email" />
+                <x-input class="mt-1 block w-full" id="user_email" name="user_email" type="email"
+                    wire:model="user_email" />
             </div>
 
             <div class="mb-4">
