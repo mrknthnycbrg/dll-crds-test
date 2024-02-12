@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Submission extends Model
+class View extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,7 +16,7 @@ class Submission extends Model
      *
      * @var string
      */
-    protected $table = 'submissions';
+    protected $table = 'views';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,7 @@ class Submission extends Model
      */
     protected $fillable = [
         'user_email',
-        'file_path',
-        'date_submitted',
+        'research_title',
+        'date_viewed',
     ];
 }
