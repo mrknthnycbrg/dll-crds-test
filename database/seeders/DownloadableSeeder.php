@@ -12,6 +12,6 @@ class DownloadableSeeder extends Seeder
      */
     public function run(): void
     {
-        Downloadable::factory(20)->create();
+        Downloadable::factory(3)->create();
     }
 }
