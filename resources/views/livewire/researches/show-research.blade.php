@@ -17,6 +17,18 @@
         </p>
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">
+                Date Submitted:
+            </span>
+            {{ $research->formattedDAte() }}
+        </p>
+        <p class="text-base text-gray-700">
+            <span class="font-extrabold text-gray-900">
+                Authors:
+            </span>
+            {{ $research->author }}
+        </p>
+        <p class="text-base text-gray-700">
+            <span class="font-extrabold text-gray-900">
                 Adviser:
             </span>
             {{ optional($research->adviser)->name }}
@@ -38,18 +50,6 @@
                 Award:
             </span>
             {{ optional($research->award)->name }}
-        </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
-                Date Submitted:
-            </span>
-            {{ $research->formattedDAte() }}
-        </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
-                Authors:
-            </span>
-            {{ $research->author }}
         </p>
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">
