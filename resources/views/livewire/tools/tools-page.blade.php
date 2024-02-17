@@ -47,14 +47,26 @@
             @if (!empty($similarTitles))
                 <div class="w-full space-y-4">
                     <h2 class="text-xl font-bold text-gray-900">Similar Titles:</h2>
-                    @foreach ($similarTitles as $similarTitle)
-                        <ul class="list-disc pl-8">
-                            <li>
-                                <span class="font-bold">{{ $similarTitle['title'] }}</span>
-                                - {{ $similarTitle['percentage'] }} similarity
-                            </li>
-                        </ul>
-                    @endforeach
+                    <table class="w-full border-collapse text-left">
+                        <thead>
+                            <tr>
+                                <th class="border-b p-2">Title</th>
+                                <th class="border-b p-2">Similarity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($similarTitles as $similarTitle)
+                                <tr>
+                                    <td class="border-b p-2">
+                                        {{ $similarTitle['title'] }}
+                                    </td>
+                                    <td class="border-b p-2">
+                                        {{ $similarTitle['percentage'] }} similarity
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             @else
                 @if (!empty($titleCheckInput))
@@ -84,14 +96,26 @@
             @if (!empty($similarAbstracts))
                 <div class="w-full space-y-4">
                     <h2 class="text-xl font-bold text-gray-900">Similar Abstracts:</h2>
-                    @foreach ($similarAbstracts as $similarAbstract)
-                        <ul class="list-disc pl-8">
-                            <li>
-                                <span class="font-bold">{{ $similarAbstract['abstract'] }}</span>
-                                - {{ $similarAbstract['percentage'] }} similarity
-                            </li>
-                        </ul>
-                    @endforeach
+                    <table class="w-full border-collapse text-left">
+                        <thead>
+                            <tr>
+                                <th class="border-b p-2">Abstract</th>
+                                <th class="border-b p-2">Similarity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($similarAbstracts as $similarAbstract)
+                                <tr>
+                                    <td class="border-b p-2">
+                                        {{ $similarAbstract['abstract'] }}
+                                    </td>
+                                    <td class="border-b p-2">
+                                        {{ $similarAbstract['percentage'] }} similarity
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             @else
                 @if (!empty($abstractCheckInput))
@@ -101,5 +125,6 @@
                 @endif
             @endif
         </div>
+
     </div>
 </div>
