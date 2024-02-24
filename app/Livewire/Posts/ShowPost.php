@@ -17,7 +17,6 @@ class ShowPost extends Component
     public function render()
     {
         return view('livewire.posts.show-post')
-            ->layout('layouts.guest')
             ->title($this->post->title.' - DLL-CRDS');
     }
 }

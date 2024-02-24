@@ -93,7 +93,6 @@ class ToolsPage extends Component
     public function render()
     {
         return view('livewire.tools.tools-page')
-            ->layout('layouts.app')
             ->title('Tools - DLL-CRDS');
     }
 }

@@ -44,7 +44,6 @@ class SubmitPage extends Component
     public function render()
     {
         return view('livewire.submit.submit-page')
-            ->layout('layouts.app')
             ->title('Submit - DLL-CRDS');
     }
 }

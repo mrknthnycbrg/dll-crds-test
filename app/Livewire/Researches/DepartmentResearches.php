@@ -155,7 +155,6 @@ class DepartmentResearches extends Component
             ->paginate(6);
 
         return view('livewire.researches.department-researches', compact('researches', 'advisers', 'categories', 'clients', 'awards', 'years'))
-            ->layout('layouts.app')
             ->title($this->department->name.' - DLL-CRDS');
     }
 

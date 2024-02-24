@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire\Downloadables;
+namespace App\Livewire\Posts;
 
-use App\Models\Downloadable;
+use App\Models\Post;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AllDownloadables extends Component
+class AllPosts extends Component
 {
     use WithPagination;
 
@@ -15,9 +15,9 @@ class AllDownloadables extends Component
 
     public function render()
     {
-        $latestPublished = Downloadable::where('published', true)->max('date_published');
+        $latestPublished = Post::where('published', true)->max('date_published');
 
-        $earliestPublished = Downloadable::where('published', true)->min('date_published');
+        $earliestPublished = Post::where('published', true)->min('date_published');
 
         if ($latestPublished && $earliestPublished) {
             $latestYear = Carbon::parse($latestPublished)->year;
@@ -29,15 +29,15 @@ class AllDownloadables extends Component
             $years = null;
         }
 
-        $downloadables = Downloadable::where('published', true)
+        $posts = Post::where('published', true)
             ->when($this->selectedYear, function ($query) {
                 $query->whereYear('date_published', $this->selectedYear);
             })
             ->latest('date_published')
             ->paginate(6);
 
-        return view('livewire.downloadables.all-downloadables', compact('downloadables', 'years'))
-            ->title('Resources - DLL-CRDS');
+        return view('livewire.posts.all-posts', compact('posts', 'years'))
+            ->title('News - DLL-CRDS');
     }
 
     public function updatedSelectedYear()

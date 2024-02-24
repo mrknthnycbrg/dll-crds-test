@@ -14,7 +14,6 @@ class CollectionsPage extends Component
         }])->get();
 
         return view('livewire.collections.collections-page', compact('departments'))
-            ->layout('layouts.app')
             ->title('Collections - DLL-CRDS');
     }
 }

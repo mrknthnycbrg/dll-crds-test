@@ -17,7 +17,6 @@ class ShowDownloadable extends Component
     public function render()
     {
         return view('livewire.downloadables.show-downloadable')
-            ->layout('layouts.app')
             ->title($this->downloadable->name.' - DLL-CRDS');
     }
 

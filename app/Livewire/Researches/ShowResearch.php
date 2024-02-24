@@ -19,7 +19,6 @@ class ShowResearch extends Component
     public function render()
     {
         return view('livewire.researches.show-research')
-            ->layout('layouts.app')
             ->title($this->research->title.' - DLL-CRDS');
     }
 
