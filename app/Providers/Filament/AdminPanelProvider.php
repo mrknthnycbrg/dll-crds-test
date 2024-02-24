@@ -43,7 +43,11 @@ class AdminPanelProvider extends PanelProvider
                 'Settings',
             ])
             ->colors([
-                'primary' => Color::hex('#1e40af'),
+                'danger' => Color::hex('#dc2626'),
+                'info' => Color::hex('#1e40af'),
+                'primary' => Color::hex('#155e75'),
+                'success' => Color::hex('#16a34a'),
+                'warning' => Color::hex('#fbbf24'),
             ])
             ->databaseNotifications()
             ->unsavedChangesAlerts()
@@ -88,10 +92,10 @@ class AdminPanelProvider extends PanelProvider
                     ->showBadge(true)
                     ->showBorder(false)
                     ->color(fn () => match (app()->environment()) {
-                        'local' => Color::Red,
-                        'staging' => Color::Yellow,
+                        'local' => Color::hex('#dc2626'),
                         'production' => null,
-                        default => Color::Blue,
+                        'staging' => Color::hex('#fbbf24'),
+                        default => Color::hex('#155e75'),
                     }),
             ])
             ->resources([]);
