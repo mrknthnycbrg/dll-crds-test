@@ -1,7 +1,7 @@
-<x-guest-layout>
+<x-app-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-application-logo class="size-28 block" href="{{ route('welcome') }}" role="button" wire:navigate />
+            <x-application-logo class="size-28 block" href="{{ route('home') }}" role="button" wire:navigate />
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-700">
@@ -32,4 +32,4 @@
             </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-app-layout>

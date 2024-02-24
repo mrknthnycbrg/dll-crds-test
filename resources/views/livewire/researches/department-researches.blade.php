@@ -42,22 +42,24 @@
             @forelse ($researches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    <h3 class="text-base font-bold text-gray-700 group-hover:text-blue-800">
-                        {{ $research->title }}
-                    </h3>
-                    <p class="text-sm font-medium text-gray-700">
-                        {{ optional($research->department)->name }}
-                    </p>
-                    <p class="text-sm font-light text-gray-700">
-                        {{ $research->formattedAbstract() }}
-                    </p>
-                    <p class="text-xs font-thin text-gray-700">
-                        {{ $research->formattedDate() }}
-                    </p>
                     @if ($research->image_path)
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ $research->formattedImage() }}" alt="{{ $research->title }}">
                     @endif
+                    <div class="pt-4">
+                        <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
+                            {{ $research->title }}
+                        </h3>
+                        <p class="text-sm font-medium text-gray-700">
+                            {{ optional($research->department)->name }}
+                        </p>
+                        <p class="text-sm font-light text-gray-700">
+                            {{ $research->formattedAbstract() }}
+                        </p>
+                        <p class="text-xs font-thin text-gray-700">
+                            {{ $research->formattedDate() }}
+                        </p>
+                    </div>
                 </x-card>
             @empty
                 <p class="text-lg font-bold text-gray-700">

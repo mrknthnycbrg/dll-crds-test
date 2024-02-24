@@ -45,7 +45,7 @@
                     {{ __('Your email address is unverified.') }}
 
                     <button
-                        class="rounded-md text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                        class="rounded-md text-sm text-gray-700 underline hover:text-cyan-800 focus:outline-none focus:ring-2 focus:ring-cyan-800 focus:ring-offset-2"
                         type="button" wire:click.prevent="sendEmailVerification">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>

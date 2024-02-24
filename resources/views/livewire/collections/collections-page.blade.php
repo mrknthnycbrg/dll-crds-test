@@ -17,7 +17,7 @@
                 @forelse ($department->researches as $research)
                     <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                         wire:key="{{ $research->id }}">
-                        <h3 class="text-base font-bold text-gray-700 group-hover:text-blue-800">
+                        <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
                             {{ $research->title }}
                         </h3>
                         <p class="text-xs font-thin text-gray-700">

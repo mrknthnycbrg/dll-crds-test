@@ -1,7 +1,7 @@
-<x-guest-layout>
+<x-app-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-application-logo class="size-28 block" href="{{ route('welcome') }}" role="button" wire:navigate />
+            <x-application-logo class="size-28 block" href="{{ route('home') }}" role="button" wire:navigate />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -62,13 +62,13 @@
                                     'terms_of_service' =>
                                         '<a target="_blank" href="' .
                                         route('terms.show') .
-                                        '" class="underline text-sm text-gray-700 hover:text-blue-800 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800">' .
+                                        '" class="underline text-sm text-gray-700 hover:text-cyan-800 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-800">' .
                                         __('Terms of Service') .
                                         '</a>',
                                     'privacy_policy' =>
                                         '<a target="_blank" href="' .
                                         route('policy.show') .
-                                        '" class="underline text-sm text-gray-700 hover:text-blue-800 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800">' .
+                                        '" class="underline text-sm text-gray-700 hover:text-cyan-800 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-800">' .
                                         __('Privacy Policy') .
                                         '</a>',
                                 ]) !!}
@@ -85,11 +85,11 @@
             </div>
 
             <div class="mt-4 flex items-center justify-center">
-                <a class="rounded-md text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                <a class="rounded-md text-sm text-gray-700 underline hover:text-cyan-800 focus:outline-none focus:ring-2 focus:ring-cyan-800 focus:ring-offset-2"
                     href="{{ route('login') }}" wire:navigate>
                     Already registered?
                 </a>
             </div>
         </form>
     </x-authentication-card>
-</x-guest-layout>
+</x-app-layout>

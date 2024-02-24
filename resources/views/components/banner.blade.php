@@ -2,7 +2,7 @@
 
 <div style="display: none;" x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}"
     :class="{
-        'bg-blue-800': style == 'success',
+        'bg-cyan-800': style == 'success',
         'bg-red-600': style == 'danger',
         'bg-gray-700': style != 'success' &&
             style != 'danger'
@@ -18,7 +18,7 @@
             <div class="flex w-0 min-w-0 flex-1 items-center">
                 <span class="flex rounded-md p-2"
                     :class="{
-                        'bg-blue-800': style ==
+                        'bg-cyan-800': style ==
                             'success',
                         'bg-red-600': style == 'danger'
                     }">
@@ -47,7 +47,7 @@
                 <button class="-mr-1 flex rounded-md p-2 transition focus:outline-none sm:-mr-2" type="button"
                     aria-label="Dismiss"
                     :class="{
-                        'hover:bg-blue-900 focus:bg-blue-900': style ==
+                        'hover:bg-cyan-900 focus:bg-cyan-900': style ==
                             'success',
                         'hover:bg-red-700 focus:bg-red-700': style == 'danger'
                     }"

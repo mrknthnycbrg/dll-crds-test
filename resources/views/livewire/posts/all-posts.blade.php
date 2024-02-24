@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h1 class="text-3xl font-black text-gray-900">
-            Resources
+            News
         </h1>
     </x-slot>
 
@@ -15,28 +15,28 @@
         </div>
 
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            @forelse ($downloadables as $downloadable)
-                <x-card href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
-                    wire:key="{{ $downloadable->id }}">
+            @forelse ($posts as $post)
+                <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
+                    wire:key="{{ $post->id }}">
                     <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
-                        {{ $downloadable->name }}
+                        {{ $post->title }}
                     </h3>
                     <p class="text-sm font-light text-gray-700">
-                        {{ $downloadable->formattedDescription() }}
+                        {{ $post->formattedContent() }}
                     </p>
                     <p class="text-xs font-thin text-gray-700">
-                        {{ $downloadable->formattedDate() }}
+                        {{ $post->formattedDate() }}
                     </p>
                 </x-card>
             @empty
                 <p class="text-lg font-bold text-gray-700">
-                    No resources yet.
+                    No posts yet.
                 </p>
             @endforelse
         </div>
 
         <div class="space-y-2 pt-8">
-            {{ $downloadables->links(data: ['scrollTo' => false]) }}
+            {{ $posts->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 </div>
