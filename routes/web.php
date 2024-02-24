@@ -6,13 +6,13 @@ use App\Livewire\Collections\CollectionsPage;
 use App\Livewire\Downloadables\AllDownloadables;
 use App\Livewire\Downloadables\ShowDownloadable;
 use App\Livewire\Home\HomePage;
+use App\Livewire\Posts\AllPosts;
 use App\Livewire\Posts\ShowPost;
 use App\Livewire\Researches\AllResearches;
 use App\Livewire\Researches\DepartmentResearches;
 use App\Livewire\Researches\ShowResearch;
 use App\Livewire\Submit\SubmitPage;
 use App\Livewire\Tools\ToolsPage;
-use App\Livewire\Welcome\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', WelcomePage::class)->name('welcome');
+Route::get('/', HomePage::class)->name('home');
+Route::get('/news', AllPosts::class)->name('all-posts');
 Route::get('/news/{slug}', ShowPost::class)->name('show-post');
 
 Route::middleware([
@@ -34,7 +35,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/home', HomePage::class)->name('home');
     Route::get('/researches', AllResearches::class)->name('all-researches');
     Route::get('/researches/{slug}', ShowResearch::class)->name('show-research');
     Route::get('/researches/departments/{slug}', DepartmentResearches::class)->name('department-researches');
