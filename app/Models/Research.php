@@ -85,15 +85,15 @@ class Research extends Model
     public function toSearchableArray()
     {
         return [
-            'title' => '',
-            'author' => '',
-            'keyword' => '',
-            'abstract' => '',
-            'departments.name' => '',
-            'advisers.name' => '',
-            'categories.name' => '',
-            'clients.name' => '',
-            'awards.name' => '',
+            'title' => $this->title,
+            'author' => $this->author,
+            'keyword' => $this->keyword,
+            'abstract' => $this->abstract,
+            'departments.name' => optional($this->department)->name,
+            'advisers.name' => optional($this->adviser)->name,
+            'categories.name' => optional($this->category)->name,
+            'clients.name' => optional($this->client)->name,
+            'awards.name' => optional($this->award)->name,
         ];
     }
 
