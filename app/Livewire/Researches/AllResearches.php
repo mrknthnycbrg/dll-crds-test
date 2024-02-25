@@ -181,11 +181,11 @@ class AllResearches extends Component
                         ->join('awards', 'researches.award_id', '=', 'awards.id')
                         ->select(
                             'researches.*',
-                            'departments.name as department',
-                            'advisers.name as adviser',
-                            'categories.name as category',
-                            'clients.name as client',
-                            'awards.name as award'
+                            'departments.name as department_name',
+                            'advisers.name as adviser_name',
+                            'categories.name as category_name',
+                            'clients.name as client_name',
+                            'awards.name as award_name'
                         )
                         ->with('department')
                         ->where('published', true)
