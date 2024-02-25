@@ -15,6 +15,9 @@
                 @if ($post->image_path)
                     <img class="mx-auto aspect-video w-full rounded-md object-cover" src="{{ $post->formattedImage() }}"
                         alt="{{ $post->title }}">
+                @else
+                    <img class="mx-auto aspect-video w-full rounded-md object-cover"
+                        src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
                 @endif
                 <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
                     {{ $post->title }}

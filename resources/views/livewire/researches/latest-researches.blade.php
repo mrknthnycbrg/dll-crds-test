@@ -23,10 +23,6 @@
             @forelse ($researches->where('department_id', $department->id) as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    @if ($research->image_path)
-                        <img class="mx-auto aspect-video w-full rounded-md object-cover"
-                            src="{{ $research->formattedImage() }}" alt="{{ $research->title }}">
-                    @endif
                     <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
                         {{ $research->title }}
                     </h3>

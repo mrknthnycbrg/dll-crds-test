@@ -4,11 +4,6 @@
             {{ $research->title }}
         </h1>
 
-        @if ($research->image_path)
-            <img class="mx-auto aspect-video max-w-4xl rounded-md object-cover" src="{{ $research->formattedImage() }}"
-                alt="{{ $research->title }}">
-        @endif
-
         <p class="text-base text-gray-700">
             <span class="font-extrabold text-gray-900">
                 Department:
@@ -69,6 +64,11 @@
             <x-button wire:click="file">
                 View
             </x-button>
+        @endif
+
+        @if ($research->image_path)
+            <img class="mx-auto aspect-auto max-w-2xl rounded-md object-cover" src="{{ $research->formattedImage() }}"
+                alt="{{ $research->title }}">
         @endif
     </div>
 </div>
