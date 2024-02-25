@@ -174,18 +174,14 @@ class AllResearches extends Component
         } else {
             $researches = Research::search(trim($this->search))
                 ->query(function ($query) {
-                    $query->join('departments', 'researches.department_id', '=', 'departments.id')
-                        ->join('advisers', 'researches.adviser_id', '=', 'advisers.id')
-                        ->join('categories', 'researches.category_id', '=', 'categories.id')
-                        ->join('clients', 'researches.client_id', '=', 'clients.id')
-                        ->join('awards', 'researches.award_id', '=', 'awards.id')
+                    $query->leftJoin('departments', 'researches.department_id', '=', 'departments.id')
+                        ->leftJoin('advisers', 'researches.adviser_id', '=', 'advisers.id')
+                        ->leftJoin('categories', 'researches.category_id', '=', 'categories.id')
+                        ->leftJoin('clients', 'researches.client_id', '=', 'clients.id')
+                        ->leftJoin('awards', 'researches.award_id', '=', 'awards.id')
                         ->select(
                             'researches.*',
                             'departments.name as department_name',
-                            'advisers.name as adviser_name',
-                            'categories.name as category_name',
-                            'clients.name as client_name',
-                            'awards.name as award_name'
                         )
                         ->with('department')
                         ->where('published', true)
