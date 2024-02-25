@@ -1,9 +1,9 @@
 <div>
-    <x-slot name="header">
-        <h1 class="text-3xl font-black text-gray-900">
+    <x-header>
+        <h1 class="text-3xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
             Tools
         </h1>
-    </x-slot>
+    </x-header>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 pb-8">

@@ -1,9 +1,9 @@
 <div>
-    <x-slot name="header">
-        <h1 class="text-3xl font-black text-gray-900">
+    <x-header>
+        <h1 class="text-3xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
             Resources
         </h1>
-    </x-slot>
+    </x-header>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">

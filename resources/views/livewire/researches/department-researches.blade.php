@@ -1,9 +1,9 @@
 <div>
-    <x-slot name="header">
-        <h1 class="text-3xl font-black text-gray-900">
+    <x-header>
+        <h1 class="text-3xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
             Researches in {{ $department->name }}
         </h1>
-    </x-slot>
+    </x-header>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
@@ -46,20 +46,18 @@
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ $research->formattedImage() }}" alt="{{ $research->title }}">
                     @endif
-                    <div class="pt-4">
-                        <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
-                            {{ $research->title }}
-                        </h3>
-                        <p class="text-sm font-medium text-gray-700">
-                            {{ optional($research->department)->name }}
-                        </p>
-                        <p class="text-sm font-light text-gray-700">
-                            {{ $research->formattedAbstract() }}
-                        </p>
-                        <p class="text-xs font-thin text-gray-700">
-                            {{ $research->formattedDate() }}
-                        </p>
-                    </div>
+                    <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
+                        {{ $research->title }}
+                    </h3>
+                    <p class="text-sm font-medium text-gray-700">
+                        {{ optional($research->department)->name }}
+                    </p>
+                    <p class="text-sm font-light text-gray-700">
+                        {{ $research->formattedAbstract() }}
+                    </p>
+                    <p class="text-xs font-thin text-gray-700">
+                        {{ $research->formattedDate() }}
+                    </p>
                 </x-card>
             @empty
                 <p class="text-lg font-bold text-gray-700">

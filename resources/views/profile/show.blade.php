@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h1 class="text-3xl font-black text-gray-900">
+    <x-header>
+        <h1 class="text-3xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
             Profile
         </h1>
-    </x-slot>
+    </x-header>
 
     <div>
         <div class="mx-auto max-w-full py-8 sm:px-6 lg:px-8">
