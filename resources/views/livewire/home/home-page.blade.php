@@ -3,10 +3,10 @@
         <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
             <div class="col-span-1 rounded-md bg-cyan-800 bg-opacity-50 p-8 backdrop-blur-sm backdrop-brightness-50">
                 <div class="my-4 space-y-4">
-                    <h1 class="block text-6xl font-black text-amber-400">
+                    <h1 class="block text-4xl font-black text-amber-400 md:text-6xl">
                         College Research and Development Services
                     </h1>
-                    <p class="text-3xl font-bold text-gray-100">
+                    <p class="text-2xl font-bold text-gray-100 md:text-4xl">
                         Dalubhasaan ng Lungsod ng Lucena
                     </p>
                 </div>
