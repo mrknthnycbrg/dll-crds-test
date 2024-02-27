@@ -1,7 +1,7 @@
 <div class="bg-cover bg-fixed bg-left bg-no-repeat" style="background-image: url({{ asset('images/featured.png') }})">
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-            <div class="col-span-1 rounded-md p-8 backdrop-blur-sm backdrop-brightness-95">
+            <div class="col-span-1 rounded-md bg-cyan-800 bg-opacity-50 p-8 backdrop-blur-sm backdrop-brightness-50">
                 <div class="my-4 space-y-4">
                     <h1 class="block text-6xl font-black text-amber-400">
                         College Research and Development Services

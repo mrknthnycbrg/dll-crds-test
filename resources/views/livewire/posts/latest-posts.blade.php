@@ -11,7 +11,7 @@
 
     <!-- Slider -->
     <div class="relative" data-hs-carousel='{"loadingClasses": "opacity-0","isAutoPlay": true}'>
-        <div class="hs-carousel relative min-h-[350px] w-full overflow-hidden rounded-lg bg-white">
+        <div class="hs-carousel relative min-h-[400px] w-full overflow-hidden rounded-lg bg-white">
             <div
                 class="hs-carousel-body absolute bottom-0 start-0 top-0 flex flex-nowrap opacity-0 transition-transform duration-700">
                 @forelse ($posts as $post)
@@ -19,8 +19,9 @@
                         wire:navigate wire:key="{{ $post->id }}">
                         <div class="flex h-full flex-col justify-end"
                             style="background-image: url('{{ $post->image_path ? $post->formattedImage() : asset('images/featured.png') }}'); background-size: cover; background-position: center;">
-                            <div class="rounded-md bg-gray-900 bg-opacity-70 p-6 text-left text-gray-100">
-                                <h3 class="text-3xl font-bold group-hover:text-cyan-800">
+                            <div
+                                class="rounded-md bg-cyan-800 bg-opacity-50 p-6 text-left text-gray-100 backdrop-blur-sm backdrop-brightness-50">
+                                <h3 class="text-3xl font-bold group-hover:text-amber-400">
                                     {{ $post->title }}
                                 </h3>
                                 <p class="text-xl font-light">
