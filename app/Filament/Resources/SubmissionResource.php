@@ -48,7 +48,6 @@ class SubmissionResource extends Resource
                                     ->markAsRequired(false),
                                 Forms\Components\FileUpload::make('file_path')
                                     ->label('File')
-                                    ->acceptedFileTypes(['application/pdf'])
                                     ->required()
                                     ->markAsRequired(false)
                                     ->preserveFilenames()
