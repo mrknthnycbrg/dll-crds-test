@@ -24,7 +24,7 @@ class SubmitPage extends Component
     {
         $this->validate([
             'user_email' => 'required|email',
-            'file' => 'required|file|mimes:pdf',
+            'file' => 'required|file',
         ]);
 
         $originalFilename = $this->file->getClientOriginalName();
