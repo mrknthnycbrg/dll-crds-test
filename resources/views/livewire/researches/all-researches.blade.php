@@ -32,12 +32,12 @@
                 @forelse ($researches as $research)
                     <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                         wire:key="{{ $research->id }}">
+                        <x-badge>
+                            {{ optional($research->department)->name }}
+                        </x-badge>
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
                             {{ $research->title }}
                         </h4>
-                        <p class="text-base font-normal text-gray-700">
-                            {{ optional($research->department)->name }}
-                        </p>
                         <p class="text-sm font-light text-gray-700">
                             {{ $research->formattedAbstract() }}
                         </p>
@@ -98,12 +98,12 @@
                 @forelse ($researches as $research)
                     <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                         wire:key="{{ $research->id }}">
+                        <x-badge>
+                            {{ optional($research->department)->name }}
+                        </x-badge>
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
                             {{ $research->title }}
                         </h4>
-                        <p class="text-base font-normal text-gray-700">
-                            {{ optional($research->department)->name }}
-                        </p>
                         <p class="text-sm font-light text-gray-700">
                             {{ $research->formattedAbstract() }}
                         </p>
