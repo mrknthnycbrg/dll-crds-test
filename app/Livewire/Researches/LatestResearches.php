@@ -11,19 +11,19 @@ class LatestResearches extends Component
     public function render()
     {
         $departments = Department::with('researches')->get();
-        $researches = collect();
+        $latestResearches = collect();
 
         foreach ($departments as $department) {
             $departmentResearches = Research::with('department')
-                ->where('department_id', $department->id)
                 ->where('published', true)
+                ->where('department_id', $department->id)
                 ->latest('date_submitted')
                 ->take(3)
                 ->get();
 
-            $researches = $researches->merge($departmentResearches);
+            $latestResearches = $latestResearches->merge($departmentResearches);
         }
 
-        return view('livewire.researches.latest-researches', compact('researches', 'departments'));
+        return view('livewire.researches.latest-researches', compact('latestResearches', 'departments'));
     }
 }
