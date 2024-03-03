@@ -3,7 +3,7 @@
         <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
             <div class="col-span-3 lg:col-span-2">
                 <h1
-                    class="text-3xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
+                    class="text-4xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
                     Researches
                 </h1>
             </div>
@@ -32,31 +32,31 @@
                 @forelse ($researches as $research)
                     <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                         wire:key="{{ $research->id }}">
-                        <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
+                        <h3 class="text-2xl font-bold text-gray-700 group-hover:text-cyan-800">
                             {{ $research->title }}
                         </h3>
-                        <p class="text-sm font-medium text-gray-700">
+                        <p class="text-base font-normal text-gray-700">
                             {{ optional($research->department)->name }}
                         </p>
                         <p class="text-sm font-light text-gray-700">
                             {{ $research->formattedAbstract() }}
                         </p>
-                        <p class="text-xs font-thin text-gray-700">
+                        <p class="text-xs font-extralight text-gray-700">
                             {{ $research->formattedDate() }}
                         </p>
                     </x-card>
                 @empty
-                    <p class="text-lg font-bold text-gray-700">
+                    <p class="text-lg font-medium text-gray-700">
                         No researches found.
                     </p>
                 @endforelse
             </div>
 
-            <div class="space-y-2 pt-8">
+            <div class="pt-8">
                 {{ $researches->links(data: ['scrollTo' => false]) }}
             </div>
         @else
-            <div class="grid grid-cols-2 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
+            <div class="grid grid-cols-1 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
                 <div class="mb-4">
                     <x-label for="department" value="Department" />
                     <x-select class="mt-1 block w-full" id="department" wire:model.live.debounce="selectedDepartment"
@@ -98,27 +98,27 @@
                 @forelse ($researches as $research)
                     <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                         wire:key="{{ $research->id }}">
-                        <h3 class="text-base font-bold text-gray-700 group-hover:text-cyan-800">
+                        <h3 class="text-2xl font-bold text-gray-700 group-hover:text-cyan-800">
                             {{ $research->title }}
                         </h3>
-                        <p class="text-sm font-medium text-gray-700">
+                        <p class="text-base font-normal text-gray-700">
                             {{ optional($research->department)->name }}
                         </p>
                         <p class="text-sm font-light text-gray-700">
                             {{ $research->formattedAbstract() }}
                         </p>
-                        <p class="text-xs font-thin text-gray-700">
+                        <p class="text-xs font-extralight text-gray-700">
                             {{ $research->formattedDate() }}
                         </p>
                     </x-card>
                 @empty
-                    <p class="text-lg font-bold text-gray-700">
+                    <p class="text-lg font-medium text-gray-700">
                         No researches yet.
                     </p>
                 @endforelse
             </div>
 
-            <div class="space-y-2 pt-8">
+            <div class="pt-8">
                 {{ $researches->links(data: ['scrollTo' => false]) }}
             </div>
         @endif

@@ -1,58 +1,57 @@
 <div class="mx-auto max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
     <div class="max-w-full space-y-4">
-        <h1 class="text-3xl font-black text-gray-900">
+        <h1 class="text-4xl font-black text-gray-900">
             {{ $research->title }}
         </h1>
-
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Department:
             </span>
             {{ optional($research->department)->name }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Date Submitted:
             </span>
-            {{ $research->formattedDAte() }}
+            {{ $research->formattedDate() }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Authors:
             </span>
             {{ $research->author }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Adviser:
             </span>
             {{ optional($research->adviser)->name }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Category:
             </span>
             {{ optional($research->category)->name }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Client:
             </span>
             {{ optional($research->client)->name }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Award:
             </span>
             {{ optional($research->award)->name }}
         </p>
-        <p class="text-base text-gray-700">
-            <span class="font-extrabold text-gray-900">
+        <p class="text-base font-normal text-gray-700">
+            <span class="font-medium text-gray-900">
                 Keywords:
             </span>
             {{ $research->keyword }}
         </p>
-        <p class="text-base font-extrabold text-gray-900">
+        <p class="text-base font-medium text-gray-900">
             Abstract:
         </p>
 
@@ -67,8 +66,8 @@
         @endif
 
         @if ($research->image_path)
-            <img class="mx-auto aspect-auto max-w-2xl rounded-md object-cover" src="{{ $research->formattedImage() }}"
-                alt="{{ $research->title }}">
+            <img class="mx-auto aspect-auto w-full max-w-2xl rounded-md object-cover"
+                src="{{ $research->formattedImage() }}" alt="{{ $research->title }}">
         @endif
     </div>
 </div>
