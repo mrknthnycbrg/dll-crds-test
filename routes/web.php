@@ -28,17 +28,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomePage::class)->name('home');
 Route::get('/news', AllPosts::class)->name('all-posts');
 Route::get('/news/{slug}', ShowPost::class)->name('show-post');
+Route::get('/researches', AllResearches::class)->name('all-researches');
+Route::get('/researches/departments/{slug}', DepartmentResearches::class)->name('department-researches');
+Route::get('/resources', AllDownloadables::class)->name('all-downloadables');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/researches', AllResearches::class)->name('all-researches');
     Route::get('/researches/{slug}', ShowResearch::class)->name('show-research');
-    Route::get('/researches/departments/{slug}', DepartmentResearches::class)->name('department-researches');
     Route::get('/researches/files/{slug}', FileResearch::class)->name('file-research');
-    Route::get('/resources', AllDownloadables::class)->name('all-downloadables');
     Route::get('/resources/{slug}', ShowDownloadable::class)->name('show-downloadable');
     Route::get('/resources/files/{slug}', FileDownloadable::class)->name('file-downloadable');
     Route::get('/tools', ToolsPage::class)->name('tools');
