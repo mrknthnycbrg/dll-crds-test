@@ -27,8 +27,8 @@ class AdviserChart extends ChartWidget
                 [
                     'label' => 'Advisers',
                     'data' => $data->pluck('researches_count')->toArray(),
-                    'backgroundColor' => ['#1e40af', '#3730a3', '#2563eb', '#4f46e5', '#60a5fa', '#818cf8', '#1d4ed8', '#4338ca', '#3b82f6', '#6366f1'],
-                    'borderColor' => '#93c5fd',
+                    'backgroundColor' => ['#155e75', '#0891b2', '#075985', '#0284c7', '#1e40af', '#2563eb', '#3730a3', '#4f46e5', '#0e7490', '#06b6d4', '#0369a1', '#0ea5e9', '#1d4ed8', '#3b82f6', '#4338ca', '#6366f1'],
+                    'borderColor' => '#f3f4f6',
                     'animation' => [
                         'duration' => 1500,
                     ],
