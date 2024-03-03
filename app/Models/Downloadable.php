@@ -45,7 +45,7 @@ class Downloadable extends Model
 
     public function formattedDescription()
     {
-        return Str::words(strip_tags($this->description), 25);
+        return Str::words(strip_tags($this->description), 20);
     }
 
     public function formattedDate()

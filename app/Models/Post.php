@@ -51,7 +51,7 @@ class Post extends Model
 
     public function formattedContent()
     {
-        return Str::words(strip_tags($this->content), 25);
+        return Str::words(strip_tags($this->content), 20);
     }
 
     public function formattedDate()
