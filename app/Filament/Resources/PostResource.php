@@ -50,6 +50,7 @@ class PostResource extends Resource
                                 Forms\Components\TextInput::make('title')
                                     ->label('Title')
                                     ->placeholder('Enter title')
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
                                     ->live(onBlur: true)

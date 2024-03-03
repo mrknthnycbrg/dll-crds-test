@@ -51,6 +51,7 @@ class ResearchResource extends Resource
                                 Forms\Components\TextInput::make('title')
                                     ->label('Title')
                                     ->placeholder('Enter title')
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
                                     ->live(onBlur: true)
@@ -120,11 +121,19 @@ class ResearchResource extends Resource
                                 Forms\Components\TagsInput::make('author')
                                     ->label('Authors')
                                     ->placeholder('Add author')
-                                    ->separator(', '),
+                                    ->separator(', ')
+                                    ->reorderable()
+                                    ->nestedRecursiveRules([
+                                        'max:255',
+                                    ]),
                                 Forms\Components\TagsInput::make('keyword')
                                     ->label('Keywords')
                                     ->placeholder('Add keyword')
-                                    ->separator(', '),
+                                    ->separator(', ')
+                                    ->reorderable()
+                                    ->nestedRecursiveRules([
+                                        'max:255',
+                                    ]),
                             ]),
 
                         Section::make()
@@ -140,6 +149,7 @@ class ResearchResource extends Resource
                                         Forms\Components\TextInput::make('name')
                                             ->label('Name')
                                             ->placeholder('Enter name')
+                                            ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
                                             ->live(onBlur: true)
@@ -161,6 +171,7 @@ class ResearchResource extends Resource
                                         Forms\Components\TextInput::make('name')
                                             ->label('Name')
                                             ->placeholder('Enter name')
+                                            ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),
@@ -176,6 +187,7 @@ class ResearchResource extends Resource
                                         Forms\Components\TextInput::make('name')
                                             ->label('Name')
                                             ->placeholder('Enter name')
+                                            ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),
@@ -191,6 +203,7 @@ class ResearchResource extends Resource
                                         Forms\Components\TextInput::make('name')
                                             ->label('Name')
                                             ->placeholder('Enter name')
+                                            ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),
@@ -206,6 +219,7 @@ class ResearchResource extends Resource
                                         Forms\Components\TextInput::make('name')
                                             ->label('Name')
                                             ->placeholder('Enter name')
+                                            ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
                                             ->unique(ignorable: fn ($record) => $record),

@@ -48,6 +48,7 @@ class DepartmentResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->label('Name')
                                     ->placeholder('Enter name')
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
                                     ->live(onBlur: true)

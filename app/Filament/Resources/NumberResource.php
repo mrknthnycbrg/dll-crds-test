@@ -46,6 +46,7 @@ class NumberResource extends Resource
                                 Forms\Components\TextInput::make('id_number')
                                     ->label('ID Number')
                                     ->placeholder('Enter number')
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
                                     ->unique(ignorable: fn ($record) => $record),

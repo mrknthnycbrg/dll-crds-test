@@ -44,6 +44,7 @@ class SubmissionResource extends Resource
                                     ->label('Email')
                                     ->placeholder('Enter email')
                                     ->email()
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false),
                                 Forms\Components\FileUpload::make('file_path')

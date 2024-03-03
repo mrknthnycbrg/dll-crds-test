@@ -46,6 +46,7 @@ class CategoryResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->label('Name')
                                     ->placeholder('Enter name')
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
                                     ->unique(ignorable: fn ($record) => $record),

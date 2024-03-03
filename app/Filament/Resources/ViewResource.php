@@ -44,11 +44,13 @@ class ViewResource extends Resource
                                     ->label('Email')
                                     ->placeholder('Enter email')
                                     ->email()
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false),
                                 Forms\Components\TextInput::make('research_title')
                                     ->label('Title')
                                     ->placeholder('Enter title')
+                                    ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false),
                                 Forms\Components\DateTimePicker::make('date_viewed')
