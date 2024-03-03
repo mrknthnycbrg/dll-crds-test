@@ -16,7 +16,8 @@ class NumberImporter extends Importer
         return [
             ImportColumn::make('id_number')
                 ->label('ID Number')
-                ->requiredMapping(),
+                ->requiredMapping()
+                ->rules(['required', 'max:255']),
         ];
     }
 

@@ -16,13 +16,17 @@ class ResearchImporter extends Importer
         return [
             ImportColumn::make('title')
                 ->label('Title')
-                ->requiredMapping(),
+                ->requiredMapping()
+                ->rules(['required', 'max:255']),
             ImportColumn::make('author')
-                ->label('Authors'),
+                ->label('Authors')
+                ->rules(['max:255']),
             ImportColumn::make('keyword')
-                ->label('Keywords'),
+                ->label('Keywords')
+                ->rules(['max:255']),
             ImportColumn::make('abstract')
-                ->label('Abstract'),
+                ->label('Abstract')
+                ->rules(['max:255']),
             ImportColumn::make('date_submitted')
                 ->label('Date Submitted')
                 ->rules(['date']),
