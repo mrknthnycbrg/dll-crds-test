@@ -73,7 +73,7 @@
             @else
                 @if (!empty($titleCheckInput))
                     <div class="w-full space-y-4">
-                        <p class="text-lg font-medium text-gray-700">
+                        <p class="text-base font-normal text-gray-700">
                             No similar titles.
                         </p>
                     </div>
@@ -126,7 +126,7 @@
             @else
                 @if (!empty($abstractCheckInput))
                     <div class="w-full space-y-4">
-                        <p class="text-lg font-medium text-gray-700">
+                        <p class="text-base font-normal text-gray-700">
                             No similar abstracts.
                         </p>
                     </div>

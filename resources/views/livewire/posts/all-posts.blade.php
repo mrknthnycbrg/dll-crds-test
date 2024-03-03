@@ -25,9 +25,9 @@
                         <img class="mx-auto aspect-video w-full rounded-md object-cover"
                             src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
                     @endif
-                    <h3 class="text-2xl font-bold text-gray-700 group-hover:text-cyan-800">
+                    <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
                         {{ $post->title }}
-                    </h3>
+                    </h4>
                     <p class="text-sm font-light text-gray-700">
                         {{ $post->formattedContent() }}
                     </p>
@@ -36,7 +36,7 @@
                     </p>
                 </x-card>
             @empty
-                <p class="text-lg font-medium text-gray-700">
+                <p class="text-base font-normal text-gray-700">
                     No posts yet.
                 </p>
             @endforelse
