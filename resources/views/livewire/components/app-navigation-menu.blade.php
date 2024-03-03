@@ -26,13 +26,13 @@
                             <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                                 Home
                             </x-nav-link>
-                            <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
+                            <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                                 News
                             </x-nav-link>
-                            <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs('all-researches')">
+                            <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
                                 Researches
                             </x-nav-link>
-                            <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
+                            <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
                                 Resources
                             </x-nav-link>
                             <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
@@ -45,8 +45,20 @@
                             <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                                 Home
                             </x-nav-link>
-                            <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
+                            <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                                 News
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
+                                Researches
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
+                                Resources
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                                Tools
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                                Submit
                             </x-nav-link>
                             <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                                 Log In
@@ -105,13 +117,13 @@
                     <x-responsive-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                         Home
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
+                    <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                         News
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs('all-researches')">
+                    <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
                         Researches
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs('all-downloadables')">
+                    <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
                         Resources
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
@@ -124,8 +136,20 @@
                     <x-responsive-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
                         Home
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs('all-posts')">
+                    <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                         News
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
+                        Researches
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
+                        Resources
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                        Tools
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                        Submit
                     </x-responsive-nav-link>
                     <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                         Log In

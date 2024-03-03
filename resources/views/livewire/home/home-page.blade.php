@@ -13,13 +13,14 @@
             </div>
         </div>
     </div>
+
     <hr class="border-2 border-amber-400">
+
     <livewire:posts.latest-posts />
 
-    @auth
-        <hr class="border-2 border-amber-400">
-        <livewire:researches.latest-researches />
-    @endauth
+    <hr class="border-gray-200">
+
+    <livewire:researches.latest-researches />
 
     <div class="mx-auto max-w-full bg-gray-200 px-4 py-8 sm:px-6 lg:px-8">
         <div class="text-center">
