@@ -17,7 +17,7 @@ class ResearchImporter extends Importer
             ImportColumn::make('title')
                 ->label('Title')
                 ->requiredMapping()
-                ->rules(['required', 'max:255']),
+                ->rules(['required', 'max:255', 'unique']),
             ImportColumn::make('author')
                 ->label('Authors')
                 ->rules(['max:255']),
