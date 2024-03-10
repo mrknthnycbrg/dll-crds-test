@@ -11,6 +11,6 @@ class FileDownloadable extends Controller
     {
         $downloadable = Downloadable::where('slug', $slug)->firstOrFail();
 
-        return response()->file(Storage::path('public/'.$downloadable->file_path));
+        return response()->file(Storage::path($downloadable->file_path));
     }
 }

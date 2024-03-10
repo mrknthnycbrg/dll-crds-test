@@ -11,6 +11,6 @@ class FileResearch extends Controller
     {
         $research = Research::where('slug', $slug)->firstOrFail();
 
-        return response()->file(Storage::path('public/'.$research->file_path));
+        return response()->file(Storage::path($research->file_path));
     }
 }
