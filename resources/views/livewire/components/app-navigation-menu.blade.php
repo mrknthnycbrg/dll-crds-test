@@ -22,36 +22,26 @@
                 <div class="flex">
                     <!-- Navigation Links -->
                     <div class="hidden space-x-4 md:-my-px md:ms-4 md:flex">
-                        @auth
-                            <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
-                                News
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
-                                Researches
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
-                                Resources
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
-                                Tools
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
-                                Submit
-                            </x-nav-link>
-                        @else
-                            <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
-                                News
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
-                                Researches
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
-                                Resources
-                            </x-nav-link>
+                        <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
+                            News
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
+                            Researches
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
+                            Resources
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                            Tools
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                            Submit
+                        </x-nav-link>
+                        @guest
                             <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                                 Log In
                             </x-nav-link>
-                        @endauth
+                        @endguest
                     </div>
 
                     @auth
@@ -101,36 +91,26 @@
         <!-- Responsive Navigation Menu -->
         <div class="hidden md:hidden" :class="{ 'block': open, 'hidden': !open }">
             <div class="space-y-1 pb-3 pt-2">
-                @auth
-                    <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
-                        News
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
-                        Researches
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
-                        Resources
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
-                        Tools
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
-                        Submit
-                    </x-responsive-nav-link>
-                @else
-                    <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
-                        News
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
-                        Researches
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
-                        Resources
-                    </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
+                    News
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('all-researches') }}" wire:navigate :active="request()->routeIs(['all-researches', 'department-researches', 'show-research'])">
+                    Researches
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
+                    Resources
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                    Tools
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                    Submit
+                </x-responsive-nav-link>
+                @guest
                     <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                         Log In
                     </x-responsive-nav-link>
-                @endauth
+                @endguest
             </div>
 
             <!-- Responsive Settings Options -->

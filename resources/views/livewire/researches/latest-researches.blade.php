@@ -26,9 +26,11 @@
                     @forelse ($latestResearches->where('department_id', $department->id) as $research)
                         <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                             wire:key="{{ $research->id }}">
-                            <x-badge>
-                                {{ optional($research->department)->name }}
-                            </x-badge>
+                            @if ($research->department_id)
+                                <x-badge>
+                                    {{ optional($research->department)->name }}
+                                </x-badge>
+                            @endif
                             <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
                                 {{ $research->title }}
                             </h4>
@@ -38,6 +40,11 @@
                             <p class="text-xs font-extralight text-gray-700">
                                 {{ $research->formattedDate() }}
                             </p>
+                            @if ($research->award_id)
+                                <x-badge class="!bg-amber-400 !text-gray-900">
+                                    {{ optional($research->award)->name }}
+                                </x-badge>
+                            @endif
                         </x-card>
                     @empty
                         <p class="text-base font-normal text-gray-700">
