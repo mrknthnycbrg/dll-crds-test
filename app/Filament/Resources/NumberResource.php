@@ -49,7 +49,7 @@ class NumberResource extends Resource
                                     ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
-                                    ->unique(ignorable: fn ($record) => $record),
+                                    ->unique(ignoreRecord: true),
                                 Forms\Components\Select::make('user_id')
                                     ->label('User (Optional)')
                                     ->placeholder('Select user')

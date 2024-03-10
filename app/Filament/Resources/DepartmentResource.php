@@ -57,7 +57,7 @@ class DepartmentResource extends Resource
                                     ->label('Slug')
                                     ->disabled()
                                     ->dehydrated()
-                                    ->unique(ignorable: fn ($record) => $record),
+                                    ->unique(ignoreRecord: true),
                             ]),
                     ])
                     ->columnSpanFull(),

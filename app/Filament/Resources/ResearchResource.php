@@ -60,7 +60,7 @@ class ResearchResource extends Resource
                                     ->label('Slug')
                                     ->disabled()
                                     ->dehydrated()
-                                    ->unique(ignorable: fn ($record) => $record),
+                                    ->unique(ignoreRecord: true),
                                 Forms\Components\RichEditor::make('abstract')
                                     ->label('Abstract')
                                     ->placeholder('Enter abstract')
@@ -158,7 +158,7 @@ class ResearchResource extends Resource
                                             ->label('Slug')
                                             ->disabled()
                                             ->dehydrated()
-                                            ->unique(ignorable: fn ($record) => $record),
+                                            ->unique(ignoreRecord: true),
                                     ]),
                                 Forms\Components\Select::make('adviser_id')
                                     ->label('Adviser')
@@ -174,7 +174,7 @@ class ResearchResource extends Resource
                                             ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
-                                            ->unique(ignorable: fn ($record) => $record),
+                                            ->unique(ignoreRecord: true),
                                     ]),
                                 Forms\Components\Select::make('category_id')
                                     ->label('Category')
@@ -190,7 +190,7 @@ class ResearchResource extends Resource
                                             ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
-                                            ->unique(ignorable: fn ($record) => $record),
+                                            ->unique(ignoreRecord: true),
                                     ]),
                                 Forms\Components\Select::make('client_id')
                                     ->label('Client')
@@ -206,7 +206,7 @@ class ResearchResource extends Resource
                                             ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
-                                            ->unique(ignorable: fn ($record) => $record),
+                                            ->unique(ignoreRecord: true),
                                     ]),
                                 Forms\Components\Select::make('award_id')
                                     ->label('Award')
@@ -222,7 +222,7 @@ class ResearchResource extends Resource
                                             ->maxLength(255)
                                             ->required()
                                             ->markAsRequired(false)
-                                            ->unique(ignorable: fn ($record) => $record),
+                                            ->unique(ignoreRecord: true),
                                     ]),
                             ]),
                     ])

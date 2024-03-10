@@ -57,9 +57,9 @@ class PostResource extends Resource
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
                                     ->label('Slug')
-                                    ->unique(ignorable: fn ($record) => $record)
                                     ->disabled()
-                                    ->dehydrated(),
+                                    ->dehydrated()
+                                    ->unique(ignoreRecord: true),
                                 Forms\Components\RichEditor::make('content')
                                     ->label('Content')
                                     ->placeholder('Enter content')

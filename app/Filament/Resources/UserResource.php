@@ -65,7 +65,7 @@ class UserResource extends Resource
                                     ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
-                                    ->unique(ignorable: fn ($record) => $record),
+                                    ->unique(ignoreRecord: true),
                                 Forms\Components\TextInput::make('password')
                                     ->label('Password')
                                     ->placeholder('Enter password')

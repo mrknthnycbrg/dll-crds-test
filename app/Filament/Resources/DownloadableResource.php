@@ -59,7 +59,7 @@ class DownloadableResource extends Resource
                                     ->label('Slug')
                                     ->disabled()
                                     ->dehydrated()
-                                    ->unique(ignorable: fn ($record) => $record),
+                                    ->unique(ignoreRecord: true),
                                 Forms\Components\RichEditor::make('description')
                                     ->label('Description')
                                     ->placeholder('Enter description')

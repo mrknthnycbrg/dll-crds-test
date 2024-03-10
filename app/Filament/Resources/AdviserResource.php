@@ -49,7 +49,7 @@ class AdviserResource extends Resource
                                     ->maxLength(255)
                                     ->required()
                                     ->markAsRequired(false)
-                                    ->unique(ignorable: fn ($record) => $record),
+                                    ->unique(ignoreRecord: true),
                             ]),
                     ])
                     ->columnSpanFull(),
