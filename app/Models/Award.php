@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Award extends Model
@@ -28,8 +28,8 @@ class Award extends Model
         'name',
     ];
 
-    public function researches(): HasMany
+    public function researches(): HasOne
     {
-        return $this->hasMany(Research::class);
+        return $this->hasOne(Research::class);
     }
 }
