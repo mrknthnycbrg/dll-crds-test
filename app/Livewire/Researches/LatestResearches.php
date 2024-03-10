@@ -14,7 +14,7 @@ class LatestResearches extends Component
         $latestResearches = collect();
 
         foreach ($departments as $department) {
-            $departmentResearches = Research::with('department')
+            $departmentResearches = Research::with(['department', 'award'])
                 ->where('published', true)
                 ->where('department_id', $department->id)
                 ->latest('date_submitted')

@@ -133,7 +133,7 @@ class DepartmentResearches extends Component
             $years = null;
         }
 
-        $researches = Research::with('department')
+        $researches = Research::with(['department', 'award'])
             ->where('published', true)
             ->where('department_id', $this->department->id)
             ->when($this->selectedAdviser, function ($query) {
