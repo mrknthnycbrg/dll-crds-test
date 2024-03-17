@@ -99,7 +99,7 @@ class AllResearches extends Component
 
             $clients = $clientsQuery->pluck('name', 'id');
 
-            $awardsQuery = Award::whereHas('researches', function ($query) {
+            $awardsQuery = Award::whereHas('research', function ($query) {
                 $query->when($this->selectedDepartment, function ($query) {
                     $query->where('department_id', $this->selectedDepartment);
                 })->when($this->selectedAdviser, function ($query) {
