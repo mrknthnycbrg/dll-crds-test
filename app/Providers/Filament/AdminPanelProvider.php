@@ -44,10 +44,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->colors([
                 'danger' => Color::hex('#dc2626'),
-                'info' => Color::hex('#1e40af'),
-                'primary' => Color::hex('#155e75'),
+                'info' => Color::hex('#2563eb'),
+                'primary' => Color::hex('#1e40af'),
                 'success' => Color::hex('#16a34a'),
-                'warning' => Color::hex('#fbbf24'),
+                'warning' => Color::hex('#facc15'),
             ])
             ->databaseNotifications()
             ->unsavedChangesAlerts()
@@ -94,8 +94,8 @@ class AdminPanelProvider extends PanelProvider
                     ->color(fn () => match (app()->environment()) {
                         'local' => Color::hex('#dc2626'),
                         'production' => null,
-                        'staging' => Color::hex('#fbbf24'),
-                        default => Color::hex('#155e75'),
+                        'staging' => Color::hex('#facc15'),
+                        default => Color::hex('#1e40af'),
                     }),
             ])
             ->resources([]);
