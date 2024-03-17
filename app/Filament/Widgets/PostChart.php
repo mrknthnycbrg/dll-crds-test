@@ -95,8 +95,8 @@ class PostChart extends ChartWidget
                 [
                     'label' => 'Posts',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#155e75',
-                    'borderColor' => '#f3f4f6',
+                    'backgroundColor' => '#1e40af',
+                    'borderColor' => '#e5e7eb',
                     'animation' => [
                         'duration' => 1500,
                     ],
