@@ -1,5 +1,5 @@
 <div class="sticky inset-x-0 top-0 z-50 shadow-md">
-    <nav class="bg-cyan-800" x-data="{ open: false }">
+    <nav class="bg-blue-800" x-data="{ open: false }">
         <!-- Primary Navigation Menu -->
         <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
@@ -8,10 +8,10 @@
                     <a class="group flex items-center space-x-4" href="{{ route('home') }}" wire:navigate>
                         <x-application-logo class="size-10 block" />
                         <div class="flex flex-col">
-                            <p class="block text-base font-black text-amber-400">
+                            <p class="block text-base font-black text-yellow-400">
                                 College Research and Development Services
                             </p>
-                            <hr class="border-amber-400">
+                            <hr class="border-yellow-400">
                             <p class="block text-sm font-thin text-gray-50">
                                 Dalubhasaan ng Lungsod ng Lucena
                             </p>
@@ -21,7 +21,7 @@
 
                 <div class="flex">
                     <!-- Navigation Links -->
-                    <div class="hidden space-x-4 md:-my-px md:ms-4 md:flex">
+                    <div class="hidden space-x-4 lg:-my-px lg:ms-4 lg:flex">
                         <x-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                             News
                         </x-nav-link>
@@ -31,26 +31,28 @@
                         <x-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
                             Resources
                         </x-nav-link>
-                        <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
-                            Tools
-                        </x-nav-link>
-                        <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
-                            Submit
-                        </x-nav-link>
-                        @guest
+
+                        @auth
+                            <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                                Tools
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                                Submit
+                            </x-nav-link>
+                        @else
                             <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                                 Log In
                             </x-nav-link>
-                        @endguest
+                        @endauth
                     </div>
 
                     @auth
-                        <div class="hidden md:ms-4 md:flex md:items-center">
+                        <div class="hidden lg:ms-4 lg:flex lg:items-center">
                             <!-- Settings Dropdown -->
                             <x-dropdown>
                                 <x-slot name="trigger">
                                     <button
-                                        class="flex rounded-full border-2 border-transparent text-sm text-gray-50 transition duration-150 ease-in-out hover:bg-cyan-900 hover:text-amber-400 focus:bg-cyan-900 focus:text-amber-400 focus:outline-none">
+                                        class="flex rounded-full border-2 border-transparent text-sm text-gray-50 transition duration-150 ease-in-out hover:bg-blue-900 hover:text-yellow-400 focus:bg-blue-900 focus:text-yellow-400 focus:outline-none">
                                         <x-user-icon class="size-8 block" />
                                     </button>
                                 </x-slot>
@@ -62,7 +64,7 @@
                                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate>
                                         Profile
                                     </x-dropdown-link>
-                                    <hr class="border-amber-400">
+                                    <hr class="border-yellow-400">
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}" x-data>
                                         @csrf
@@ -78,9 +80,9 @@
                 </div>
 
                 <!-- Hamburger -->
-                <div class="-me-2 flex items-center md:hidden">
+                <div class="-me-2 flex items-center lg:hidden">
                     <button
-                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-50 transition duration-150 ease-in-out hover:bg-cyan-900 hover:text-amber-400 focus:bg-cyan-900 focus:text-amber-400 focus:outline-none"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-50 transition duration-150 ease-in-out hover:bg-blue-900 hover:text-yellow-400 focus:bg-blue-900 focus:text-yellow-400 focus:outline-none"
                         @click="open = ! open">
                         <x-hamburger-icon class="size-6 block" />
                     </button>
@@ -89,7 +91,7 @@
         </div>
 
         <!-- Responsive Navigation Menu -->
-        <div class="hidden md:hidden" :class="{ 'block': open, 'hidden': !open }">
+        <div class="hidden lg:hidden" :class="{ 'block': open, 'hidden': !open }">
             <div class="space-y-1 pb-3 pt-2">
                 <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                     News
@@ -100,22 +102,24 @@
                 <x-responsive-nav-link href="{{ route('all-downloadables') }}" wire:navigate :active="request()->routeIs(['all-downloadables', 'show-downloadable'])">
                     Resources
                 </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
-                    Tools
-                </x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
-                    Submit
-                </x-responsive-nav-link>
-                @guest
+
+                @auth
+                    <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                        Tools
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                        Submit
+                    </x-responsive-nav-link>
+                @else
                     <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                         Log In
                     </x-responsive-nav-link>
-                @endguest
+                @endauth
             </div>
 
             <!-- Responsive Settings Options -->
             @auth
-                <hr class="border-amber-400">
+                <hr class="border-yellow-400">
                 <div class="pb-1 pt-4">
                     <div class="flex items-center px-4">
                         <div>

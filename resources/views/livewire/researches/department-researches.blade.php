@@ -1,6 +1,6 @@
 <div>
     <x-header>
-        <h1 class="text-4xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
+        <h1 class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
             Researches in {{ $department->name }}
         </h1>
     </x-header>
@@ -45,7 +45,7 @@
                             {{ optional($research->department)->name }}
                         </x-badge>
                     @endif
-                    <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
+                    <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
                     </h4>
                     <p class="text-sm font-light text-gray-700">
@@ -55,7 +55,7 @@
                         {{ $research->formattedDate() }}
                     </p>
                     @if ($research->award_id)
-                        <x-badge class="!bg-amber-400 !text-gray-900">
+                        <x-badge class="bg-yellow-400 text-gray-900">
                             {{ optional($research->award)->name }}
                         </x-badge>
                     @endif

@@ -11,10 +11,16 @@
             {!! $downloadable->description !!}
         </div>
 
-        @if ($downloadable->file_path)
-            <x-button wire:click="file">
-                Download File
+        @auth
+            @if ($downloadable->file_path)
+                <x-button type="button" wire:click="file">
+                    Download File
+                </x-button>
+            @endif
+        @else
+            <x-button type="button" href="{{ route('login') }}" wire:navigate>
+                Please log in to download the file.
             </x-button>
-        @endif
+        @endauth
     </div>
 </div>

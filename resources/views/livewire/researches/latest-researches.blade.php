@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-full bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between space-x-2">
                 <h1
-                    class="text-4xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
+                    class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
                     Latest Researches
                 </h1>
             </div>
@@ -15,7 +15,7 @@
                     </h2>
 
                     @if ($department->researches->isNotEmpty())
-                        <a class="text-lg font-medium text-gray-700 hover:text-cyan-800"
+                        <a class="text-lg font-medium text-gray-700 hover:text-blue-800"
                             href="{{ route('department-researches', ['slug' => $department->slug]) }}" wire:navigate>
                             View all &rarr;
                         </a>
@@ -31,7 +31,7 @@
                                     {{ optional($research->department)->name }}
                                 </x-badge>
                             @endif
-                            <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
+                            <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                                 {{ $research->title }}
                             </h4>
                             <p class="text-sm font-light text-gray-700">
@@ -41,7 +41,7 @@
                                 {{ $research->formattedDate() }}
                             </p>
                             @if ($research->award_id)
-                                <x-badge class="!bg-amber-400 !text-gray-900">
+                                <x-badge class="bg-yellow-400 text-gray-900">
                                     {{ optional($research->award)->name }}
                                 </x-badge>
                             @endif

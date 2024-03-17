@@ -1,6 +1,6 @@
 <div>
     <x-header>
-        <h1 class="text-4xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
+        <h1 class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
             News
         </h1>
     </x-header>
@@ -19,13 +19,14 @@
                 <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
                     wire:key="{{ $post->id }}">
                     @if ($post->image_path)
-                        <img class="mx-auto aspect-video w-full rounded-md object-cover"
-                            src="{{ $post->formattedImage() }}" alt="{{ $post->title }}">
+                        <img class="aspect-video w-full rounded-md object-cover" src="{{ $post->formattedImage() }}"
+                            alt="{{ $post->title }}">
                     @else
-                        <img class="mx-auto aspect-video w-full rounded-md object-cover"
-                            src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
+                        <img class="aspect-video w-full rounded-md object-cover" src="{{ asset('images/logo.png') }}"
+                            alt="{{ $post->title }}">
                     @endif
-                    <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
+
+                    <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                         {{ $post->title }}
                     </h4>
                     <p class="text-sm font-light text-gray-700">

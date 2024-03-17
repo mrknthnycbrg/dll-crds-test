@@ -3,7 +3,7 @@
         <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
             <div class="col-span-3 lg:col-span-2">
                 <h1
-                    class="text-4xl font-black text-gray-900 underline decoration-amber-400 decoration-4 underline-offset-8">
+                    class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
                     Researches
                 </h1>
             </div>
@@ -37,7 +37,7 @@
                                 {{ optional($research->department)->name }}
                             </x-badge>
                         @endif
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
+                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                             {{ $research->title }}
                         </h4>
                         <p class="text-sm font-light text-gray-700">
@@ -47,7 +47,7 @@
                             {{ $research->formattedDate() }}
                         </p>
                         @if ($research->award_id)
-                            <x-badge class="!bg-amber-400 !text-gray-900">
+                            <x-badge class="bg-yellow-400 text-gray-900">
                                 {{ optional($research->award)->name }}
                             </x-badge>
                         @endif
@@ -92,7 +92,7 @@
                                 {{ optional($research->department)->name }}
                             </x-badge>
                         @endif
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-cyan-800">
+                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                             {{ $research->title }}
                         </h4>
                         <p class="text-sm font-light text-gray-700">
@@ -102,7 +102,7 @@
                             {{ $research->formattedDate() }}
                         </p>
                         @if ($research->award_id)
-                            <x-badge class="!bg-amber-400 !text-gray-900">
+                            <x-badge class="bg-yellow-400 text-gray-900">
                                 {{ optional($research->award)->name }}
                             </x-badge>
                         @endif
