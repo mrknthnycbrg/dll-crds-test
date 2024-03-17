@@ -23,32 +23,30 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                    @forelse ($latestResearches->where('department_id', $department->id) as $research)
-                        <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
-                            wire:key="{{ $research->id }}">
-                            @if ($research->department_id)
-                                <x-badge>
-                                    {{ optional($research->department)->name }}
-                                </x-badge>
-                            @endif
+                    @forelse ($latestResearches->where('department_id', $department->id) as $latestResearch)
+                        <x-card href="{{ route('show-research', ['slug' => $latestResearch->slug]) }}" wire:navigate
+                            wire:key="{{ $latestResearch->id }}">
+                            <x-badge>
+                                {{ optional($latestResearch->department)->name }}
+                            </x-badge>
                             <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
-                                {{ $research->title }}
+                                {{ $latestResearch->title }}
                             </h4>
                             <p class="text-sm font-light text-gray-700">
-                                {{ $research->formattedAbstract() }}
+                                {{ $latestResearch->formattedAbstract() }}
                             </p>
                             <p class="text-xs font-extralight text-gray-700">
-                                {{ $research->formattedDate() }}
+                                {{ $latestResearch->formattedDate() }}
                             </p>
-                            @if ($research->award_id)
+                            @if ($latestResearch->award_id)
                                 <x-badge class="bg-yellow-400 text-gray-900">
-                                    {{ optional($research->award)->name }}
+                                    {{ optional($latestResearch->award)->name }}
                                 </x-badge>
                             @endif
                         </x-card>
                     @empty
                         <p class="text-base font-normal text-gray-700">
-                            No researches yet.
+                            No researches in this department yet.
                         </p>
                     @endforelse
                 </div>

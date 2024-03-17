@@ -75,7 +75,7 @@
             @endif
 
             @if ($research->image_path)
-                <img class="mx-auto aspect-auto w-full max-w-2xl rounded-md object-cover"
+                <img class="mx-auto aspect-auto w-full max-w-2xl rounded-sm object-cover"
                     src="{{ $research->formattedImage() }}" alt="{{ $research->title }}">
             @endif
         @else

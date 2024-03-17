@@ -27,7 +27,7 @@
         </div>
 
         <div class="mt-4 flex items-center justify-around">
-            <a class="rounded-md text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+            <a class="rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                 href="{{ route('profile.show') }}" wire:navigate>
                 Edit Profile
             </a>
@@ -36,7 +36,7 @@
                 @csrf
 
                 <button
-                    class="ml-2 rounded-md text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                    class="ml-2 rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                     type="submit">
                     Log Out
                 </button>

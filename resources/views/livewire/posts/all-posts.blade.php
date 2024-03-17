@@ -19,10 +19,10 @@
                 <x-card href="{{ route('show-post', ['slug' => $post->slug]) }}" wire:navigate
                     wire:key="{{ $post->id }}">
                     @if ($post->image_path)
-                        <img class="aspect-video w-full rounded-md object-cover" src="{{ $post->formattedImage() }}"
+                        <img class="aspect-video w-full rounded-sm object-cover" src="{{ $post->formattedImage() }}"
                             alt="{{ $post->title }}">
                     @else
-                        <img class="aspect-video w-full rounded-md object-cover" src="{{ asset('images/logo.png') }}"
+                        <img class="aspect-video w-full rounded-sm object-cover" src="{{ asset('images/logo.png') }}"
                             alt="{{ $post->title }}">
                     @endif
 

@@ -1,4 +1,4 @@
-<div class="sticky inset-x-0 top-0 z-50 shadow-md">
+<div class="sticky inset-x-0 top-0 z-50 shadow-sm">
     <nav class="bg-blue-800" x-data="{ open: false }">
         <!-- Primary Navigation Menu -->
         <div class="mx-auto max-w-full px-4 sm:px-6 lg:px-8">
@@ -82,7 +82,7 @@
                 <!-- Hamburger -->
                 <div class="-me-2 flex items-center lg:hidden">
                     <button
-                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-50 transition duration-150 ease-in-out hover:bg-blue-900 hover:text-yellow-400 focus:bg-blue-900 focus:text-yellow-400 focus:outline-none"
+                        class="inline-flex items-center justify-center rounded-sm p-2 text-gray-50 transition duration-150 ease-in-out hover:bg-blue-900 hover:text-yellow-400 focus:bg-blue-900 focus:text-yellow-400 focus:outline-none"
                         @click="open = ! open">
                         <x-hamburger-icon class="size-6 block" />
                     </button>

@@ -40,11 +40,9 @@
             @forelse ($researches as $research)
                 <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
                     wire:key="{{ $research->id }}">
-                    @if ($research->department_id)
-                        <x-badge>
-                            {{ optional($research->department)->name }}
-                        </x-badge>
-                    @endif
+                    <x-badge>
+                        {{ optional($research->department)->name }}
+                    </x-badge>
                     <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                         {{ $research->title }}
                     </h4>

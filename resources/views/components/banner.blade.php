@@ -16,7 +16,7 @@
     <div class="mx-auto max-w-screen-xl px-3 py-2 sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-center justify-between">
             <div class="flex w-0 min-w-0 flex-1 items-center">
-                <span class="flex rounded-md p-2"
+                <span class="flex rounded-sm p-2"
                     :class="{
                         'bg-blue-800': style ==
                             'success',
@@ -44,7 +44,7 @@
             </div>
 
             <div class="shrink-0 sm:ml-3">
-                <button class="-mr-1 flex rounded-md p-2 transition focus:outline-none sm:-mr-2" type="button"
+                <button class="-mr-1 flex rounded-sm p-2 transition focus:outline-none sm:-mr-2" type="button"
                     aria-label="Dismiss"
                     :class="{
                         'hover:bg-blue-900 focus:bg-blue-900': style ==

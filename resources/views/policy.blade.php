@@ -4,7 +4,7 @@
             <x-application-logo class="size-28 block" href="{{ route('home') }}" role="button" wire:navigate />
         </div>
 
-        <div class="prose mt-6 w-full overflow-hidden bg-white p-6 shadow-md sm:rounded-lg">
+        <div class="prose mt-6 w-full overflow-hidden bg-white p-6 shadow-sm sm:rounded-sm">
             {!! $policy !!}
         </div>
     </div>

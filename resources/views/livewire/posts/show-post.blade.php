@@ -8,10 +8,7 @@
         </p>
 
         @if ($post->image_path)
-            <img class="mx-auto aspect-auto w-full max-w-2xl rounded-md object-cover" src="{{ $post->formattedImage() }}"
-                alt="{{ $post->title }}">
-        @else
-            <img class="mx-auto aspect-auto w-full max-w-2xl rounded-md object-cover" src="{{ asset('images/logo.png') }}"
+            <img class="mx-auto aspect-auto w-full max-w-2xl rounded-sm object-cover" src="{{ $post->formattedImage() }}"
                 alt="{{ $post->title }}">
         @endif
 

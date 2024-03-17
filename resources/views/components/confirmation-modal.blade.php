@@ -4,7 +4,7 @@
     <div class="bg-gray-50 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
             <div
-                class="size-12 sm:size-10 mx-auto flex shrink-0 items-center justify-center rounded-md bg-gray-100 sm:mx-0">
+                class="size-12 sm:size-10 mx-auto flex shrink-0 items-center justify-center rounded-sm bg-gray-100 sm:mx-0">
                 <svg class="size-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"

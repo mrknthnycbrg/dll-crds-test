@@ -9,7 +9,7 @@
     <div class="mt-5 md:col-span-2 md:mt-0">
         <form wire:submit="{{ $submit }}">
             <div
-                class="{{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }} bg-gray-50 px-4 py-5 shadow-md sm:p-6">
+                class="{{ isset($actions) ? 'sm:rounded-tl-sm sm:rounded-tr-sm' : 'sm:rounded-sm' }} bg-gray-50 px-4 py-5 shadow-sm sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                     {{ $form }}
                 </div>
@@ -17,7 +17,7 @@
 
             @if (isset($actions))
                 <div
-                    class="flex items-center justify-end bg-gray-50 px-4 py-3 text-right shadow-md sm:rounded-bl-md sm:rounded-br-md sm:px-6">
+                    class="flex items-center justify-end bg-gray-50 px-4 py-3 text-right shadow-sm sm:rounded-bl-sm sm:rounded-br-sm sm:px-6">
                     {{ $actions }}
                 </div>
             @endif
