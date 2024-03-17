@@ -25,8 +25,6 @@ class DownloadableResource extends Resource
 
     protected static ?string $slug = 'downloadables';
 
-    protected static ?string $recordTitleAttribute = 'name';
-
     protected static ?string $modelLabel = 'downloadable';
 
     protected static ?string $pluralModelLabel = 'downloadables';

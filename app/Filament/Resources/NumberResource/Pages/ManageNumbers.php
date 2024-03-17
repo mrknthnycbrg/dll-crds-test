@@ -17,7 +17,8 @@ class ManageNumbers extends ManageRecords
     {
         return [
             Actions\ExportAction::make()
-                ->exporter(NumberExporter::class),
+                ->exporter(NumberExporter::class)
+                ->columnMapping(false),
             Actions\ImportAction::make()
                 ->importer(NumberImporter::class),
             Actions\CreateAction::make()

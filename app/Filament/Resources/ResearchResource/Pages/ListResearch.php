@@ -16,7 +16,8 @@ class ListResearch extends ListRecords
     {
         return [
             Actions\ExportAction::make()
-                ->exporter(ResearchExporter::class),
+                ->exporter(ResearchExporter::class)
+                ->columnMapping(false),
             Actions\ImportAction::make()
                 ->importer(ResearchImporter::class),
             Actions\CreateAction::make(),

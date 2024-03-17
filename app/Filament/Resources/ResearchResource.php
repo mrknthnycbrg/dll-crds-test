@@ -16,6 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Filters\Indicator;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -25,8 +26,6 @@ class ResearchResource extends Resource
     protected static ?string $model = Research::class;
 
     protected static ?string $slug = 'researches';
-
-    protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?string $modelLabel = 'research';
 
@@ -80,6 +79,10 @@ class ResearchResource extends Resource
                                     ->downloadable()
                                     ->disk('public')
                                     ->directory('research-files'),
+                            ]),
+
+                        Section::make()
+                            ->schema([
                                 Forms\Components\FileUpload::make('image_path')
                                     ->label('Image')
                                     ->image()
@@ -141,88 +144,197 @@ class ResearchResource extends Resource
                                 Forms\Components\Select::make('department_id')
                                     ->label('Department')
                                     ->placeholder('Select department')
-                                    ->relationship('department', 'name')
+                                    ->relationship(
+                                        name: 'department',
+                                        titleAttribute: 'name'
+                                    )
                                     ->searchable()
                                     ->preload()
                                     ->native(false)
                                     ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Name')
-                                            ->placeholder('Enter name')
-                                            ->maxLength(255)
-                                            ->required()
-                                            ->markAsRequired(false)
-                                            ->live(onBlur: true)
-                                            ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
-                                        Forms\Components\TextInput::make('slug')
-                                            ->label('Slug')
-                                            ->disabled()
-                                            ->dehydrated()
-                                            ->unique(ignoreRecord: true),
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                                Forms\Components\TextInput::make('slug')
+                                                    ->label('Slug')
+                                                    ->disabled()
+                                                    ->dehydrated()
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                                Forms\Components\TextInput::make('slug')
+                                                    ->label('Slug')
+                                                    ->disabled()
+                                                    ->dehydrated()
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
                                     ]),
                                 Forms\Components\Select::make('adviser_id')
                                     ->label('Adviser')
                                     ->placeholder('Select adviser')
-                                    ->relationship('adviser', 'name')
+                                    ->relationship(
+                                        name: 'adviser',
+                                        titleAttribute: 'name'
+                                    )
                                     ->searchable()
                                     ->preload()
                                     ->native(false)
                                     ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Name')
-                                            ->placeholder('Enter name')
-                                            ->maxLength(255)
-                                            ->required()
-                                            ->markAsRequired(false)
-                                            ->unique(ignoreRecord: true),
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
                                     ]),
+                            ]),
+
+                        Section::make()
+                            ->schema([
                                 Forms\Components\Select::make('category_id')
                                     ->label('Category')
                                     ->placeholder('Select category')
-                                    ->relationship('category', 'name')
+                                    ->relationship(
+                                        name: 'category',
+                                        titleAttribute: 'name'
+                                    )
                                     ->searchable()
                                     ->preload()
                                     ->native(false)
                                     ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Name')
-                                            ->placeholder('Enter name')
-                                            ->maxLength(255)
-                                            ->required()
-                                            ->markAsRequired(false)
-                                            ->unique(ignoreRecord: true),
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
                                     ]),
                                 Forms\Components\Select::make('client_id')
                                     ->label('Client')
                                     ->placeholder('Select client')
-                                    ->relationship('client', 'name')
+                                    ->relationship(
+                                        name: 'client',
+                                        titleAttribute: 'name'
+                                    )
                                     ->searchable()
                                     ->preload()
                                     ->native(false)
                                     ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Name')
-                                            ->placeholder('Enter name')
-                                            ->maxLength(255)
-                                            ->required()
-                                            ->markAsRequired(false)
-                                            ->unique(ignoreRecord: true),
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
                                     ]),
                                 Forms\Components\Select::make('award_id')
                                     ->label('Award')
                                     ->placeholder('Select award')
-                                    ->relationship('award', 'name')
+                                    ->relationship(
+                                        name: 'award',
+                                        titleAttribute: 'name',
+                                        modifyQueryUsing: fn (Builder $query, string $operation, ?Model $record) => $query->when(
+                                            $operation === 'create' && ! $record,
+                                            fn ($query) => $query
+                                                ->whereDoesntHave('research')
+                                        )->when(
+                                            $operation === 'edit' && ! $record->award,
+                                            fn ($query) => $query
+                                                ->whereDoesntHave('research')
+                                        ),
+                                    )
                                     ->searchable()
                                     ->preload()
                                     ->native(false)
                                     ->createOptionForm([
-                                        Forms\Components\TextInput::make('name')
-                                            ->label('Name')
-                                            ->placeholder('Enter name')
-                                            ->maxLength(255)
-                                            ->required()
-                                            ->markAsRequired(false)
-                                            ->unique(ignoreRecord: true),
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
                                     ]),
                             ]),
                     ])

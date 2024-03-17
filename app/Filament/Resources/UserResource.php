@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -80,12 +81,22 @@ class UserResource extends Resource
                                 Forms\Components\Select::make('roles')
                                     ->label('Roles')
                                     ->placeholder('Select roles')
-                                    ->helperText('Always assign the "Panel User" role along with any other roles.')
-                                    ->relationship('roles', 'name')
+                                    ->helperText('Always assign the "panel_user" role along with any other roles.')
+                                    ->disabled(fn (string $operation, ?Model $record) => $operation === 'edit' && $record->id === 1)
+                                    ->relationship(
+                                        name: 'roles',
+                                        titleAttribute: 'name',
+                                        modifyQueryUsing: fn (Builder $query, string $operation, ?Model $record) => $query->when(
+                                            $operation === 'create' && ! $record,
+                                            fn ($query) => $query->where('name', '!=', 'super_admin')
+                                        )->when(
+                                            $operation === 'edit' && $record->id !== 1,
+                                            fn ($query) => $query->where('name', '!=', 'super_admin')
+                                        ),
+                                    )
                                     ->multiple()
                                     ->searchable()
                                     ->preload()
-                                    ->disabled(fn (string $operation): bool => $operation === 'edit' && (fn ($record) => $record->id === 1))
                                     ->native(false),
                             ])
                             ->columns(3),

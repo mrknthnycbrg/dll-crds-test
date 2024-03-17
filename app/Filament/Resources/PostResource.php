@@ -25,8 +25,6 @@ class PostResource extends Resource
 
     protected static ?string $slug = 'posts';
 
-    protected static ?string $recordTitleAttribute = 'title';
-
     protected static ?string $modelLabel = 'post';
 
     protected static ?string $pluralModelLabel = 'posts';

@@ -13,7 +13,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class NumberResource extends Resource
 {
@@ -53,10 +55,105 @@ class NumberResource extends Resource
                                 Forms\Components\Select::make('user_id')
                                     ->label('User (Optional)')
                                     ->placeholder('Select user')
-                                    ->relationship('user', 'email')
+                                    ->relationship(
+                                        name: 'user',
+                                        titleAttribute: 'email',
+                                        modifyQueryUsing: fn (Builder $query, string $operation, ?Model $record) => $query->when(
+                                            $operation === 'create' && ! $record,
+                                            fn ($query) => $query
+                                                ->whereDoesntHave('number')
+                                                ->whereDoesntHave('roles')
+                                        )->when(
+                                            $operation === 'edit' && ! $record->user,
+                                            fn ($query) => $query
+                                                ->whereDoesntHave('number')
+                                                ->whereDoesntHave('roles')
+                                        ),
+                                    )
                                     ->searchable()
-                                    ->preload()
-                                    ->native(false),
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('first_name')
+                                                    ->label('First Name')
+                                                    ->placeholder('Enter first name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false),
+                                                Forms\Components\TextInput::make('middle_name')
+                                                    ->label('Middle Name (Optional)')
+                                                    ->placeholder('Enter middle name')
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('last_name')
+                                                    ->label('Last Name')
+                                                    ->placeholder('Enter last name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false),
+                                                Forms\Components\TextInput::make('email')
+                                                    ->label('Email')
+                                                    ->placeholder('Enter email')
+                                                    ->email()
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                                Forms\Components\TextInput::make('password')
+                                                    ->label('Password')
+                                                    ->placeholder('Enter password')
+                                                    ->password()
+                                                    ->revealable()
+                                                    ->minLength(8)
+                                                    ->maxLength(32)
+                                                    ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
+                                                    ->dehydrated(fn (?string $state): bool => filled($state))
+                                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                                    ->markAsRequired(false),
+                                            ])
+                                            ->columns(3),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('first_name')
+                                                    ->label('First Name')
+                                                    ->placeholder('Enter first name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false),
+                                                Forms\Components\TextInput::make('middle_name')
+                                                    ->label('Middle Name (Optional)')
+                                                    ->placeholder('Enter middle name')
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('last_name')
+                                                    ->label('Last Name')
+                                                    ->placeholder('Enter last name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false),
+                                                Forms\Components\TextInput::make('email')
+                                                    ->label('Email')
+                                                    ->placeholder('Enter email')
+                                                    ->email()
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                                Forms\Components\TextInput::make('password')
+                                                    ->label('Password')
+                                                    ->placeholder('Enter password')
+                                                    ->password()
+                                                    ->revealable()
+                                                    ->minLength(8)
+                                                    ->maxLength(32)
+                                                    ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
+                                                    ->dehydrated(fn (?string $state): bool => filled($state))
+                                                    ->required(fn (string $operation): bool => $operation === 'create')
+                                                    ->markAsRequired(false),
+                                            ])
+                                            ->columns(3),
+                                    ]),
                             ])
                             ->columns(2),
                     ])
