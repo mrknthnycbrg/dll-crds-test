@@ -28,7 +28,7 @@ class Award extends Model
         'name',
     ];
 
-    public function researches(): HasOne
+    public function research(): HasOne
     {
         return $this->hasOne(Research::class);
     }
