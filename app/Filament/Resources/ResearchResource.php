@@ -141,7 +141,7 @@ class ResearchResource extends Resource
 
                         Section::make()
                             ->schema([
-                                Forms\Components\Select::make('department_id')
+                                Forms\Components\Select::make('department')
                                     ->label('Department')
                                     ->placeholder('Select department')
                                     ->relationship(
@@ -187,7 +187,7 @@ class ResearchResource extends Resource
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
-                                Forms\Components\Select::make('adviser_id')
+                                Forms\Components\Select::make('adviser')
                                     ->label('Adviser')
                                     ->placeholder('Select adviser')
                                     ->relationship(
@@ -225,7 +225,7 @@ class ResearchResource extends Resource
 
                         Section::make()
                             ->schema([
-                                Forms\Components\Select::make('category_id')
+                                Forms\Components\Select::make('category')
                                     ->label('Category')
                                     ->placeholder('Select category')
                                     ->relationship(
@@ -259,7 +259,7 @@ class ResearchResource extends Resource
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
-                                Forms\Components\Select::make('client_id')
+                                Forms\Components\Select::make('client')
                                     ->label('Client')
                                     ->placeholder('Select client')
                                     ->relationship(
@@ -293,7 +293,7 @@ class ResearchResource extends Resource
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
-                                Forms\Components\Select::make('award_id')
+                                Forms\Components\Select::make('award')
                                     ->label('Award')
                                     ->placeholder('Select award')
                                     ->relationship(

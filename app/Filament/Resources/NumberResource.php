@@ -52,7 +52,7 @@ class NumberResource extends Resource
                                     ->required()
                                     ->markAsRequired(false)
                                     ->unique(ignoreRecord: true),
-                                Forms\Components\Select::make('user_id')
+                                Forms\Components\Select::make('user')
                                     ->label('User (Optional)')
                                     ->placeholder('Select user')
                                     ->relationship(
