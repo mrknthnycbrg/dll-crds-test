@@ -26,7 +26,6 @@ class Number extends Model
      */
     protected $fillable = [
         'id_number',
-        'user_id',
     ];
 
     public function user(): BelongsTo

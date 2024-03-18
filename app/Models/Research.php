@@ -37,11 +37,6 @@ class Research extends Model
         'file_path',
         'image_path',
         'abstract',
-        'department_id',
-        'adviser_id',
-        'category_id',
-        'client_id',
-        'award_id',
         'published',
         'date_submitted',
     ];
