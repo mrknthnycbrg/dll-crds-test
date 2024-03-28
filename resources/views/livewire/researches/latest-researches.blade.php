@@ -1,25 +1,17 @@
 <div>
     @if ($latestResearches->isNotEmpty())
         <div class="mx-auto max-w-full bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between space-x-2">
-                <h1
-                    class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
-                    Latest Researches
-                </h1>
-            </div>
+            <h1
+                class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
+                Latest Researches
+            </h1>
 
             @foreach ($departments as $department)
-                <div class="flex items-center justify-between space-x-2 py-8">
-                    <h2 class="text-3xl font-extrabold text-gray-900">
-                        {{ $department->name }}
-                    </h2>
-
-                    @if ($department->researches->isNotEmpty())
-                        <a class="text-lg font-medium text-gray-700 hover:text-blue-800"
-                            href="{{ route('department-researches', ['slug' => $department->slug]) }}" wire:navigate>
-                            View all &rarr;
-                        </a>
-                    @endif
+                <div class="flex items-center justify-between py-8">
+                    <a class="text-3xl font-extrabold text-gray-900 hover:text-blue-800"
+                        href="{{ route('department-researches', ['slug' => $department->slug]) }}" wire:navigate>
+                        {{ $department->name }} &rarr;
+                    </a>
                 </div>
 
                 <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
