@@ -32,11 +32,18 @@
                             Resources
                         </x-nav-link>
 
-                        @guest
+                        @auth
+                            <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                                Tools
+                            </x-nav-link>
+                            <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                                Submit
+                            </x-nav-link>
+                        @else
                             <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                                 Log In
                             </x-nav-link>
-                        @endguest
+                        @endauth
                     </div>
 
                     @auth
@@ -94,11 +101,18 @@
                     Resources
                 </x-responsive-nav-link>
 
-                @guest
+                @auth
+                    <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
+                        Tools
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
+                        Submit
+                    </x-responsive-nav-link>
+                @else
                     <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                         Log In
                     </x-responsive-nav-link>
-                @endguest
+                @endauth
             </div>
 
             <!-- Responsive Settings Options -->
