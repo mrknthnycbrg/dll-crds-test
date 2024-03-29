@@ -32,18 +32,11 @@
                             Resources
                         </x-nav-link>
 
-                        @auth
-                            <x-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
-                                Tools
-                            </x-nav-link>
-                            <x-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
-                                Submit
-                            </x-nav-link>
-                        @else
+                        @guest
                             <x-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                                 Log In
                             </x-nav-link>
-                        @endauth
+                        @endguest
                     </div>
 
                     @auth
@@ -90,7 +83,7 @@
 
         <!-- Responsive Navigation Menu -->
         <div class="hidden lg:hidden" :class="{ 'block': open, 'hidden': !open }">
-            <div class="space-y-1 pb-3 pt-2">
+            <div class="space-y-1 py-2">
                 <x-responsive-nav-link href="{{ route('all-posts') }}" wire:navigate :active="request()->routeIs(['all-posts', 'show-post'])">
                     News
                 </x-responsive-nav-link>
@@ -101,18 +94,11 @@
                     Resources
                 </x-responsive-nav-link>
 
-                @auth
-                    <x-responsive-nav-link href="{{ route('tools') }}" wire:navigate :active="request()->routeIs('tools')">
-                        Tools
-                    </x-responsive-nav-link>
-                    <x-responsive-nav-link href="{{ route('submit') }}" wire:navigate :active="request()->routeIs('submit')">
-                        Submit
-                    </x-responsive-nav-link>
-                @else
+                @guest
                     <x-responsive-nav-link href="{{ route('login') }}" wire:navigate :active="request()->routeIs('login')">
                         Log In
                     </x-responsive-nav-link>
-                @endauth
+                @endguest
             </div>
 
             <!-- Responsive Settings Options -->

@@ -30,12 +30,14 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100 text-gray-900">
-            <livewire:components.app-navigation-menu />
+            <livewire:components.navigation-menu />
 
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+
+            <livewire:components.footer />
         </div>
 
         @stack('modals')

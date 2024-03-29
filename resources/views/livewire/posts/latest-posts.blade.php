@@ -8,7 +8,8 @@
                     <div class="flex h-full"
                         style="background-image: url('{{ $latestPost->image_path ? $latestPost->formattedImage() : asset('images/logo.png') }}'); background-size: cover; background-position: center;">
                         <div class="flex w-full flex-col-reverse">
-                            <div class="space-y-2 bg-blue-800 bg-opacity-75 p-4 text-left backdrop-blur-md">
+                            <div
+                                class="space-y-2 bg-blue-800 bg-opacity-75 px-4 py-8 text-left backdrop-blur-md sm:px-6 lg:px-8">
                                 <h1 class="text-4xl font-black text-yellow-400">
                                     {{ $latestPost->title }}
                                 </h1>
@@ -27,7 +28,8 @@
                     <div class="flex h-full"
                         style="background-image: url('{{ asset('images/logo.png') }}'); background-size: cover; background-position: center;">
                         <div class="flex w-full flex-col-reverse">
-                            <div class="space-y-2 bg-blue-800 bg-opacity-75 p-4 text-left backdrop-blur-md">
+                            <div
+                                class="space-y-2 bg-blue-800 bg-opacity-75 px-4 py-8 text-left backdrop-blur-md sm:px-6 lg:px-8">
                                 <h1 class="text-4xl font-black text-yellow-400">
                                     College Research and Development Services
                                 </h1>
