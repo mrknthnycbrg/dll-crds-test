@@ -1,4 +1,4 @@
-<div>
+<div class="min-h-screen">
     <x-header>
         <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
             <div class="col-span-3 lg:col-span-2">

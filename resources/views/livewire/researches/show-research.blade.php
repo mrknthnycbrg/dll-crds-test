@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
+<div class="mx-auto min-h-screen max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl space-y-4">
         <h1 class="text-4xl font-black text-gray-900">
             {{ $research->title }}
