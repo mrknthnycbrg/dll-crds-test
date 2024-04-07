@@ -6,6 +6,7 @@ use App\Models\Research;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
+use Illuminate\Support\Str;
 
 class ResearchImporter extends Importer
 {
@@ -17,7 +18,7 @@ class ResearchImporter extends Importer
             ImportColumn::make('title')
                 ->label('Title')
                 ->requiredMapping()
-                ->rules(['required', 'max:255', 'unique']),
+                ->rules(['required', 'max:255']),
             ImportColumn::make('author')
                 ->label('Authors')
                 ->rules(['max:255']),
@@ -32,7 +33,7 @@ class ResearchImporter extends Importer
                 ->rules(['date']),
             ImportColumn::make('department')
                 ->label('Department')
-                ->relationship(resolveUsing: 'name'),
+                ->relationship(resolveUsing: ['name', 'abbreviation']),
             ImportColumn::make('adviser')
                 ->label('Adviser')
                 ->relationship(resolveUsing: 'name'),
@@ -42,10 +43,8 @@ class ResearchImporter extends Importer
     public function resolveRecord(): ?Research
     {
         return Research::firstOrNew([
-            'title' => $this->data['title'],
+            'slug' => Str::slug($this->data['title']),
         ]);
-
-        return new Research();
     }
 
     public static function getCompletedNotificationBody(Import $import): string

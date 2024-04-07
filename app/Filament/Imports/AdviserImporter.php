@@ -2,35 +2,35 @@
 
 namespace App\Filament\Imports;
 
-use App\Models\Number;
+use App\Models\Adviser;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
 
-class NumberImporter extends Importer
+class AdviserImporter extends Importer
 {
-    protected static ?string $model = Number::class;
+    protected static ?string $model = Adviser::class;
 
     public static function getColumns(): array
     {
         return [
-            ImportColumn::make('id_number')
-                ->label('ID Number')
+            ImportColumn::make('name')
+                ->label('Name')
                 ->requiredMapping()
                 ->rules(['required', 'max:255']),
         ];
     }
 
-    public function resolveRecord(): ?Number
+    public function resolveRecord(): ?Adviser
     {
-        return Number::firstOrNew([
-            'id_number' => $this->data['id_number'],
+        return Adviser::firstOrNew([
+            'name' => $this->data['name'],
         ]);
     }
 
     public static function getCompletedNotificationBody(Import $import): string
     {
-        $body = 'Your number import has completed and '.number_format($import->successful_rows).' '.str('row')->plural($import->successful_rows).' imported.';
+        $body = 'Your adviser import has completed and '.number_format($import->successful_rows).' '.str('row')->plural($import->successful_rows).' imported.';
 
         if ($failedRowsCount = $import->getFailedRowsCount()) {
             $body .= ' '.number_format($failedRowsCount).' '.str('row')->plural($failedRowsCount).' failed to import.';
