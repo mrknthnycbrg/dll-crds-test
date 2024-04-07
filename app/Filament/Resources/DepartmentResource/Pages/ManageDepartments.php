@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\DepartmentResource\Pages;
 
+use App\Filament\Exports\DepartmentExporter;
+use App\Filament\Imports\DepartmentImporter;
 use App\Filament\Resources\DepartmentResource;
 use Filament\Actions;
 use Filament\Notifications\Notification;
@@ -14,6 +16,11 @@ class ManageDepartments extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
+            Actions\ExportAction::make()
+                ->exporter(DepartmentExporter::class)
+                ->columnMapping(false),
+            Actions\ImportAction::make()
+                ->importer(DepartmentImporter::class),
             Actions\CreateAction::make()
                 ->successNotification(null)
                 ->after(function () {

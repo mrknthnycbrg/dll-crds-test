@@ -29,11 +29,11 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationLabel = 'Categories';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 7;
 
-    protected static ?string $navigationGroup = 'Research Management';
+    protected static ?string $navigationGroup = 'Post Management';
 
-    protected static ?string $navigationParentItem = 'Researches';
+    protected static ?string $navigationParentItem = 'Posts';
 
     public static function form(Form $form): Form
     {
@@ -108,9 +108,7 @@ class CategoryResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Category $record) {
-                        $id = $record->id;
-
-                        if (Post::where('category_id', $id)->exists()) {
+                        if (Post::where('category_id', $record->id)->exists()) {
                             Notification::make()
                                 ->title('Category not deleted')
                                 ->body('A category is not allowed to be deleted.')

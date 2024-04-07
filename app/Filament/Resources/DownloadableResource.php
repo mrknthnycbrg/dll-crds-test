@@ -33,7 +33,7 @@ class DownloadableResource extends Resource
 
     protected static ?string $navigationLabel = 'Downloadables';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 8;
 
     protected static ?string $navigationGroup = 'Post Management';
 
@@ -73,7 +73,6 @@ class DownloadableResource extends Resource
                                     ->label('File')
                                     ->required()
                                     ->markAsRequired(false)
-                                    ->preserveFilenames()
                                     ->openable()
                                     ->downloadable()
                                     ->disk('public')

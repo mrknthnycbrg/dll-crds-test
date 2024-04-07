@@ -28,7 +28,7 @@ class ViewResource extends Resource
 
     protected static ?string $navigationLabel = 'Views';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 5;
 
     protected static ?string $navigationGroup = 'Research Management';
 

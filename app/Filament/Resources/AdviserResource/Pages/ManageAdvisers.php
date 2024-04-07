@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\AdviserResource\Pages;
 
+use App\Filament\Exports\AdviserExporter;
+use App\Filament\Imports\AdviserImporter;
 use App\Filament\Resources\AdviserResource;
 use Filament\Actions;
 use Filament\Notifications\Notification;
@@ -14,6 +16,11 @@ class ManageAdvisers extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
+            Actions\ExportAction::make()
+                ->exporter(AdviserExporter::class)
+                ->columnMapping(false),
+            Actions\ImportAction::make()
+                ->importer(AdviserImporter::class),
             Actions\CreateAction::make()
                 ->successNotification(null)
                 ->after(function () {

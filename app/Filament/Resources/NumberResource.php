@@ -31,7 +31,7 @@ class NumberResource extends Resource
 
     protected static ?string $navigationLabel = 'Numbers';
 
-    protected static ?int $navigationSort = 12;
+    protected static ?int $navigationSort = 10;
 
     protected static ?string $navigationGroup = 'User Management';
 
@@ -216,9 +216,7 @@ class NumberResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Number $record) {
-                        $userId = $record->user_id;
-
-                        if (User::where('id', $userId)->exists()) {
+                        if (User::where('id', $record->user_id)->exists()) {
                             Notification::make()
                                 ->title('Number not deleted')
                                 ->body('A number is not allowed to be deleted.')

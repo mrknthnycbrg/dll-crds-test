@@ -33,7 +33,7 @@ class PostResource extends Resource
 
     protected static ?string $navigationLabel = 'Posts';
 
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 6;
 
     protected static ?string $navigationGroup = 'Post Management';
 
@@ -81,7 +81,6 @@ class PostResource extends Resource
                                         '4:3',
                                         '1:1',
                                     ])
-                                    ->preserveFilenames()
                                     ->openable()
                                     ->downloadable()
                                     ->disk('public')
@@ -104,6 +103,40 @@ class PostResource extends Resource
                                     ->format('Y-m-d')
                                     ->native(false)
                                     ->closeOnDateSelection(),
+                                Forms\Components\Select::make('category')
+                                    ->label('Category')
+                                    ->placeholder('Select category')
+                                    ->relationship(
+                                        name: 'category',
+                                        titleAttribute: 'name'
+                                    )
+                                    ->searchable()
+                                    ->preload()
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->markAsRequired(false)
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ]),
                             ]),
                     ])
                     ->columnSpan(1),
@@ -126,6 +159,11 @@ class PostResource extends Resource
                 Tables\Columns\IconColumn::make('published')
                     ->label('Published')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable()
@@ -187,6 +225,12 @@ class PostResource extends Resource
 
                         return $indicators;
                     }),
+                Tables\Filters\SelectFilter::make('category')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Published')
                     ->placeholder('All posts')

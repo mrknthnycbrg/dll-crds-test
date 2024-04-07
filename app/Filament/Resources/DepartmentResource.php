@@ -58,6 +58,13 @@ class DepartmentResource extends Resource
                                     ->disabled()
                                     ->dehydrated()
                                     ->unique(ignoreRecord: true),
+                                Forms\Components\TextInput::make('abbreviation')
+                                    ->label('Abbreviation')
+                                    ->placeholder('Enter abbreviation')
+                                    ->maxLength(255)
+                                    ->required()
+                                    ->markAsRequired(false)
+                                    ->unique(ignoreRecord: true),
                             ]),
                     ])
                     ->columnSpanFull(),
@@ -121,9 +128,7 @@ class DepartmentResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Department $record) {
-                        $id = $record->id;
-
-                        if (Research::where('department_id', $id)->exists()) {
+                        if (Research::where('department_id', $record->id)->exists()) {
                             Notification::make()
                                 ->title('Department not deleted')
                                 ->body('A department is not allowed to be deleted.')

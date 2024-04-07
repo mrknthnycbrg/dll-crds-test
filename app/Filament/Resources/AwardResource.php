@@ -29,7 +29,7 @@ class AwardResource extends Resource
 
     protected static ?string $navigationLabel = 'Awards';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationGroup = 'Research Management';
 
@@ -108,9 +108,7 @@ class AwardResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Award $record) {
-                        $id = $record->id;
-
-                        if (Research::where('award_id', $id)->exists()) {
+                        if (Research::where('award_id', $record->id)->exists()) {
                             Notification::make()
                                 ->title('Award not deleted')
                                 ->body('An award is not allowed to be deleted.')
