@@ -2,15 +2,23 @@
 
 namespace App\Models;
 
+use App\Observers\PostObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
 
+#[ObservedBy([PostObserver::class])]
 class Post extends Model
 {
     use HasFactory;
+    use Searchable;
     use SoftDeletes;
 
     /**
@@ -43,6 +51,22 @@ class Post extends Model
         'published' => 'boolean',
         'date_published' => 'date',
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    #[SearchUsingPrefix(['title', 'categories.name'])]
+    #[SearchUsingFullText(['content'])]
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+            'categories.name' => optional($this->category)->name,
+        ];
+    }
 
     public function formattedImage()
     {

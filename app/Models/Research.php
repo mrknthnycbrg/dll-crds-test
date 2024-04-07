@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Observers\ResearchObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 
+#[ObservedBy([ResearchObserver::class])]
 class Research extends Model
 {
     use HasFactory;
@@ -35,7 +38,6 @@ class Research extends Model
         'author',
         'keyword',
         'file_path',
-        'image_path',
         'abstract',
         'published',
         'date_submitted',
@@ -61,21 +63,12 @@ class Research extends Model
         return $this->belongsTo(Adviser::class);
     }
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function client(): BelongsTo
-    {
-        return $this->belongsTo(Client::class);
-    }
-
     public function award(): BelongsTo
     {
         return $this->belongsTo(Award::class);
     }
 
+    #[SearchUsingPrefix(['title', 'author', 'keyword', 'departments.name', 'departments.abbreviation', 'advisers.name', 'awards.name'])]
     #[SearchUsingFullText(['abstract'])]
     public function toSearchableArray()
     {
@@ -85,16 +78,10 @@ class Research extends Model
             'keyword' => $this->keyword,
             'abstract' => $this->abstract,
             'departments.name' => optional($this->department)->name,
+            'departments.abbreviation' => optional($this->department)->abbreviation,
             'advisers.name' => optional($this->adviser)->name,
-            'categories.name' => optional($this->category)->name,
-            'clients.name' => optional($this->client)->name,
             'awards.name' => optional($this->award)->name,
         ];
-    }
-
-    public function formattedImage()
-    {
-        return Storage::url($this->image_path);
     }
 
     public function formattedAbstract()

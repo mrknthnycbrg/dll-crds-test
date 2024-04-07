@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
+use App\Observers\DownloadableObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
 
+#[ObservedBy([DownloadableObserver::class])]
 class Downloadable extends Model
 {
     use HasFactory;
+    use Searchable;
     use SoftDeletes;
 
     /**
@@ -42,6 +49,16 @@ class Downloadable extends Model
         'published' => 'boolean',
         'date_published' => 'date',
     ];
+
+    #[SearchUsingPrefix(['name'])]
+    #[SearchUsingFullText(['description'])]
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
+        ];
+    }
 
     public function formattedDescription()
     {
