@@ -1,4 +1,4 @@
-<div class="min-h-screen">
+<div>
     <x-header>
         <h1 class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
             Tools

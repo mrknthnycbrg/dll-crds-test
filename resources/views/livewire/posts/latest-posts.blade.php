@@ -10,6 +10,9 @@
                         <div class="flex w-full flex-col-reverse">
                             <div
                                 class="space-y-2 bg-blue-800 bg-opacity-75 px-4 py-8 text-left backdrop-blur-md sm:px-6 lg:px-8">
+                                <x-badge>
+                                    {{ optional($latestPost->category)->name }}
+                                </x-badge>
                                 <h1 class="text-4xl font-black text-yellow-400">
                                     {{ $latestPost->title }}
                                 </h1>

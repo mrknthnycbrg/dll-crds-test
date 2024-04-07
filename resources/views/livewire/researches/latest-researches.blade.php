@@ -1,6 +1,6 @@
 <div>
     @if ($latestResearches->isNotEmpty())
-        <div class="mx-auto max-w-full bg-gray-100 px-4 py-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
             <h1
                 class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
                 Latest Researches

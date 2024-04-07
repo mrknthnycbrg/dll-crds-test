@@ -1,4 +1,4 @@
-<div class="min-h-screen">
+<div>
     <x-header>
         <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
             <div class="col-span-3 lg:col-span-2">
@@ -21,9 +21,62 @@
     </x-header>
 
     <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
-        @if ($search)
-            <div class="space-x-2 pb-8">
-                <h2 class="text-2xl font-black text-gray-900">
+        @if (!$search)
+            <div class="grid grid-cols-1 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
+                <div class="mb-4">
+                    <x-label for="department" value="Department" />
+                    <x-select class="mt-1 block w-full" id="department" wire:model.live.debounce="selectedDepartment"
+                        :default="'All Departments'" :options="$departments" />
+                </div>
+
+                <div class="mb-4">
+                    <x-label for="adviser" value="Adviser" />
+                    <x-select class="mt-1 block w-full" id="adviser" wire:model.live.debounce="selectedAdviser"
+                        :default="'All Advisers'" :options="$advisers" />
+                </div>
+
+                <div class="mb-8">
+                    <x-label for="year" value="Year" />
+                    <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
+                        :default="'All Years'" :options="$years" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                @forelse ($researches as $research)
+                    <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
+                        wire:key="{{ $research->id }}">
+                        <x-badge>
+                            {{ optional($research->department)->name }}
+                        </x-badge>
+                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                            {{ $research->title }}
+                        </h4>
+                        <p class="text-sm font-light text-gray-700">
+                            {{ $research->formattedAbstract() }}
+                        </p>
+                        <p class="text-xs font-extralight text-gray-700">
+                            {{ $research->formattedDate() }}
+                        </p>
+                        @if ($research->award_id)
+                            <x-badge class="bg-yellow-400 text-gray-900">
+                                {{ optional($research->award)->name }}
+                            </x-badge>
+                        @endif
+                    </x-card>
+                @empty
+                    <p class="text-base font-normal text-gray-700">
+                        No researches yet.
+                    </p>
+                @endforelse
+            </div>
+
+            <div class="pt-8">
+                {{ $researches->links(data: ['scrollTo' => false]) }}
+            </div>
+        @else
+            <div class="space-y-2 pb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">
                     Search Results
                 </h2>
             </div>
@@ -53,59 +106,6 @@
                 @empty
                     <p class="text-base font-normal text-gray-700">
                         No researches found.
-                    </p>
-                @endforelse
-            </div>
-
-            <div class="pt-8">
-                {{ $researches->links(data: ['scrollTo' => false]) }}
-            </div>
-        @else
-            <div class="grid grid-cols-1 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
-                <div class="mb-4">
-                    <x-label for="year" value="Year" />
-                    <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"
-                        :default="'All Years'" :options="$years" />
-                </div>
-
-                <div class="mb-4">
-                    <x-label for="department" value="Department" />
-                    <x-select class="mt-1 block w-full" id="department" wire:model.live.debounce="selectedDepartment"
-                        :default="'All Departments'" :options="$departments" />
-                </div>
-
-                <div class="mb-8">
-                    <x-label for="adviser" value="Adviser" />
-                    <x-select class="mt-1 block w-full" id="adviser" wire:model.live.debounce="selectedAdviser"
-                        :default="'All Advisers'" :options="$advisers" />
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                @forelse ($researches as $research)
-                    <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
-                        wire:key="{{ $research->id }}">
-                        <x-badge>
-                            {{ optional($research->department)->name }}
-                        </x-badge>
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
-                            {{ $research->title }}
-                        </h4>
-                        <p class="text-sm font-light text-gray-700">
-                            {{ $research->formattedAbstract() }}
-                        </p>
-                        <p class="text-xs font-extralight text-gray-700">
-                            {{ $research->formattedDate() }}
-                        </p>
-                        @if ($research->award_id)
-                            <x-badge class="bg-yellow-400 text-gray-900">
-                                {{ optional($research->award)->name }}
-                            </x-badge>
-                        @endif
-                    </x-card>
-                @empty
-                    <p class="text-base font-normal text-gray-700">
-                        No researches yet.
                     </p>
                 @endforelse
             </div>

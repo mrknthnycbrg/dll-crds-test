@@ -29,16 +29,14 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 text-gray-900">
-            <livewire:components.navigation-menu />
+        <livewire:components.navigation-menu />
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <!-- Page Content -->
+        <main class="min-h-screen bg-gray-100 text-gray-900">
+            {{ $slot }}
+        </main>
 
-            <livewire:components.footer />
-        </div>
+        <livewire:components.footer />
 
         @stack('modals')
 
