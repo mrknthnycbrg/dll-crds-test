@@ -30,6 +30,7 @@ class DepartmentFactory extends Factory
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => $this->faker->unique()->word(),
         ];
     }
 }

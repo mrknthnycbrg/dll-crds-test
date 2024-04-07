@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('researches', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('title');
             $table->string('slug')->nullable()->unique();
             $table->string('author')->nullable();
             $table->string('keyword')->nullable();
             $table->string('file_path')->nullable();
-            $table->string('image_path')->nullable();
             $table->longText('abstract')->nullable()->fullText();
             $table->foreignId('department_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('adviser_id')->nullable()->constrained()->restrictOnDelete();
-            $table->foreignId('category_id')->nullable()->constrained()->restrictOnDelete();
-            $table->foreignId('client_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('award_id')->nullable()->constrained()->restrictOnDelete();
             $table->boolean('published')->default(false);
             $table->date('date_submitted')->nullable();

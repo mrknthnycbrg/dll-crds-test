@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             AdviserSeeder::class,
             AwardSeeder::class,
             CategorySeeder::class,
-            ClientSeeder::class,
             DepartmentSeeder::class,
             DownloadableSeeder::class,
             NumberSeeder::class,

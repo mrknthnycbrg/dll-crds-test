@@ -4,15 +4,13 @@ namespace Database\Factories;
 
 use App\Models\Adviser;
 use App\Models\Award;
-use App\Models\Category;
-use App\Models\Client;
 use App\Models\Department;
 use App\Models\Research;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<Research>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Research>
  */
 class ResearchFactory extends Factory
 {
@@ -38,19 +36,12 @@ class ResearchFactory extends Factory
             'author' => $this->faker->unique()->name(),
             'keyword' => $this->faker->words(3, true),
             'file_path' => null,
-            'image_path' => null,
             'abstract' => $this->faker->unique()->realText(2000),
             'department_id' => function () {
                 return Department::inRandomOrder()->first()->id;
             },
             'adviser_id' => function () {
                 return Adviser::inRandomOrder()->first()->id;
-            },
-            'category_id' => function () {
-                return Category::inRandomOrder()->first()->id;
-            },
-            'client_id' => function () {
-                return Client::inRandomOrder()->first()->id;
             },
             'award_id' => function () {
                 return Award::inRandomOrder()->first()->id;

@@ -16,59 +16,67 @@ class DepartmentSeeder extends Seeder
         // Department::factory(8)->create();
 
         Department::factory()->create([
-            'name' => 'Bachelor of Arts in English Language Studies (ABELS)',
+            'name' => 'Bachelor of Arts in English Language Studies',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'ABELS',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Science in Accountancy (BSA)',
+            'name' => 'Bachelor of Science in Accountancy',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BSA',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Science in Accounting Information System (BSAIS)',
+            'name' => 'Bachelor of Science in Accounting Information System',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BSAIS',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Science in Entrepreneurship (BSE)',
+            'name' => 'Bachelor of Science in Entrepreneurship',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BSE',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Science in Information Technology (BSIT)',
+            'name' => 'Bachelor of Science in Information Technology',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BSIT',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Science in Public Administration (BSPA)',
+            'name' => 'Bachelor of Science in Public Administration',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BSPA',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Science in Social Work (BSSW)',
+            'name' => 'Bachelor of Science in Social Work',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BSSW',
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Technical Vocational Teachers Education (BTVTE)',
+            'name' => 'Bachelor of Technical Vocational Teachers Education',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },
+            'abbreviation' => 'BTVTEd',
         ]);
     }
 }
