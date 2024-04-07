@@ -10,7 +10,6 @@ use App\Livewire\Posts\ShowPost;
 use App\Livewire\Researches\AllResearches;
 use App\Livewire\Researches\DepartmentResearches;
 use App\Livewire\Researches\ShowResearch;
-use App\Livewire\Submit\SubmitPage;
 use App\Livewire\Tools\ToolsPage;
 use Illuminate\Support\Facades\Route;
 
@@ -38,9 +37,9 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+    'password.confirm',
 ])->group(function () {
     Route::get('/researches/files/{slug}', FileResearch::class)->name('file-research');
     Route::get('/resources/files/{slug}', FileDownloadable::class)->name('file-downloadable');
     Route::get('/tools', ToolsPage::class)->name('tools');
-    Route::get('/submit', SubmitPage::class)->name('submit');
 });
