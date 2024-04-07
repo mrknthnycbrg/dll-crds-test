@@ -4,6 +4,7 @@ namespace App\Livewire\Downloadables;
 
 use App\Models\Downloadable;
 use Illuminate\Support\Carbon;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,33 +12,50 @@ class AllDownloadables extends Component
 {
     use WithPagination;
 
+    #[Url()]
+    public $search = '';
+
     public $selectedYear;
 
     public function render()
     {
-        $latestPublished = Downloadable::where('published', true)->max('date_published');
+        if (empty($this->search)) {
+            $latestPublished = Downloadable::where('published', true)->max('date_published');
 
-        $earliestPublished = Downloadable::where('published', true)->min('date_published');
+            $earliestPublished = Downloadable::where('published', true)->min('date_published');
 
-        if ($latestPublished && $earliestPublished) {
-            $latestYear = Carbon::parse($latestPublished)->year;
-            $earliestYear = Carbon::parse($earliestPublished)->year;
+            if ($latestPublished && $earliestPublished) {
+                $latestYear = Carbon::parse($latestPublished)->year;
+                $earliestYear = Carbon::parse($earliestPublished)->year;
 
-            $yearRange = range($latestYear, $earliestYear);
-            $years = array_combine($yearRange, $yearRange);
+                $yearRange = range($latestYear, $earliestYear);
+                $years = array_combine($yearRange, $yearRange);
+            } else {
+                $years = null;
+            }
+
+            $downloadables = Downloadable::where('published', true)
+                ->when($this->selectedYear, function ($query) {
+                    $query->whereYear('date_published', $this->selectedYear);
+                })
+                ->latest('date_published')
+                ->paginate(6);
         } else {
-            $years = null;
-        }
+            $downloadables = Downloadable::search(trim($this->search))
+                ->where('published', true)
+                ->latest('date_published')
+                ->paginate(6);
 
-        $downloadables = Downloadable::where('published', true)
-            ->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_published', $this->selectedYear);
-            })
-            ->latest('date_published')
-            ->paginate(6);
+            return view('livewire.downloadables.all-downloadables', compact('downloadables'));
+        }
 
         return view('livewire.downloadables.all-downloadables', compact('downloadables', 'years'))
             ->title('Resources - DLL-CRDS');
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
     }
 
     public function updatedSelectedYear()

@@ -3,9 +3,6 @@
 namespace App\Livewire\Researches;
 
 use App\Models\Adviser;
-use App\Models\Award;
-use App\Models\Category;
-use App\Models\Client;
 use App\Models\Department;
 use App\Models\Research;
 use Illuminate\Support\Carbon;
@@ -24,12 +21,6 @@ class AllResearches extends Component
 
     public $selectedAdviser;
 
-    public $selectedCategory;
-
-    public $selectedClient;
-
-    public $selectedAward;
-
     public $selectedYear;
 
     public function render()
@@ -38,12 +29,6 @@ class AllResearches extends Component
             $departmentsQuery = Department::whereHas('researches', function ($query) {
                 $query->when($this->selectedAdviser, function ($query) {
                     $query->where('adviser_id', $this->selectedAdviser);
-                })->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })->when($this->selectedClient, function ($query) {
-                    $query->where('client_id', $this->selectedClient);
-                })->when($this->selectedAward, function ($query) {
-                    $query->where('award_id', $this->selectedAward);
                 })->when($this->selectedYear, function ($query) {
                     $query->whereYear('date_submitted', $this->selectedYear);
                 });
@@ -54,12 +39,6 @@ class AllResearches extends Component
             $advisersQuery = Adviser::whereHas('researches', function ($query) {
                 $query->when($this->selectedDepartment, function ($query) {
                     $query->where('department_id', $this->selectedDepartment);
-                })->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })->when($this->selectedClient, function ($query) {
-                    $query->where('client_id', $this->selectedClient);
-                })->when($this->selectedAward, function ($query) {
-                    $query->where('award_id', $this->selectedAward);
                 })->when($this->selectedYear, function ($query) {
                     $query->whereYear('date_submitted', $this->selectedYear);
                 });
@@ -67,63 +46,12 @@ class AllResearches extends Component
 
             $advisers = $advisersQuery->pluck('name', 'id');
 
-            $categoriesQuery = Category::whereHas('researches', function ($query) {
-                $query->when($this->selectedDepartment, function ($query) {
-                    $query->where('department_id', $this->selectedDepartment);
-                })->when($this->selectedAdviser, function ($query) {
-                    $query->where('adviser_id', $this->selectedAdviser);
-                })->when($this->selectedClient, function ($query) {
-                    $query->where('client_id', $this->selectedClient);
-                })->when($this->selectedAward, function ($query) {
-                    $query->where('award_id', $this->selectedAward);
-                })->when($this->selectedYear, function ($query) {
-                    $query->whereYear('date_submitted', $this->selectedYear);
-                });
-            });
-
-            $categories = $categoriesQuery->pluck('name', 'id');
-
-            $clientsQuery = Client::whereHas('researches', function ($query) {
-                $query->when($this->selectedDepartment, function ($query) {
-                    $query->where('department_id', $this->selectedDepartment);
-                })->when($this->selectedAdviser, function ($query) {
-                    $query->where('adviser_id', $this->selectedAdviser);
-                })->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })->when($this->selectedAward, function ($query) {
-                    $query->where('award_id', $this->selectedAward);
-                })->when($this->selectedYear, function ($query) {
-                    $query->whereYear('date_submitted', $this->selectedYear);
-                });
-            });
-
-            $clients = $clientsQuery->pluck('name', 'id');
-
-            $awardsQuery = Award::whereHas('research', function ($query) {
-                $query->when($this->selectedDepartment, function ($query) {
-                    $query->where('department_id', $this->selectedDepartment);
-                })->when($this->selectedAdviser, function ($query) {
-                    $query->where('adviser_id', $this->selectedAdviser);
-                })->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })->when($this->selectedClient, function ($query) {
-                    $query->where('client_id', $this->selectedClient);
-                })->when($this->selectedYear, function ($query) {
-                    $query->whereYear('date_submitted', $this->selectedYear);
-                });
-            });
-
-            $awards = $awardsQuery->pluck('name', 'id');
-
             $latestPublished = Research::where('published', true)
                 ->when($this->selectedDepartment, function ($query) {
                     $query->where('department_id', $this->selectedDepartment);
                 })
                 ->when($this->selectedAdviser, function ($query) {
                     $query->where('adviser_id', $this->selectedAdviser);
-                })
-                ->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
                 })
                 ->max('date_submitted');
 
@@ -133,9 +61,6 @@ class AllResearches extends Component
                 })
                 ->when($this->selectedAdviser, function ($query) {
                     $query->where('adviser_id', $this->selectedAdviser);
-                })
-                ->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
                 })
                 ->min('date_submitted');
 
@@ -157,15 +82,6 @@ class AllResearches extends Component
                 ->when($this->selectedAdviser, function ($query) {
                     $query->where('adviser_id', $this->selectedAdviser);
                 })
-                ->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })
-                ->when($this->selectedClient, function ($query) {
-                    $query->where('client_id', $this->selectedClient);
-                })
-                ->when($this->selectedAward, function ($query) {
-                    $query->where('award_id', $this->selectedAward);
-                })
                 ->when($this->selectedYear, function ($query) {
                     $query->whereYear('date_submitted', $this->selectedYear);
                 })
@@ -176,12 +92,12 @@ class AllResearches extends Component
                 ->query(function ($query) {
                     $query->leftJoin('departments', 'researches.department_id', '=', 'departments.id')
                         ->leftJoin('advisers', 'researches.adviser_id', '=', 'advisers.id')
-                        ->leftJoin('categories', 'researches.category_id', '=', 'categories.id')
-                        ->leftJoin('clients', 'researches.client_id', '=', 'clients.id')
                         ->leftJoin('awards', 'researches.award_id', '=', 'awards.id')
                         ->select(
                             'researches.*',
+                            'departments.abbreviation as department_abbreviation',
                             'departments.name as department_name',
+                            'awards.name as award_name',
                         )
                         ->with(['department', 'award'])
                         ->where('published', true)
@@ -192,7 +108,7 @@ class AllResearches extends Component
             return view('livewire.researches.all-researches', compact('researches'));
         }
 
-        return view('livewire.researches.all-researches', compact('researches', 'departments', 'advisers', 'categories', 'clients', 'awards', 'years'))
+        return view('livewire.researches.all-researches', compact('researches', 'departments', 'advisers', 'years'))
             ->title('Researches - DLL-CRDS');
     }
 
@@ -207,21 +123,6 @@ class AllResearches extends Component
     }
 
     public function updatedSelectedAdviser()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedCategory()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedClient()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedAward()
     {
         $this->resetPage();
     }

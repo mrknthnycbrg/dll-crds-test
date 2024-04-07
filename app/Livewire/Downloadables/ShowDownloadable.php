@@ -16,7 +16,13 @@ class ShowDownloadable extends Component
 
     public function render()
     {
-        return view('livewire.downloadables.show-downloadable')
+        $otherDownloadables = Downloadable::where('published', true)
+            ->where('id', '!=', $this->downloadable->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('livewire.downloadables.show-downloadable', compact('otherDownloadables'))
             ->title($this->downloadable->name.' - DLL-CRDS');
     }
 

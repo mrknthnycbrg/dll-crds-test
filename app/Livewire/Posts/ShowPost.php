@@ -16,7 +16,15 @@ class ShowPost extends Component
 
     public function render()
     {
-        return view('livewire.posts.show-post')
+        $otherPosts = Post::with('category')
+            ->where('published', true)
+            ->where('category_id', $this->post->category_id)
+            ->where('id', '!=', $this->post->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('livewire.posts.show-post', compact('otherPosts'))
             ->title($this->post->title.' - DLL-CRDS');
     }
 }

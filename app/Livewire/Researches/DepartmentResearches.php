@@ -3,12 +3,10 @@
 namespace App\Livewire\Researches;
 
 use App\Models\Adviser;
-use App\Models\Award;
-use App\Models\Category;
-use App\Models\Client;
 use App\Models\Department;
 use App\Models\Research;
 use Illuminate\Support\Carbon;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -18,13 +16,10 @@ class DepartmentResearches extends Component
 
     public $department;
 
+    #[Url()]
+    public $search = '';
+
     public $selectedAdviser;
-
-    public $selectedCategory;
-
-    public $selectedClient;
-
-    public $selectedAward;
 
     public $selectedYear;
 
@@ -35,145 +30,83 @@ class DepartmentResearches extends Component
 
     public function render()
     {
-        $advisersQuery = Adviser::whereHas('researches', function ($query) {
-            $query->when($this->department, function ($query) {
-                $query->where('department_id', $this->department->id);
-            })->when($this->selectedCategory, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })->when($this->selectedClient, function ($query) {
-                $query->where('client_id', $this->selectedClient);
-            })->when($this->selectedAward, function ($query) {
-                $query->where('award_id', $this->selectedAward);
-            })->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
+        if (empty($this->search)) {
+            $advisersQuery = Adviser::whereHas('researches', function ($query) {
+                $query->where('department_id', $this->department->id)
+                    ->when($this->selectedYear, function ($query) {
+                        $query->whereYear('date_submitted', $this->selectedYear);
+                    });
             });
-        });
 
-        $advisers = $advisersQuery->pluck('name', 'id');
+            $advisers = $advisersQuery->pluck('name', 'id');
 
-        $categoriesQuery = Category::whereHas('researches', function ($query) {
-            $query->when($this->department, function ($query) {
-                $query->where('department_id', $this->department->id);
-            })->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })->when($this->selectedClient, function ($query) {
-                $query->where('client_id', $this->selectedClient);
-            })->when($this->selectedAward, function ($query) {
-                $query->where('award_id', $this->selectedAward);
-            })->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
-            });
-        });
+            $latestPublished = Research::where('published', true)
+                ->where('department_id', $this->department->id)
+                ->when($this->selectedAdviser, function ($query) {
+                    $query->where('adviser_id', $this->selectedAdviser);
+                })
+                ->max('date_submitted');
 
-        $categories = $categoriesQuery->pluck('name', 'id');
+            $earliestPublished = Research::where('published', true)
+                ->where('department_id', $this->department->id)
+                ->when($this->selectedAdviser, function ($query) {
+                    $query->where('adviser_id', $this->selectedAdviser);
+                })
+                ->min('date_submitted');
 
-        $clientsQuery = Client::whereHas('researches', function ($query) {
-            $query->when($this->department, function ($query) {
-                $query->where('department_id', $this->department->id);
-            })->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })->when($this->selectedCategory, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })->when($this->selectedAward, function ($query) {
-                $query->where('award_id', $this->selectedAward);
-            })->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
-            });
-        });
+            if ($latestPublished && $earliestPublished) {
+                $latestYear = Carbon::parse($latestPublished)->year;
+                $earliestYear = Carbon::parse($earliestPublished)->year;
 
-        $clients = $clientsQuery->pluck('name', 'id');
+                $yearRange = range($latestYear, $earliestYear);
+                $years = array_combine($yearRange, $yearRange);
+            } else {
+                $years = null;
+            }
 
-        $awardsQuery = Award::whereHas('research', function ($query) {
-            $query->when($this->department, function ($query) {
-                $query->where('department_id', $this->department->id);
-            })->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })->when($this->selectedCategory, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })->when($this->selectedClient, function ($query) {
-                $query->where('client_id', $this->selectedClient);
-            })->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
-            });
-        });
-
-        $awards = $awardsQuery->pluck('name', 'id');
-
-        $latestPublished = Research::where('published', true)
-            ->when($this->department, function ($query) {
-                $query->where('department_id', $this->department->id);
-            })
-            ->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })
-            ->when($this->selectedCategory, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })
-            ->max('date_submitted');
-
-        $earliestPublished = Research::where('published', true)
-            ->when($this->department, function ($query) {
-                $query->where('department_id', $this->department->id);
-            })
-            ->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })
-            ->when($this->selectedCategory, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })
-            ->min('date_submitted');
-
-        if ($latestPublished && $earliestPublished) {
-            $latestYear = Carbon::parse($latestPublished)->year;
-            $earliestYear = Carbon::parse($earliestPublished)->year;
-
-            $yearRange = range($latestYear, $earliestYear);
-            $years = array_combine($yearRange, $yearRange);
+            $researches = Research::with(['department', 'award'])
+                ->where('published', true)
+                ->where('department_id', $this->department->id)
+                ->when($this->selectedAdviser, function ($query) {
+                    $query->where('adviser_id', $this->selectedAdviser);
+                })
+                ->when($this->selectedYear, function ($query) {
+                    $query->whereYear('date_submitted', $this->selectedYear);
+                })
+                ->latest('date_submitted')
+                ->paginate(6);
         } else {
-            $years = null;
+            $researches = Research::search(trim($this->search))
+                ->query(function ($query) {
+                    $query->leftJoin('departments', 'researches.department_id', '=', 'departments.id')
+                        ->leftJoin('advisers', 'researches.adviser_id', '=', 'advisers.id')
+                        ->leftJoin('awards', 'researches.award_id', '=', 'awards.id')
+                        ->select(
+                            'researches.*',
+                            'departments.abbreviation as department_abbreviation',
+                            'departments.name as department_name',
+                            'awards.name as award_name',
+                        )
+                        ->with(['department', 'award'])
+                        ->where('published', true)
+                        ->where('department_id', $this->department->id)
+                        ->latest('date_submitted');
+                })
+                ->paginate(6);
+
+            return view('livewire.researches.all-researches', compact('researches'));
         }
 
-        $researches = Research::with(['department', 'award'])
-            ->where('published', true)
-            ->where('department_id', $this->department->id)
-            ->when($this->selectedAdviser, function ($query) {
-                $query->where('adviser_id', $this->selectedAdviser);
-            })
-            ->when($this->selectedCategory, function ($query) {
-                $query->where('category_id', $this->selectedCategory);
-            })
-            ->when($this->selectedClient, function ($query) {
-                $query->where('client_id', $this->selectedClient);
-            })
-            ->when($this->selectedAward, function ($query) {
-                $query->where('award_id', $this->selectedAward);
-            })
-            ->when($this->selectedYear, function ($query) {
-                $query->whereYear('date_submitted', $this->selectedYear);
-            })
-            ->latest('date_submitted')
-            ->paginate(6);
+        return view('livewire.researches.department-researches', compact('researches', 'advisers', 'years'))
+            ->title('Researches in '.$this->department->abbreviation.' - DLL-CRDS');
+    }
 
-        return view('livewire.researches.department-researches', compact('researches', 'advisers', 'categories', 'clients', 'awards', 'years'))
-            ->title($this->department->name.' - DLL-CRDS');
+    public function updatedSearch()
+    {
+        $this->resetPage();
     }
 
     public function updatedSelectedAdviser()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedCategory()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedClient()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedAward()
     {
         $this->resetPage();
     }

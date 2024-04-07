@@ -18,7 +18,15 @@ class ShowResearch extends Component
 
     public function render()
     {
-        return view('livewire.researches.show-research')
+        $otherResearches = Research::with(['department', 'award'])
+            ->where('published', true)
+            ->where('department_id', $this->research->department_id)
+            ->where('id', '!=', $this->research->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+
+        return view('livewire.researches.show-research', compact('otherResearches'))
             ->title($this->research->title.' - DLL-CRDS');
     }
 
