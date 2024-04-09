@@ -20,6 +20,7 @@
         "gehrisandro/tailwind-merge-laravel": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
+        "laravel/horizon": "^5.24",
         "laravel/jetstream": "^4.0",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.3",
