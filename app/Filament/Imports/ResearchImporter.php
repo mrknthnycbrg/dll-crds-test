@@ -26,8 +26,7 @@ class ResearchImporter extends Importer
                 ->label('Keywords')
                 ->rules(['max:255']),
             ImportColumn::make('abstract')
-                ->label('Abstract')
-                ->rules(['max:255']),
+                ->label('Abstract'),
             ImportColumn::make('date_submitted')
                 ->label('Date Submitted')
                 ->rules(['date']),
