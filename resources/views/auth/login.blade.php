@@ -6,11 +6,11 @@
 
         <x-validation-errors class="mb-4" />
 
-        @if (session('status'))
+        @session('status')
             <div class="mb-4 text-sm font-medium text-green-600">
-                {{ session('status') }}
+                {{ $value }}
             </div>
-        @endif
+        @endsession
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

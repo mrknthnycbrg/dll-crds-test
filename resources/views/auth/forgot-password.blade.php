@@ -8,11 +8,11 @@
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
 
-        @if (session('status'))
+        @session('status')
             <div class="mb-4 text-sm font-medium text-green-600">
-                {{ session('status') }}
+                {{ $value }}
             </div>
-        @endif
+        @endsession
 
         <x-validation-errors class="mb-4" />
 
