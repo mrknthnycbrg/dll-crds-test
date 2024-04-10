@@ -12,7 +12,6 @@ class DeleteUser implements DeletesUsers
      */
     public function delete(User $user): void
     {
-        $user->tokens->each->delete();
         $user->delete();
     }
 }

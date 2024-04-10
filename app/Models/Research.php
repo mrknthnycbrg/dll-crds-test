@@ -44,14 +44,17 @@ class Research extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'published' => 'boolean',
-        'date_submitted' => 'date',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'published' => 'boolean',
+            'date_submitted' => 'date',
+        ];
+    }
 
     public function department(): BelongsTo
     {
