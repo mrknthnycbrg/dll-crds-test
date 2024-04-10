@@ -34,7 +34,7 @@ Route::get('/resources', AllDownloadables::class)->name('all-downloadables');
 Route::get('/resources/{slug}', ShowDownloadable::class)->name('show-downloadable');
 
 Route::middleware([
-    'auth:sanctum',
+    'auth',
     config('jetstream.auth_session'),
     'verified',
     'password.confirm',
