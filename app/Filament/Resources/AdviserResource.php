@@ -108,7 +108,7 @@ class AdviserResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Adviser $record) {
-                        if (Research::where('adviser_id', $record->id)->exists()) {
+                        if ($record->researches()->exists()) {
                             Notification::make()
                                 ->title('Adviser not deleted')
                                 ->body('An adviser is not allowed to be deleted.')

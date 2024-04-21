@@ -108,7 +108,7 @@ class CategoryResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Category $record) {
-                        if (Post::where('category_id', $record->id)->exists()) {
+                        if ($record->posts()->exists()) {
                             Notification::make()
                                 ->title('Category not deleted')
                                 ->body('A category is not allowed to be deleted.')

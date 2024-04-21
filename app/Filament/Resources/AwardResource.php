@@ -108,7 +108,7 @@ class AwardResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Award $record) {
-                        if (Research::where('award_id', $record->id)->exists()) {
+                        if ($record->researches()->exists()) {
                             Notification::make()
                                 ->title('Award not deleted')
                                 ->body('An award is not allowed to be deleted.')

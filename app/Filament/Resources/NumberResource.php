@@ -216,7 +216,7 @@ class NumberResource extends Resource
                             ->sendToDatabase(auth()->user());
                     })
                     ->before(function (Tables\Actions\DeleteAction $action, Number $record) {
-                        if (User::where('id', $record->user_id)->exists()) {
+                        if ($record->user()->exists()) {
                             Notification::make()
                                 ->title('Number not deleted')
                                 ->body('A number is not allowed to be deleted.')
