@@ -74,7 +74,7 @@ class AllResearches extends Component
                 $years = null;
             }
 
-            $researches = Research::with(['department', 'award'])
+            $researches = Research::with('department')
                 ->where('published', true)
                 ->when($this->selectedDepartment, function ($query) {
                     $query->where('department_id', $this->selectedDepartment);
@@ -92,14 +92,13 @@ class AllResearches extends Component
                 ->query(function ($query) {
                     $query->leftJoin('departments', 'researches.department_id', '=', 'departments.id')
                         ->leftJoin('advisers', 'researches.adviser_id', '=', 'advisers.id')
-                        ->leftJoin('awards', 'researches.award_id', '=', 'awards.id')
+                        ->leftJoin('year_sections', 'researches.year_section_id', '=', 'year_sections.id')
                         ->select(
                             'researches.*',
                             'departments.abbreviation as department_abbreviation',
                             'departments.name as department_name',
-                            'awards.name as award_name',
                         )
-                        ->with(['department', 'award'])
+                        ->with('department')
                         ->where('published', true)
                         ->latest('date_submitted');
                 })

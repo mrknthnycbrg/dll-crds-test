@@ -16,11 +16,14 @@ class ListResearch extends ListRecords
     {
         return [
             Actions\ExportAction::make()
+                ->label('Export Researches')
                 ->exporter(ResearchExporter::class)
                 ->columnMapping(false),
             Actions\ImportAction::make()
+                ->label('Import Researches')
                 ->importer(ResearchImporter::class),
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Add Research'),
         ];
     }
 }

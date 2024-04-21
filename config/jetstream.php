@@ -43,7 +43,7 @@ return [
     |
     */
 
-    'guard' => 'web',
+    'guard' => 'sanctum',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,4 +59,5 @@ return [
     'features' => [
         // Features::accountDeletion(),
     ],
+
 ];

@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NumberResource\Pages;
 use App\Models\Number;
-use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -50,10 +49,9 @@ class NumberResource extends Resource
                                     ->placeholder('Enter number')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->unique(ignoreRecord: true),
-                                Forms\Components\Select::make('user')
-                                    ->label('User (Optional)')
+                                Forms\Components\Select::make('user_id')
+                                    ->label('User')
                                     ->placeholder('Select user')
                                     ->relationship(
                                         name: 'user',
@@ -79,25 +77,22 @@ class NumberResource extends Resource
                                                     ->label('First Name')
                                                     ->placeholder('Enter first name')
                                                     ->maxLength(255)
-                                                    ->required()
-                                                    ->markAsRequired(false),
+                                                    ->required(),
                                                 Forms\Components\TextInput::make('middle_name')
-                                                    ->label('Middle Name (Optional)')
+                                                    ->label('Middle Name')
                                                     ->placeholder('Enter middle name')
                                                     ->maxLength(255),
                                                 Forms\Components\TextInput::make('last_name')
                                                     ->label('Last Name')
                                                     ->placeholder('Enter last name')
                                                     ->maxLength(255)
-                                                    ->required()
-                                                    ->markAsRequired(false),
+                                                    ->required(),
                                                 Forms\Components\TextInput::make('email')
                                                     ->label('Email')
                                                     ->placeholder('Enter email')
                                                     ->email()
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->unique(ignoreRecord: true),
                                                 Forms\Components\TextInput::make('password')
                                                     ->label('Password')
@@ -108,8 +103,7 @@ class NumberResource extends Resource
                                                     ->maxLength(32)
                                                     ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
                                                     ->dehydrated(fn (?string $state): bool => filled($state))
-                                                    ->required(fn (string $operation): bool => $operation === 'create')
-                                                    ->markAsRequired(false),
+                                                    ->required(fn (string $operation): bool => $operation === 'create'),
                                             ])
                                             ->columns(3),
                                     ])
@@ -120,25 +114,22 @@ class NumberResource extends Resource
                                                     ->label('First Name')
                                                     ->placeholder('Enter first name')
                                                     ->maxLength(255)
-                                                    ->required()
-                                                    ->markAsRequired(false),
+                                                    ->required(),
                                                 Forms\Components\TextInput::make('middle_name')
-                                                    ->label('Middle Name (Optional)')
+                                                    ->label('Middle Name')
                                                     ->placeholder('Enter middle name')
                                                     ->maxLength(255),
                                                 Forms\Components\TextInput::make('last_name')
                                                     ->label('Last Name')
                                                     ->placeholder('Enter last name')
                                                     ->maxLength(255)
-                                                    ->required()
-                                                    ->markAsRequired(false),
+                                                    ->required(),
                                                 Forms\Components\TextInput::make('email')
                                                     ->label('Email')
                                                     ->placeholder('Enter email')
                                                     ->email()
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->unique(ignoreRecord: true),
                                                 Forms\Components\TextInput::make('password')
                                                     ->label('Password')
@@ -149,8 +140,7 @@ class NumberResource extends Resource
                                                     ->maxLength(32)
                                                     ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
                                                     ->dehydrated(fn (?string $state): bool => filled($state))
-                                                    ->required(fn (string $operation): bool => $operation === 'create')
-                                                    ->markAsRequired(false),
+                                                    ->required(fn (string $operation): bool => $operation === 'create'),
                                             ])
                                             ->columns(3),
                                     ]),

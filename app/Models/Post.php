@@ -40,6 +40,7 @@ class Post extends Model
         'content',
         'published',
         'date_published',
+        'category_id',
     ];
 
     /**
@@ -65,9 +66,9 @@ class Post extends Model
     public function toSearchableArray()
     {
         return [
-            'title' => $this->title,
-            'content' => $this->content,
-            'categories.name' => optional($this->category)->name,
+            'title' => '',
+            'content' => '',
+            'categories.name' => '',
         ];
     }
 

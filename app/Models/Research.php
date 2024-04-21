@@ -41,6 +41,9 @@ class Research extends Model
         'abstract',
         'published',
         'date_submitted',
+        'department_id',
+        'year_section_id',
+        'adviser_id',
     ];
 
     /**
@@ -61,29 +64,29 @@ class Research extends Model
         return $this->belongsTo(Department::class);
     }
 
+    public function yearSection(): BelongsTo
+    {
+        return $this->belongsTo(YearSection::class);
+    }
+
     public function adviser(): BelongsTo
     {
         return $this->belongsTo(Adviser::class);
     }
 
-    public function award(): BelongsTo
-    {
-        return $this->belongsTo(Award::class);
-    }
-
-    #[SearchUsingPrefix(['title', 'author', 'keyword', 'departments.name', 'departments.abbreviation', 'advisers.name', 'awards.name'])]
+    #[SearchUsingPrefix(['title', 'author', 'keyword', 'departments.name', 'departments.abbreviation', 'year_sections.name', 'advisers.name'])]
     #[SearchUsingFullText(['abstract'])]
     public function toSearchableArray()
     {
         return [
-            'title' => $this->title,
-            'author' => $this->author,
-            'keyword' => $this->keyword,
-            'abstract' => $this->abstract,
-            'departments.name' => optional($this->department)->name,
-            'departments.abbreviation' => optional($this->department)->abbreviation,
-            'advisers.name' => optional($this->adviser)->name,
-            'awards.name' => optional($this->award)->name,
+            'title' => '',
+            'author' => '',
+            'keyword' => '',
+            'abstract' => '',
+            'departments.name' => '',
+            'departments.abbreviation' => '',
+            'year_sections.name' => '',
+            'advisers.name' => '',
         ];
     }
 

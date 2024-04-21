@@ -17,11 +17,14 @@ class ManageDepartments extends ManageRecords
     {
         return [
             Actions\ExportAction::make()
+                ->label('Export Departments')
                 ->exporter(DepartmentExporter::class)
                 ->columnMapping(false),
             Actions\ImportAction::make()
+                ->label('Import Departments')
                 ->importer(DepartmentImporter::class),
             Actions\CreateAction::make()
+                ->label('Add Department')
                 ->successNotification(null)
                 ->after(function () {
                     Notification::make()

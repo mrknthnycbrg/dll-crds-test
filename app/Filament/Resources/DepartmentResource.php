@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentResource\Pages;
 use App\Models\Department;
-use App\Models\Research;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -50,7 +49,6 @@ class DepartmentResource extends Resource
                                     ->placeholder('Enter name')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
@@ -63,7 +61,6 @@ class DepartmentResource extends Resource
                                     ->placeholder('Enter abbreviation')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->unique(ignoreRecord: true),
                             ]),
                     ])

@@ -15,8 +15,6 @@ class RegistrationTest extends TestCase
     {
         if (! Features::enabled(Features::registration())) {
             $this->markTestSkipped('Registration support is not enabled.');
-
-            return;
         }
 
         $response = $this->get('/register');
@@ -28,8 +26,6 @@ class RegistrationTest extends TestCase
     {
         if (Features::enabled(Features::registration())) {
             $this->markTestSkipped('Registration support is enabled.');
-
-            return;
         }
 
         $response = $this->get('/register');
@@ -41,23 +37,21 @@ class RegistrationTest extends TestCase
     {
         if (! Features::enabled(Features::registration())) {
             $this->markTestSkipped('Registration support is not enabled.');
-
-            return;
         }
 
         $number = Number::factory()->create(['id_number' => '0000-0000']);
 
         $response = $this->post('/register', [
             'id_number' => $number->id_number,
-            'first_name' => 'Test First Name',
-            'middle_name' => 'Test Middle Name',
-            'last_name' => 'Test Last Name',
+            'first_name' => 'Test First',
+            'middle_name' => 'Test Middle',
+            'last_name' => 'Test Last',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect('/');
+        $response->assertRedirect(route('home', absolute: false));
     }
 }

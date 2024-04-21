@@ -33,6 +33,9 @@ class ResearchImporter extends Importer
             ImportColumn::make('department')
                 ->label('Department')
                 ->relationship(resolveUsing: ['name', 'abbreviation']),
+            ImportColumn::make('yearSection')
+                ->label('Section')
+                ->relationship(resolveUsing: 'name'),
             ImportColumn::make('adviser')
                 ->label('Adviser')
                 ->relationship(resolveUsing: 'name'),

@@ -50,7 +50,6 @@ class PostResource extends Resource
                                     ->placeholder('Enter title')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
@@ -62,7 +61,6 @@ class PostResource extends Resource
                                     ->label('Content')
                                     ->placeholder('Enter content')
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->disableToolbarButtons([
                                         'attachFiles',
                                     ])
@@ -103,7 +101,7 @@ class PostResource extends Resource
                                     ->format('Y-m-d')
                                     ->native(false)
                                     ->closeOnDateSelection(),
-                                Forms\Components\Select::make('category')
+                                Forms\Components\Select::make('category_id')
                                     ->label('Category')
                                     ->placeholder('Select category')
                                     ->relationship(
@@ -121,7 +119,6 @@ class PostResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ])
@@ -133,7 +130,6 @@ class PostResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
@@ -148,6 +144,9 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\IconColumn::make('published')
+                    ->label('Published')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
@@ -156,9 +155,6 @@ class PostResource extends Resource
                     ->label('Date Published')
                     ->date()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('published')
-                    ->label('Published')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category')
                     ->searchable()

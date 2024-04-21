@@ -4,18 +4,23 @@
             <h1 class="text-4xl font-black text-gray-900">
                 {{ $research->title }}
             </h1>
-
-            @if ($research->award_id)
-                <x-badge class="bg-yellow-400 text-gray-900">
-                    {{ optional($research->award)->name }}
-                </x-badge>
-            @endif
-
             <p class="text-base font-normal text-gray-700">
                 <span class="font-medium text-gray-900">
                     Department:
                 </span>
                 {{ optional($research->department)->name }}
+            </p>
+            <p class="text-base font-normal text-gray-700">
+                <span class="font-medium text-gray-900">
+                    Section:
+                </span>
+                {{ optional($research->yearSection)->name }}
+            </p>
+            <p class="text-base font-normal text-gray-700">
+                <span class="font-medium text-gray-900">
+                    Adviser:
+                </span>
+                {{ optional($research->adviser)->name }}
             </p>
             <p class="text-base font-normal text-gray-700">
                 <span class="font-medium text-gray-900">
@@ -28,12 +33,6 @@
                     Authors:
                 </span>
                 {{ $research->author }}
-            </p>
-            <p class="text-base font-normal text-gray-700">
-                <span class="font-medium text-gray-900">
-                    Adviser:
-                </span>
-                {{ optional($research->adviser)->name }}
             </p>
             <p class="text-base font-normal text-gray-700">
                 <span class="font-medium text-gray-900">
@@ -92,11 +91,6 @@
                         <p class="text-xs font-extralight text-gray-700">
                             {{ $otherResearch->formattedDate() }}
                         </p>
-                        @if ($otherResearch->award_id)
-                            <x-badge class="bg-yellow-400 text-gray-900">
-                                {{ optional($otherResearch->award)->name }}
-                            </x-badge>
-                        @endif
                     </x-card>
                 @endforeach
             </div>

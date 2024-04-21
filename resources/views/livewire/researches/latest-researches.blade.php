@@ -30,11 +30,6 @@
                             <p class="text-xs font-extralight text-gray-700">
                                 {{ $latestResearch->formattedDate() }}
                             </p>
-                            @if ($latestResearch->award_id)
-                                <x-badge class="bg-yellow-400 text-gray-900">
-                                    {{ optional($latestResearch->award)->name }}
-                                </x-badge>
-                            @endif
                         </x-card>
                     @empty
                         <p class="text-base font-normal text-gray-700">

@@ -52,11 +52,6 @@
                         <p class="text-xs font-extralight text-gray-700">
                             {{ $research->formattedDate() }}
                         </p>
-                        @if ($research->award_id)
-                            <x-badge class="bg-yellow-400 text-gray-900">
-                                {{ optional($research->award)->name }}
-                            </x-badge>
-                        @endif
                     </x-card>
                 @empty
                     <p class="text-base font-normal text-gray-700">
@@ -91,11 +86,6 @@
                         <p class="text-xs font-extralight text-gray-700">
                             {{ $research->formattedDate() }}
                         </p>
-                        @if ($research->award_id)
-                            <x-badge class="bg-yellow-400 text-gray-900">
-                                {{ optional($research->award)->name }}
-                            </x-badge>
-                        @endif
                     </x-card>
                 @empty
                     <p class="text-base font-normal text-gray-700">

@@ -15,6 +15,7 @@ class ManageCategories extends ManageRecords
     {
         return [
             Actions\CreateAction::make()
+                ->label('Add Category')
                 ->successNotification(null)
                 ->after(function () {
                     Notification::make()

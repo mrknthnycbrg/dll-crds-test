@@ -16,7 +16,6 @@ use Filament\Tables;
 use Filament\Tables\Filters\Indicator;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -52,7 +51,6 @@ class ResearchResource extends Resource
                                     ->placeholder('Enter title')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
@@ -121,7 +119,7 @@ class ResearchResource extends Resource
 
                         Section::make()
                             ->schema([
-                                Forms\Components\Select::make('department')
+                                Forms\Components\Select::make('department_id')
                                     ->label('Department')
                                     ->placeholder('Select department')
                                     ->relationship(
@@ -139,7 +137,6 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->live(onBlur: true)
                                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                                 Forms\Components\TextInput::make('slug')
@@ -157,7 +154,6 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->live(onBlur: true)
                                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                                 Forms\Components\TextInput::make('slug')
@@ -167,7 +163,39 @@ class ResearchResource extends Resource
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
-                                Forms\Components\Select::make('adviser')
+                                Forms\Components\Select::make('year_section_id')
+                                    ->label('Section')
+                                    ->placeholder('Select section')
+                                    ->relationship(
+                                        name: 'yearSection',
+                                        titleAttribute: 'name'
+                                    )
+                                    ->searchable()
+                                    ->preload()
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->unique(ignoreRecord: true),
+                                            ]),
+                                    ]),
+                                Forms\Components\Select::make('adviser_id')
                                     ->label('Adviser')
                                     ->placeholder('Select adviser')
                                     ->relationship(
@@ -185,7 +213,6 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ])
@@ -197,54 +224,6 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->markAsRequired(false)
-                                                    ->unique(ignoreRecord: true),
-                                            ]),
-                                    ]),
-                            ]),
-
-                        Section::make()
-                            ->schema([
-                                Forms\Components\Select::make('award')
-                                    ->label('Award')
-                                    ->placeholder('Select award')
-                                    ->relationship(
-                                        name: 'award',
-                                        titleAttribute: 'name',
-                                        modifyQueryUsing: fn (Builder $query, string $operation, ?Model $record) => $query->when(
-                                            $operation === 'create' && ! $record,
-                                            fn ($query) => $query
-                                                ->whereDoesntHave('research')
-                                        )->when(
-                                            $operation === 'edit' && ! $record->award,
-                                            fn ($query) => $query
-                                                ->whereDoesntHave('research')
-                                        ),
-                                    )
-                                    ->searchable()
-                                    ->preload()
-                                    ->native(false)
-                                    ->createOptionForm([
-                                        Section::make()
-                                            ->schema([
-                                                Forms\Components\TextInput::make('name')
-                                                    ->label('Name')
-                                                    ->placeholder('Enter name')
-                                                    ->maxLength(255)
-                                                    ->required()
-                                                    ->markAsRequired(false)
-                                                    ->unique(ignoreRecord: true),
-                                            ]),
-                                    ])
-                                    ->editOptionForm([
-                                        Section::make()
-                                            ->schema([
-                                                Forms\Components\TextInput::make('name')
-                                                    ->label('Name')
-                                                    ->placeholder('Enter name')
-                                                    ->maxLength(255)
-                                                    ->required()
-                                                    ->markAsRequired(false)
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
@@ -259,6 +238,9 @@ class ResearchResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\IconColumn::make('published')
+                    ->label('Published')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
@@ -267,9 +249,6 @@ class ResearchResource extends Resource
                     ->label('Date Submitted')
                     ->date()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('published')
-                    ->label('Published')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('author')
                     ->label('Authors')
                     ->searchable()
@@ -282,6 +261,11 @@ class ResearchResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('department.name')
                     ->label('Department')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('yearSection.name')
+                    ->label('Section')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -354,6 +338,12 @@ class ResearchResource extends Resource
                 Tables\Filters\SelectFilter::make('department')
                     ->label('Department')
                     ->relationship('department', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
+                Tables\Filters\SelectFilter::make('yearSection')
+                    ->label('Section')
+                    ->relationship('yearSection', 'name')
                     ->searchable()
                     ->preload()
                     ->native(false),

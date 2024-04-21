@@ -50,7 +50,6 @@ class DownloadableResource extends Resource
                                     ->placeholder('Enter name')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
@@ -72,7 +71,6 @@ class DownloadableResource extends Resource
                                 Forms\Components\FileUpload::make('file_path')
                                     ->label('File')
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->openable()
                                     ->downloadable()
                                     ->disk('public')
@@ -106,6 +104,9 @@ class DownloadableResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\IconColumn::make('published')
+                    ->label('Published')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
                     ->searchable()
@@ -119,9 +120,6 @@ class DownloadableResource extends Resource
                     ->label('Date Published')
                     ->date()
                     ->sortable(),
-                Tables\Columns\IconColumn::make('published')
-                    ->label('Published')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()

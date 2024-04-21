@@ -17,11 +17,14 @@ class ManageNumbers extends ManageRecords
     {
         return [
             Actions\ExportAction::make()
+                ->label('Export Numbers')
                 ->exporter(NumberExporter::class)
                 ->columnMapping(false),
             Actions\ImportAction::make()
+                ->label('Import Numbers')
                 ->importer(NumberImporter::class),
             Actions\CreateAction::make()
+                ->label('Add Number')
                 ->successNotification(null)
                 ->after(function () {
                     Notification::make()

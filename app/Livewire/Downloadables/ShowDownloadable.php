@@ -28,6 +28,6 @@ class ShowDownloadable extends Component
 
     public function file()
     {
-        $this->redirectRoute('file-downloadable', ['slug' => $this->downloadable->slug]);
+        $this->redirectRoute('downloadable-file', ['slug' => $this->downloadable->slug]);
     }
 }

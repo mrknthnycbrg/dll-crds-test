@@ -18,7 +18,7 @@ class ShowResearch extends Component
 
     public function render()
     {
-        $otherResearches = Research::with(['department', 'award'])
+        $otherResearches = Research::with('department')
             ->where('published', true)
             ->where('department_id', $this->research->department_id)
             ->where('id', '!=', $this->research->id)
@@ -32,7 +32,7 @@ class ShowResearch extends Component
 
     public function file()
     {
-        $this->redirectRoute('file-research', ['slug' => $this->research->slug]);
+        $this->redirectRoute('research-file', ['slug' => $this->research->slug]);
 
         View::create([
             'user_email' => Auth::user()->email,

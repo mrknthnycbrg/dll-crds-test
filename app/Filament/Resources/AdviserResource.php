@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AdviserResource\Pages;
 use App\Models\Adviser;
-use App\Models\Research;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -29,7 +28,7 @@ class AdviserResource extends Resource
 
     protected static ?string $navigationLabel = 'Advisers';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationGroup = 'Research Management';
 
@@ -48,7 +47,6 @@ class AdviserResource extends Resource
                                     ->placeholder('Enter name')
                                     ->maxLength(255)
                                     ->required()
-                                    ->markAsRequired(false)
                                     ->unique(ignoreRecord: true),
                             ]),
                     ])

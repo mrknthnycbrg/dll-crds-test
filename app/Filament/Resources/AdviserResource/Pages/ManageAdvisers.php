@@ -17,11 +17,14 @@ class ManageAdvisers extends ManageRecords
     {
         return [
             Actions\ExportAction::make()
+                ->label('Export Advisers')
                 ->exporter(AdviserExporter::class)
                 ->columnMapping(false),
             Actions\ImportAction::make()
+                ->label('Import Advisers')
                 ->importer(AdviserImporter::class),
             Actions\CreateAction::make()
+                ->label('Add Adviser')
                 ->successNotification(null)
                 ->after(function () {
                     Notification::make()

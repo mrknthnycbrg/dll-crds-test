@@ -58,8 +58,8 @@ class Downloadable extends Model
     public function toSearchableArray()
     {
         return [
-            'name' => $this->name,
-            'description' => $this->description,
+            'name' => '',
+            'description' => '',
         ];
     }
 

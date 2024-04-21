@@ -26,6 +26,8 @@ class ResearchExporter extends Exporter
                 ->label('Date Submitted'),
             ExportColumn::make('department.name')
                 ->label('Department'),
+            ExportColumn::make('yearSection.name')
+                ->label('Section'),
             ExportColumn::make('adviser.name')
                 ->label('Adviser'),
         ];

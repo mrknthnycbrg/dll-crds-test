@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Adviser;
-use App\Models\Award;
 use App\Models\Department;
 use App\Models\Research;
+use App\Models\YearSection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -40,11 +40,11 @@ class ResearchFactory extends Factory
             'department_id' => function () {
                 return Department::inRandomOrder()->first()->id;
             },
+            'year_section_id' => function () {
+                return YearSection::inRandomOrder()->first()->id;
+            },
             'adviser_id' => function () {
                 return Adviser::inRandomOrder()->first()->id;
-            },
-            'award_id' => function () {
-                return Award::inRandomOrder()->first()->id;
             },
             'published' => true,
             'date_submitted' => $this->faker->dateTimeBetween('-4 years'),
