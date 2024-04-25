@@ -150,4 +150,18 @@ return [
         Features::updatePasswords(),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Redirect Paths
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the paths where users will get redirected. You
+    | are free to change these values.
+    |
+    */
+
+    'redirects' => [
+        'register' => '/email/verify',
+    ],
+
 ];
