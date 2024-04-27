@@ -51,7 +51,8 @@ class DownloadableResource extends Resource
                                     ->maxLength(255)
                                     ->required()
                                     ->live(onBlur: true)
-                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                    ->autofocus(),
                                 Forms\Components\TextInput::make('slug')
                                     ->label('Slug')
                                     ->disabled()

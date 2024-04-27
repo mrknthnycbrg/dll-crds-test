@@ -49,7 +49,8 @@ class NumberResource extends Resource
                                     ->placeholder('Enter number')
                                     ->maxLength(255)
                                     ->required()
-                                    ->unique(ignoreRecord: true),
+                                    ->unique(ignoreRecord: true)
+                                    ->autofocus(),
                                 Forms\Components\Select::make('user_id')
                                     ->label('User')
                                     ->placeholder('Select user')
@@ -77,7 +78,8 @@ class NumberResource extends Resource
                                                     ->label('First Name')
                                                     ->placeholder('Enter first name')
                                                     ->maxLength(255)
-                                                    ->required(),
+                                                    ->required()
+                                                    ->autofocus(),
                                                 Forms\Components\TextInput::make('middle_name')
                                                     ->label('Middle Name')
                                                     ->placeholder('Enter middle name')
@@ -114,7 +116,8 @@ class NumberResource extends Resource
                                                     ->label('First Name')
                                                     ->placeholder('Enter first name')
                                                     ->maxLength(255)
-                                                    ->required(),
+                                                    ->required()
+                                                    ->autofocus(),
                                                 Forms\Components\TextInput::make('middle_name')
                                                     ->label('Middle Name')
                                                     ->placeholder('Enter middle name')

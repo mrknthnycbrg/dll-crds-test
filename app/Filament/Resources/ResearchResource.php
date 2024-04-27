@@ -52,19 +52,17 @@ class ResearchResource extends Resource
                                     ->maxLength(255)
                                     ->required()
                                     ->live(onBlur: true)
-                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                    ->autofocus(),
                                 Forms\Components\TextInput::make('slug')
                                     ->label('Slug')
                                     ->disabled()
                                     ->dehydrated()
                                     ->unique(ignoreRecord: true),
-                                Forms\Components\RichEditor::make('abstract')
+                                Forms\Components\Textarea::make('abstract')
                                     ->label('Abstract')
                                     ->placeholder('Enter abstract')
-                                    ->disableToolbarButtons([
-                                        'attachFiles',
-                                    ])
-                                    ->columnSpanFull(),
+                                    ->autosize(),
                             ]),
 
                         Section::make()
@@ -138,7 +136,8 @@ class ResearchResource extends Resource
                                                     ->maxLength(255)
                                                     ->required()
                                                     ->live(onBlur: true)
-                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                                    ->autofocus(),
                                                 Forms\Components\TextInput::make('slug')
                                                     ->label('Slug')
                                                     ->disabled()
@@ -155,7 +154,8 @@ class ResearchResource extends Resource
                                                     ->maxLength(255)
                                                     ->required()
                                                     ->live(onBlur: true)
-                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                                    ->autofocus(),
                                                 Forms\Components\TextInput::make('slug')
                                                     ->label('Slug')
                                                     ->disabled()
@@ -181,7 +181,8 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->unique(ignoreRecord: true),
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
                                             ]),
                                     ])
                                     ->editOptionForm([
@@ -192,7 +193,8 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->unique(ignoreRecord: true),
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
                                             ]),
                                     ]),
                                 Forms\Components\Select::make('adviser_id')
@@ -213,7 +215,8 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->unique(ignoreRecord: true),
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
                                             ]),
                                     ])
                                     ->editOptionForm([
@@ -224,7 +227,8 @@ class ResearchResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->unique(ignoreRecord: true),
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
                                             ]),
                                     ]),
                             ]),

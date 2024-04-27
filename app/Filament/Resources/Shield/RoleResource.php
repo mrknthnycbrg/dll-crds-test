@@ -24,6 +24,8 @@ class RoleResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static ?string $navigationParentItem = 'Users';
+
     public static function getPermissionPrefixes(): array
     {
         return [
@@ -47,16 +49,17 @@ class RoleResource extends Resource implements HasShieldPermissions
                                 Forms\Components\TextInput::make('name')
                                     ->label(__('filament-shield::filament-shield.field.name'))
                                     ->placeholder('Enter name')
-                                    ->unique(ignoreRecord: true)
+                                    ->maxLength(255)
                                     ->required()
-                                    ->maxLength(255),
+                                    ->unique(ignoreRecord: true)
+                                    ->autofocus(),
 
                                 Forms\Components\TextInput::make('guard_name')
                                     ->label(__('filament-shield::filament-shield.field.guard_name'))
                                     ->placeholder('Enter guard name')
                                     ->default(Utils::getFilamentAuthGuard())
-                                    ->nullable()
-                                    ->maxLength(255),
+                                    ->disabled()
+                                    ->dehydrated(),
 
                                 ShieldSelectAllToggle::make('select_all')
                                     ->onIcon('heroicon-s-shield-check')

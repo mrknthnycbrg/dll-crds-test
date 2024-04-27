@@ -47,7 +47,8 @@ class CategoryResource extends Resource
                                     ->placeholder('Enter name')
                                     ->maxLength(255)
                                     ->required()
-                                    ->unique(ignoreRecord: true),
+                                    ->unique(ignoreRecord: true)
+                                    ->autofocus(),
                             ]),
                     ])
                     ->columnSpanFull(),

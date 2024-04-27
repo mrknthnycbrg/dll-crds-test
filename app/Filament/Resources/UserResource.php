@@ -47,7 +47,8 @@ class UserResource extends Resource
                                     ->label('First Name')
                                     ->placeholder('Enter first name')
                                     ->maxLength(255)
-                                    ->required(),
+                                    ->required()
+                                    ->autofocus(),
                                 Forms\Components\TextInput::make('middle_name')
                                     ->label('Middle Name')
                                     ->placeholder('Enter middle name')
