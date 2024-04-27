@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Laravel\Scout\Attributes\SearchUsingFullText;
-use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 
 #[ObservedBy([DownloadableObserver::class])]
@@ -53,7 +53,6 @@ class Downloadable extends Model
         ];
     }
 
-    #[SearchUsingPrefix(['name'])]
     #[SearchUsingFullText(['description'])]
     public function toSearchableArray()
     {
@@ -65,11 +64,11 @@ class Downloadable extends Model
 
     public function formattedDescription()
     {
-        return Str::words(strip_tags($this->description), 20);
+        return Str::of($this->description)->stripTags()->words(25);
     }
 
     public function formattedDate()
     {
-        return $this->date_published->format('F j, Y');
+        return Carbon::parse($this->date_published)->format('F j, Y');
     }
 }

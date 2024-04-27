@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Scout\Attributes\SearchUsingFullText;
-use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 
 #[ObservedBy([PostObserver::class])]
@@ -61,7 +61,6 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    #[SearchUsingPrefix(['title', 'categories.name'])]
     #[SearchUsingFullText(['content'])]
     public function toSearchableArray()
     {
@@ -79,11 +78,11 @@ class Post extends Model
 
     public function formattedContent()
     {
-        return Str::words(strip_tags($this->content), 20);
+        return Str::of($this->content)->stripTags()->words(25);
     }
 
     public function formattedDate()
     {
-        return $this->date_published->format('F j, Y');
+        return Carbon::parse($this->date_published)->format('F j, Y');
     }
 }

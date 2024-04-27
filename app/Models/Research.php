@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Laravel\Scout\Attributes\SearchUsingFullText;
-use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 
 #[ObservedBy([ResearchObserver::class])]
@@ -74,7 +74,6 @@ class Research extends Model
         return $this->belongsTo(Adviser::class);
     }
 
-    #[SearchUsingPrefix(['title', 'author', 'keyword', 'departments.name', 'departments.abbreviation', 'year_sections.name', 'advisers.name'])]
     #[SearchUsingFullText(['abstract'])]
     public function toSearchableArray()
     {
@@ -92,11 +91,11 @@ class Research extends Model
 
     public function formattedAbstract()
     {
-        return Str::words(strip_tags($this->abstract), 20);
+        return Str::of($this->abstract)->words(25);
     }
 
     public function formattedDate()
     {
-        return $this->date_submitted->format('F j, Y');
+        return Carbon::parse($this->date_submitted)->format('F j, Y');
     }
 }
