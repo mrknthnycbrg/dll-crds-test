@@ -1,6 +1,6 @@
 <div>
     <div class="mx-auto max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-4xl space-y-4">
+        <div class="mx-auto max-w-full space-y-4">
             <h1 class="text-4xl font-black text-gray-900">
                 {{ $downloadable->name }}
             </h1>
@@ -29,10 +29,10 @@
     @if ($otherDownloadables->isNotEmpty())
         <div class="mx-auto max-w-full px-4 pb-8 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between space-x-2 py-8">
-                <h1
+                <h2
                     class="text-3xl font-extrabold text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
                     Other Resources
-                </h1>
+                </h2>
             </div>
 
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
