@@ -40,7 +40,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $number = Number::where('id_number', $input['id_number'])->whereNull('user_id')->firstOrFail();
-        $number->save(['user_id' => $user->id]);
+        $number->update(['user_id' => $user->id]);
 
         return $user;
     }
