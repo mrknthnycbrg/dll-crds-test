@@ -37,58 +37,48 @@ class PostChart extends ChartWidget
     {
         $activeFilter = $this->filter;
 
-        switch ($activeFilter) {
-            case 'all':
-                $data = Trend::model(Post::class)
-                    ->dateColumn('date_published')
-                    ->between(
-                        start: Carbon::parse(Post::min('date_published')),
-                        end: today(),
-                    )
-                    ->perMonth()
-                    ->count();
-                break;
-            case 'year':
-                $data = Trend::model(Post::class)
-                    ->dateColumn('date_published')
-                    ->between(
-                        start: today()->startOfYear(),
-                        end: today()->endOfYear(),
-                    )
-                    ->perMonth()
-                    ->count();
-                break;
-            case 'month':
-                $data = Trend::model(Post::class)
-                    ->dateColumn('date_published')
-                    ->between(
-                        start: today()->startOfMonth(),
-                        end: today()->endOfMonth(),
-                    )
-                    ->perDay()
-                    ->count();
-                break;
-            case 'week':
-                $data = Trend::model(Post::class)
-                    ->dateColumn('date_published')
-                    ->between(
-                        start: today()->startOfWeek(0),
-                        end: today()->endOfWeek(6),
-                    )
-                    ->perDay()
-                    ->count();
-                break;
-            default:
-                $data = Trend::model(Post::class)
-                    ->dateColumn('date_published')
-                    ->between(
-                        start: Carbon::parse(Post::min('date_published')),
-                        end: today(),
-                    )
-                    ->perMonth()
-                    ->count();
-                break;
-        }
+        $data = match ($activeFilter) {
+            'all' => Trend::model(Post::class)
+                ->dateColumn('date_published')
+                ->between(
+                    start: Carbon::parse(Post::min('date_published')),
+                    end: today(),
+                )
+                ->perMonth()
+                ->count(),
+            'year' => Trend::model(Post::class)
+                ->dateColumn('date_published')
+                ->between(
+                    start: today()->startOfYear(),
+                    end: today()->endOfYear(),
+                )
+                ->perMonth()
+                ->count(),
+            'month' => Trend::model(Post::class)
+                ->dateColumn('date_published')
+                ->between(
+                    start: today()->startOfMonth(),
+                    end: today()->endOfMonth(),
+                )
+                ->perDay()
+                ->count(),
+            'week' => Trend::model(Post::class)
+                ->dateColumn('date_published')
+                ->between(
+                    start: today()->startOfWeek(0),
+                    end: today()->endOfWeek(6),
+                )
+                ->perDay()
+                ->count(),
+            default => Trend::model(Post::class)
+                ->dateColumn('date_published')
+                ->between(
+                    start: Carbon::parse(Post::min('date_published')),
+                    end: today(),
+                )
+                ->perMonth()
+                ->count(),
+        };
 
         return [
             'datasets' => [

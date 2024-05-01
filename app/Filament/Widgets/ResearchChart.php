@@ -37,58 +37,48 @@ class ResearchChart extends ChartWidget
     {
         $activeFilter = $this->filter;
 
-        switch ($activeFilter) {
-            case 'all':
-                $data = Trend::model(Research::class)
-                    ->dateColumn('date_submitted')
-                    ->between(
-                        start: Carbon::parse(Research::min('date_submitted')),
-                        end: today(),
-                    )
-                    ->perMonth()
-                    ->count();
-                break;
-            case 'year':
-                $data = Trend::model(Research::class)
-                    ->dateColumn('date_submitted')
-                    ->between(
-                        start: today()->startOfYear(),
-                        end: today()->endOfYear(),
-                    )
-                    ->perMonth()
-                    ->count();
-                break;
-            case 'month':
-                $data = Trend::model(Research::class)
-                    ->dateColumn('date_submitted')
-                    ->between(
-                        start: today()->startOfMonth(),
-                        end: today()->endOfMonth(),
-                    )
-                    ->perDay()
-                    ->count();
-                break;
-            case 'week':
-                $data = Trend::model(Research::class)
-                    ->dateColumn('date_submitted')
-                    ->between(
-                        start: today()->startOfWeek(0),
-                        end: today()->endOfWeek(6),
-                    )
-                    ->perDay()
-                    ->count();
-                break;
-            default:
-                $data = Trend::model(Research::class)
-                    ->dateColumn('date_submitted')
-                    ->between(
-                        start: Carbon::parse(Research::min('date_submitted')),
-                        end: today(),
-                    )
-                    ->perMonth()
-                    ->count();
-                break;
-        }
+        $data = match ($activeFilter) {
+            'all' => Trend::model(Research::class)
+                ->dateColumn('date_submitted')
+                ->between(
+                    start: Carbon::parse(Research::min('date_submitted')),
+                    end: today(),
+                )
+                ->perMonth()
+                ->count(),
+            'year' => Trend::model(Research::class)
+                ->dateColumn('date_submitted')
+                ->between(
+                    start: today()->startOfYear(),
+                    end: today()->endOfYear(),
+                )
+                ->perMonth()
+                ->count(),
+            'month' => Trend::model(Research::class)
+                ->dateColumn('date_submitted')
+                ->between(
+                    start: today()->startOfMonth(),
+                    end: today()->endOfMonth(),
+                )
+                ->perDay()
+                ->count(),
+            'week' => Trend::model(Research::class)
+                ->dateColumn('date_submitted')
+                ->between(
+                    start: today()->startOfWeek(0),
+                    end: today()->endOfWeek(6),
+                )
+                ->perDay()
+                ->count(),
+            default => Trend::model(Research::class)
+                ->dateColumn('date_submitted')
+                ->between(
+                    start: Carbon::parse(Research::min('date_submitted')),
+                    end: today(),
+                )
+                ->perMonth()
+                ->count(),
+        };
 
         return [
             'datasets' => [
