@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Schedule;
 
-Schedule::command('auth:clear-resets --force')->everyFifteenMinutes();
+Schedule::command('auth:clear-resets')->everyFifteenMinutes();
