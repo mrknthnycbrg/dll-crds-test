@@ -7,7 +7,7 @@
             </h1>
 
             @foreach ($departments as $department)
-                <div class="flex items-center justify-between py-8">
+                <div class="flex items-center justify-between py-8" wire:key="{{ $department->id }}">
                     <a class="text-3xl font-extrabold text-gray-900 hover:text-blue-800"
                         href="{{ route('department-researches', ['slug' => $department->slug]) }}" wire:navigate>
                         {{ $department->name }} &rarr;
