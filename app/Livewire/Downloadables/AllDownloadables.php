@@ -50,7 +50,7 @@ class AllDownloadables extends Component
         }
 
         return view('livewire.downloadables.all-downloadables', compact('downloadables', 'years'))
-            ->title('Resources - DLL-CRDS');
+            ->title('All Resources - DLL-CRDS');
     }
 
     public function updatedSearch()

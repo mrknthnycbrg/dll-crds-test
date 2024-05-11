@@ -120,8 +120,14 @@ class PostResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->unique(ignoreRecord: true)
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                                                     ->autofocus(),
+                                                Forms\Components\TextInput::make('slug')
+                                                    ->label('Slug')
+                                                    ->disabled()
+                                                    ->dehydrated()
+                                                    ->unique(ignoreRecord: true),
                                             ]),
                                     ])
                                     ->editOptionForm([
@@ -132,8 +138,14 @@ class PostResource extends Resource
                                                     ->placeholder('Enter name')
                                                     ->maxLength(255)
                                                     ->required()
-                                                    ->unique(ignoreRecord: true)
+                                                    ->live(onBlur: true)
+                                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                                                     ->autofocus(),
+                                                Forms\Components\TextInput::make('slug')
+                                                    ->label('Slug')
+                                                    ->disabled()
+                                                    ->dehydrated()
+                                                    ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
                             ]),

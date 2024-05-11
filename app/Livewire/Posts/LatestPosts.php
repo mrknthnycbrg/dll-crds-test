@@ -12,7 +12,7 @@ class LatestPosts extends Component
         $latestPosts = Post::with('category')
             ->where('published', true)
             ->latest('date_published')
-            ->take(3)
+            ->take(6)
             ->get();
 
         return view('livewire.posts.latest-posts', compact('latestPosts'));

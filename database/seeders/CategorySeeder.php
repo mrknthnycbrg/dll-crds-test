@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -16,14 +17,23 @@ class CategorySeeder extends Seeder
 
         Category::factory()->create([
             'name' => 'News',
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['name']);
+            },
         ]);
 
         Category::factory()->create([
             'name' => 'Announcements',
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['name']);
+            },
         ]);
 
         Category::factory()->create([
             'name' => 'Events',
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['name']);
+            },
         ]);
     }
 }

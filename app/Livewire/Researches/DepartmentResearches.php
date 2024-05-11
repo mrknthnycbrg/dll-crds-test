@@ -80,6 +80,7 @@ class DepartmentResearches extends Component
                 ->query(function ($query) {
                     $query->leftJoin('departments', 'researches.department_id', '=', 'departments.id')
                         ->leftJoin('advisers', 'researches.adviser_id', '=', 'advisers.id')
+                        ->leftJoin('year_sections', 'researches.year_section_id', '=', 'year_sections.id')
                         ->select(
                             'researches.*',
                             'departments.abbreviation as department_abbreviation',
@@ -92,11 +93,11 @@ class DepartmentResearches extends Component
                 })
                 ->paginate(6);
 
-            return view('livewire.researches.all-researches', compact('researches'));
+            return view('livewire.researches.department-researches', compact('researches'));
         }
 
         return view('livewire.researches.department-researches', compact('researches', 'advisers', 'years'))
-            ->title('Researches in '.$this->department->abbreviation.' - DLL-CRDS');
+            ->title($this->department->abbreviation.' - Researches - DLL-CRDS');
     }
 
     public function updatedSearch()

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
@@ -26,6 +27,9 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->realText(25),
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['name']);
+            },
         ];
     }
 }

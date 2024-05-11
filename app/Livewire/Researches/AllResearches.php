@@ -108,7 +108,7 @@ class AllResearches extends Component
         }
 
         return view('livewire.researches.all-researches', compact('researches', 'departments', 'advisers', 'years'))
-            ->title('Researches - DLL-CRDS');
+            ->title('All Researches - DLL-CRDS');
     }
 
     public function updatedSearch()

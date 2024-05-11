@@ -1,7 +1,7 @@
 <div>
-    <div class="mx-auto max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-full space-y-4">
-            <h1 class="text-4xl font-black text-gray-900">
+    <div class="bg-gray-50">
+        <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-black text-blue-800">
                 {{ $downloadable->name }}
             </h1>
             <p class="text-sm font-light text-gray-700">
@@ -27,10 +27,9 @@
     </div>
 
     @if ($otherDownloadables->isNotEmpty())
-        <div class="mx-auto max-w-full px-4 pb-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between space-x-2 py-8">
-                <h2
-                    class="text-3xl font-extrabold text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
+                <h2 class="text-3xl font-extrabold text-blue-800">
                     Other Resources
                 </h2>
             </div>

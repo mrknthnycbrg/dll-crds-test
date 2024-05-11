@@ -3,8 +3,12 @@
         <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
             <div class="col-span-3 lg:col-span-2">
                 <h1 class="text-4xl font-black text-blue-800">
-                    All News
+                    News
                 </h1>
+
+                <x-badge>
+                    {{ $category->name }}
+                </x-badge>
             </div>
 
             <div class="col-span-3 lg:col-span-1">
@@ -22,12 +26,6 @@
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         @if (!$search)
             <div class="grid grid-cols-1 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
-                <div class="mb-4">
-                    <x-label for="category" value="Category" />
-                    <x-select class="mt-1 block w-full" id="category" wire:model.live.debounce="selectedCategory"
-                        :default="'All Categories'" :options="$categories" />
-                </div>
-
                 <div class="mb-8">
                     <x-label for="year" value="Year" />
                     <x-select class="mt-1 block w-full" id="year" wire:model.live.debounce="selectedYear"

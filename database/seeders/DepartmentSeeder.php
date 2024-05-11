@@ -72,7 +72,7 @@ class DepartmentSeeder extends Seeder
         ]);
 
         Department::factory()->create([
-            'name' => 'Bachelor of Technical Vocational Teachers Education',
+            'name' => 'Bachelor of Technical-Vocational Teacher Education',
             'slug' => function (array $attributes) {
                 return Str::slug($attributes['name']);
             },

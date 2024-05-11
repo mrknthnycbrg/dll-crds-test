@@ -1,6 +1,6 @@
 <div>
-    <div class="mx-auto max-w-full bg-gray-50 px-4 py-8 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-full space-y-4">
+    <div class="bg-gray-50">
+        <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-black text-gray-900">
                 {{ $research->title }}
             </h1>
@@ -76,9 +76,11 @@
 
                 @auth
                     <div class="space-y-4">
-                        <p class="text-base font-normal text-gray-700">
-                            {{ $research->abstract }}
-                        </p>
+                        <div class="prose max-w-none">
+                            <p class="text-base font-normal text-gray-700">
+                                {{ $research->abstract }}
+                            </p>
+                        </div>
 
                         @if ($research->file_path)
                             <x-button type="button" wire:click="file">
@@ -88,9 +90,11 @@
                     </div>
                 @else
                     <div class="space-y-4">
-                        <p class="text-base font-normal text-gray-700">
-                            {{ $research->formattedAbstract() }}
-                        </p>
+                        <div class="prose max-w-none">
+                            <p class="text-base font-normal text-gray-700">
+                                {{ $research->formattedAbstract() }}
+                            </p>
+                        </div>
 
                         <x-button type="button" href="{{ route('login') }}" wire:navigate>
                             Please log in to view the full abstract.
@@ -102,10 +106,9 @@
     </div>
 
     @if ($otherResearches->isNotEmpty())
-        <div class="mx-auto max-w-full px-4 pb-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between space-x-2 py-8">
-                <h2
-                    class="text-3xl font-extrabold text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
+                <h2 class="text-3xl font-extrabold text-gray-900">
                     Other Researches
                 </h2>
             </div>

@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\DownloadableFile;
 use App\Http\Controllers\ResearchFile;
+use App\Livewire\About\AboutPage;
 use App\Livewire\Downloadables\AllDownloadables;
 use App\Livewire\Downloadables\ShowDownloadable;
 use App\Livewire\Home\HomePage;
 use App\Livewire\Posts\AllPosts;
+use App\Livewire\Posts\CategoryPosts;
 use App\Livewire\Posts\ShowPost;
 use App\Livewire\Researches\AllResearches;
 use App\Livewire\Researches\DepartmentResearches;
@@ -14,7 +16,9 @@ use App\Livewire\Tools\ToolsPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePage::class)->name('home');
+Route::get('/about', AboutPage::class)->name('about');
 Route::get('/news', AllPosts::class)->name('all-posts');
+Route::get('/news/categories/{slug}', CategoryPosts::class)->name('category-posts');
 Route::get('/news/{slug}', ShowPost::class)->name('show-post');
 Route::get('/researches', AllResearches::class)->name('all-researches');
 Route::get('/researches/departments/{slug}', DepartmentResearches::class)->name('department-researches');

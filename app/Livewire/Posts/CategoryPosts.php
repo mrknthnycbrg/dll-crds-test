@@ -9,38 +9,31 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AllPosts extends Component
+class CategoryPosts extends Component
 {
     use WithPagination;
+
+    public $category;
 
     #[Url()]
     public $search = '';
 
-    public $selectedCategory;
-
     public $selectedYear;
+
+    public function mount($slug)
+    {
+        $this->category = Category::where('slug', $slug)->firstOrFail();
+    }
 
     public function render()
     {
         if (empty($this->search)) {
-            $categoriesQuery = Category::whereHas('posts', function ($query) {
-                $query->when($this->selectedYear, function ($query) {
-                    $query->whereYear('date_published', $this->selectedYear);
-                });
-            });
-
-            $categories = $categoriesQuery->pluck('name', 'id');
-
             $latestPublished = Post::where('published', true)
-                ->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })
+                ->where('category_id', $this->category->id)
                 ->max('date_published');
 
             $earliestPublished = Post::where('published', true)
-                ->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })
+                ->where('category_id', $this->category->id)
                 ->min('date_published');
 
             if ($latestPublished && $earliestPublished) {
@@ -55,9 +48,7 @@ class AllPosts extends Component
 
             $posts = Post::with('category')
                 ->where('published', true)
-                ->when($this->selectedCategory, function ($query) {
-                    $query->where('category_id', $this->selectedCategory);
-                })
+                ->where('category_id', $this->category->id)
                 ->when($this->selectedYear, function ($query) {
                     $query->whereYear('date_published', $this->selectedYear);
                 })
@@ -73,23 +64,19 @@ class AllPosts extends Component
                         )
                         ->with('category')
                         ->where('published', true)
+                        ->where('category_id', $this->category->id)
                         ->latest('date_published');
                 })
                 ->paginate(6);
 
-            return view('livewire.posts.all-posts', compact('posts'));
+            return view('livewire.posts.category-posts', compact('posts'));
         }
 
-        return view('livewire.posts.all-posts', compact('posts', 'categories', 'years'))
-            ->title('All News - DLL-CRDS');
+        return view('livewire.posts.category-posts', compact('posts', 'years'))
+            ->title($this->category->name.' - News - DLL-CRDS');
     }
 
     public function updatedSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedCategory()
     {
         $this->resetPage();
     }

@@ -2,25 +2,28 @@
     <x-header>
         <div class="grid gap-8 sm:grid-cols-1 lg:grid-cols-3">
             <div class="col-span-3 lg:col-span-2">
-                <h1
-                    class="text-4xl font-black text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-8">
-                    Researches in {{ $department->abbreviation }}
+                <h1 class="text-4xl font-black text-blue-800">
+                    Researches
                 </h1>
+
+                <x-badge>
+                    {{ $department->name }}
+                </x-badge>
             </div>
 
-            <div class="col-span-3 sm:col-span-1">
-                <div class="relative flex items-center">
-                    <x-input class="block w-full pl-10 pr-3 placeholder-gray-500" type="text"
-                        wire:model.live.debounce="search" placeholder="Explore researches" />
-                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <x-search-icon class="size-6 block text-gray-500" />
+            <div class="col-span-3 lg:col-span-1">
+                <div class="relative">
+                    <div class="pointer-events-none absolute inset-y-0 start-0 z-20 flex items-center ps-3">
+                        <x-search-icon class="size-6 flex-shrink-0 text-gray-500" />
                     </div>
+                    <x-input class="pe-4 ps-10 placeholder-gray-500" type="text" wire:model.live.debounce="search"
+                        placeholder="Explore researches" />
                 </div>
             </div>
         </div>
     </x-header>
 
-    <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         @if (!$search)
             <div class="grid grid-cols-1 gap-x-4 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8">
                 <div class="mb-4">
@@ -65,7 +68,7 @@
             </div>
         @else
             <div class="space-y-2 pb-8">
-                <h2 class="text-3xl font-extrabold text-gray-900">
+                <h2 class="text-3xl font-extrabold text-blue-800">
                     Search Results
                 </h2>
             </div>

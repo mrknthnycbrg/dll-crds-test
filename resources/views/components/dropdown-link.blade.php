@@ -1,4 +1,4 @@
 <a
-    {{ $attributes->twMerge('block w-full px-4 py-2 text-left text-sm leading-5 text-gray-50 hover:bg-blue-900 focus:outline-none focus:bg-blue-900 transition duration-150 ease-in-out') }}>
+    {{ $attributes->twMerge('flex items-center gap-x-3.5 rounded-sm px-3 py-2 text-sm text-gray-700 hover:text-blue-800 focus:text-blue-800 hover:bg-gray-200 focus:ring-2 focus:ring-gray-200') }}>
     {{ $slot }}
 </a>
