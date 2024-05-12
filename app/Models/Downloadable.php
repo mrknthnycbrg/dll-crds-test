@@ -62,9 +62,14 @@ class Downloadable extends Model
         ];
     }
 
-    public function formattedDescription()
+    public function shortenedName()
     {
-        return Str::of($this->description)->stripTags()->words(25);
+        return Str::of($this->name)->words(10);
+    }
+
+    public function shortenedDescription()
+    {
+        return Str::of($this->description)->stripTags()->words(20);
     }
 
     public function formattedDate()

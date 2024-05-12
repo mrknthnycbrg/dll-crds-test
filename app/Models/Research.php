@@ -89,9 +89,14 @@ class Research extends Model
         ];
     }
 
-    public function formattedAbstract()
+    public function shortenedTitle()
     {
-        return Str::of($this->abstract)->words(25);
+        return Str::of($this->title)->words(10);
+    }
+
+    public function shortenedAbstract()
+    {
+        return Str::of($this->abstract)->words(20);
     }
 
     public function formattedDate()

@@ -76,9 +76,14 @@ class Post extends Model
         return Storage::url($this->image_path);
     }
 
-    public function formattedContent()
+    public function shortenedTitle()
     {
-        return Str::of($this->content)->stripTags()->words(25);
+        return Str::of($this->title)->words(10);
+    }
+
+    public function shortenedContent()
+    {
+        return Str::of($this->content)->stripTags()->words(20);
     }
 
     public function formattedDate()
