@@ -14,10 +14,10 @@
                                         {{ optional($latestPost->category)->name }}
                                     </x-badge>
                                     <h1 class="text-4xl font-black text-blue-800">
-                                        {{ $latestPost->title }}
+                                        {{ $latestPost->shortenedTitle() }}
                                     </h1>
                                     <p class="text-base font-normal text-gray-700">
-                                        {{ $latestPost->formattedContent() }}
+                                        {{ $latestPost->shortenedContent() }}
                                     </p>
                                     <p class="text-sm font-light text-gray-700">
                                         {{ $latestPost->formattedDate() }}
@@ -37,7 +37,7 @@
                                     <h1 class="text-4xl font-black text-blue-800">
                                         College Research and Development Services
                                     </h1>
-                                    <h2 class="text-3xl font-extrabold text-gray-700">
+                                    <h2 class="text-3xl font-extrabold text-gray-900">
                                         Dalubhasaan ng Lungsod ng Lucena
                                     </h2>
                                 </div>

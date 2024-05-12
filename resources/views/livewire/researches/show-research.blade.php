@@ -83,22 +83,26 @@
                         </div>
 
                         @if ($research->file_path)
-                            <x-button type="button" wire:click="file">
-                                View
-                            </x-button>
+                            <div class="text-center">
+                                <x-button type="button" wire:click="file">
+                                    View file
+                                </x-button>
+                            </div>
                         @endif
                     </div>
                 @else
                     <div class="space-y-4">
                         <div class="prose max-w-none">
                             <p class="text-base font-normal text-gray-700">
-                                {{ $research->formattedAbstract() }}
+                                {{ $research->shortenedAbstract() }}
                             </p>
                         </div>
 
-                        <x-button type="button" href="{{ route('login') }}" wire:navigate>
-                            Please log in to view the full abstract.
-                        </x-button>
+                        <div class="text-center">
+                            <x-button type="button" href="{{ route('login') }}" wire:navigate>
+                                Please log in to view the full abstract.
+                            </x-button>
+                        </div>
                     </div>
                 @endauth
             </div>
@@ -107,13 +111,13 @@
 
     @if ($otherResearches->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between space-x-2 py-8">
-                <h2 class="text-3xl font-extrabold text-gray-900">
+            <div class="py-8 text-center">
+                <h1 class="text-4xl font-black text-blue-800">
                     Other Researches
-                </h2>
+                </h1>
             </div>
 
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
                 @foreach ($otherResearches as $otherResearch)
                     <x-card href="{{ route('show-research', ['slug' => $otherResearch->slug]) }}" wire:navigate
                         wire:key="{{ $otherResearch->id }}">
@@ -121,16 +125,24 @@
                             {{ optional($otherResearch->department)->name }}
                         </x-badge>
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
-                            {{ $otherResearch->title }}
+                            {{ $otherResearch->shortenedTitle() }}
                         </h4>
                         <p class="text-sm font-light text-gray-700">
-                            {{ $otherResearch->formattedAbstract() }}
+                            {{ $otherResearch->shortenedAbstract() }}
                         </p>
                         <p class="text-xs font-extralight text-gray-700">
                             {{ $otherResearch->formattedDate() }}
                         </p>
                     </x-card>
                 @endforeach
+            </div>
+
+            <div class="pt-8 text-center">
+                <x-button type="button"
+                    href="{{ route('department-researches', ['slug' => $otherResearch->department->slug]) }}"
+                    wire:navigate>
+                    View all other researches
+                </x-button>
             </div>
         </div>
     @endif

@@ -1,7 +1,7 @@
 <div>
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-black text-blue-800">
+            <h1 class="text-4xl font-black text-gray-900">
                 {{ $post->title }}
             </h1>
             <p class="text-sm font-light text-gray-700">
@@ -25,13 +25,13 @@
 
     @if ($otherPosts->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between space-x-2 py-8">
-                <h2 class="text-3xl font-extrabold text-blue-800">
+            <div class="py-8 text-center">
+                <h1 class="text-4xl font-black text-blue-800">
                     Other News
-                </h2>
+                </h1>
             </div>
 
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
                 @foreach ($otherPosts as $otherPost)
                     <x-card href="{{ route('show-post', ['slug' => $otherPost->slug]) }}" wire:navigate
                         wire:key="{{ $otherPost->id }}">
@@ -46,16 +46,23 @@
                             {{ optional($otherPost->category)->name }}
                         </x-badge>
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
-                            {{ $otherPost->title }}
+                            {{ $otherPost->shortenedTitle() }}
                         </h4>
                         <p class="text-sm font-light text-gray-700">
-                            {{ $otherPost->formattedContent() }}
+                            {{ $otherPost->shortenedContent() }}
                         </p>
                         <p class="text-xs font-extralight text-gray-700">
                             {{ $otherPost->formattedDate() }}
                         </p>
                     </x-card>
                 @endforeach
+            </div>
+
+            <div class="pt-8 text-center">
+                <x-button type="button" href="{{ route('category-posts', ['slug' => $otherPost->category->slug]) }}"
+                    wire:navigate>
+                    View all other news
+                </x-button>
             </div>
         </div>
     @endif
