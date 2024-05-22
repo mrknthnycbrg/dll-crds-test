@@ -17,9 +17,11 @@
                 {!! $post->content !!}
             </div>
 
-            <x-badge>
-                {{ optional($post->category)->name }}
-            </x-badge>
+            @if ($post->category)
+                <x-badge>
+                    {{ optional($post->category)->name }}
+                </x-badge>
+            @endif
         </div>
     </div>
 

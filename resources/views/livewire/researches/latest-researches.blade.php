@@ -11,9 +11,11 @@
                 @foreach ($latestResearches as $latestResearch)
                     <x-card href="{{ route('show-research', ['slug' => $latestResearch->slug]) }}" wire:navigate
                         wire:key="{{ $latestResearch->id }}">
-                        <x-badge>
-                            {{ optional($latestResearch->department)->name }}
-                        </x-badge>
+                        @if ($latestResearch->department)
+                            <x-badge>
+                                {{ optional($latestResearch->department)->name }}
+                            </x-badge>
+                        @endif
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                             {{ $latestResearch->shortenedTitle() }}
                         </h4>

@@ -10,9 +10,11 @@
                         <div class="flex w-full flex-col-reverse">
                             <div class="bg-brightness-75 bg-gray-50 bg-opacity-75 backdrop-blur">
                                 <div class="mx-auto max-w-7xl space-y-2 px-4 py-8 text-left sm:px-6 lg:px-8">
-                                    <x-badge>
-                                        {{ optional($latestPost->category)->name }}
-                                    </x-badge>
+                                    @if ($latestPost->category)
+                                        <x-badge>
+                                            {{ optional($latestPost->category)->name }}
+                                        </x-badge>
+                                    @endif
                                     <h1 class="text-4xl font-black text-blue-800">
                                         {{ $latestPost->shortenedTitle() }}
                                     </h1>

@@ -47,9 +47,11 @@
                                 src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
                         @endif
 
-                        <x-badge>
-                            {{ optional($post->category)->name }}
-                        </x-badge>
+                        @if ($post->category)
+                            <x-badge>
+                                {{ optional($post->category)->name }}
+                            </x-badge>
+                        @endif
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                             {{ $post->shortenedTitle() }}
                         </h4>
@@ -89,9 +91,11 @@
                                 src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
                         @endif
 
-                        <x-badge>
-                            {{ optional($post->category)->name }}
-                        </x-badge>
+                        @if ($post->category)
+                            <x-badge>
+                                {{ optional($post->category)->name }}
+                            </x-badge>
+                        @endif
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
                             {{ $post->shortenedTitle() }}
                         </h4>
