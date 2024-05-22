@@ -3,6 +3,7 @@
 use App\Http\Controllers\DownloadableFile;
 use App\Http\Controllers\ResearchFile;
 use App\Livewire\About\AboutPage;
+use App\Livewire\Contact\ContactPage;
 use App\Livewire\Downloadables\AllDownloadables;
 use App\Livewire\Downloadables\ShowDownloadable;
 use App\Livewire\Home\HomePage;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/about', AboutPage::class)->name('about');
+Route::get('/contact', ContactPage::class)->name('contact');
 Route::get('/news', AllPosts::class)->name('all-posts');
 Route::get('/news/categories/{slug}', CategoryPosts::class)->name('category-posts');
 Route::get('/news/{slug}', ShowPost::class)->name('show-post');
