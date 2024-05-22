@@ -1,9 +1,12 @@
-<div class="bg-gray-50">
-    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="space-y-4">
-            <h1 class="text-center text-4xl font-black text-blue-800">
-                About
-            </h1>
+<div class="min-h-screen bg-gray-100">
+    <x-header>
+        <h1 class="text-4xl font-black text-blue-800">
+            About Us
+        </h1>
+    </x-header>
+
+    <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
+        <x-card class="space-y-4">
             <p class="text-base font-normal text-gray-700">
                 The College Research and Development Services (CRDS) at Dalubhasaan ng Lungsod ng Lucena provides a
                 broad range of research support and resources for faculty, staff, and students under the leadership
@@ -34,30 +37,31 @@
                 social responsibility, the College R&D Services steers the research culture of Dalubcenian towards
                 meaningful impacts for academia and communities alike under Dr. Manzanilla's leadership.
             </p>
+        </x-card>
 
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                <div class="space-y-4">
-                    <h3 class="text-2xl font-bold text-blue-800">
-                        Mission
-                    </h3>
-                    <p class="text-base font-normal text-gray-700">
-                        Conduct research and development programs and projects to develop effective and feasible
-                        technologies/strategies for sustaining development and improving people's quality of life, as
-                        well as the College's service delivery.
-                    </p>
-                </div>
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <x-card class="space-y-4">
+                <h3 class="text-2xl font-bold text-blue-800">
+                    Mission
+                </h3>
+                <p class="text-base font-normal text-gray-700">
+                    Conduct research and development programs and projects to develop effective and feasible
+                    technologies/strategies for sustaining development and improving people's quality of life, as
+                    well as the College's service delivery.
+                </p>
+            </x-card>
+            <x-card class="space-y-4">
+                <h3 class="text-2xl font-bold text-blue-800">
+                    Vision
+                </h3>
+                <p class="text-base font-normal text-gray-700">
+                    Forerunner in DLL's leadership in research and development, serving the needs of the various
+                    sectors in Lucena and beyond.
+                </p>
+            </x-card>
+        </div>
 
-                <div class="space-y-4">
-                    <h3 class="text-2xl font-bold text-blue-800">
-                        Vision
-                    </h3>
-                    <p class="text-base font-normal text-gray-700">
-                        Forerunner in DLL's leadership in research and development, serving the needs of the various
-                        sectors in Lucena and beyond.
-                    </p>
-                </div>
-            </div>
-
+        <x-card class="space-y-4">
             <h3 class="text-2xl font-bold text-blue-800">
                 Objectives
             </h3>
@@ -75,10 +79,11 @@
                     College.
                 </li>
                 <li>
-                    Promote and facilitate the conduct, dissemination, utilization and publication of research output in
+                    Promote and facilitate the conduct, dissemination, utilization and publication of research
+                    output in
                     the College.
                 </li>
             </ul>
-        </div>
+        </x-card>
     </div>
 </div>

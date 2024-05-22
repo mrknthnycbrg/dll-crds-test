@@ -22,9 +22,21 @@
             id="navbar">
             <div
                 class="mt-5 flex flex-col gap-x-0 gap-y-4 lg:mt-0 lg:flex-row lg:items-center lg:justify-end lg:gap-x-7 lg:gap-y-0 lg:ps-7">
-                <x-nav-link href="{{ route('about') }}" wire:navigate :active="request()->routeIs('about')">
-                    About
-                </x-nav-link>
+                <div class="hs-dropdown [--adaptive:none] [--strategy:static] lg:py-4 lg:[--strategy:fixed]">
+                    <x-nav-button :active="request()->routeIs(['about', 'contact'])">
+                        About
+                    </x-nav-button>
+
+                    <div
+                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                        <x-dropdown-link href="{{ route('about') }}" wire:navigate>
+                            About Us
+                        </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('contact') }}" wire:navigate>
+                            Contact Us
+                        </x-dropdown-link>
+                    </div>
+                </div>
 
                 <div class="hs-dropdown [--adaptive:none] [--strategy:static] lg:py-4 lg:[--strategy:fixed]">
                     <x-nav-button :active="request()->routeIs(['all-posts', 'category-posts', 'show-post'])">
@@ -32,7 +44,7 @@
                     </x-nav-button>
 
                     <div
-                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[90vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                         <x-dropdown-link href="{{ route('all-posts') }}" wire:navigate>
                             All News
                         </x-dropdown-link>
@@ -51,7 +63,7 @@
                     </x-nav-button>
 
                     <div
-                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[90vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                         <x-dropdown-link href="{{ route('all-researches') }}" wire:navigate>
                             All Researches
                         </x-dropdown-link>
@@ -79,7 +91,7 @@
                         </x-nav-button>
 
                         <div
-                            class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[90vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                            class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                             <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate>
                                 Profile
                             </x-dropdown-link>

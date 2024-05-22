@@ -1,4 +1,4 @@
-<div>
+<div class="min-h-screen bg-gray-100">
     @if ($latestResearches->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <div class="pb-8 text-center">
@@ -8,27 +8,23 @@
             </div>
 
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
-                @forelse ($latestResearches as $research)
-                    <x-card href="{{ route('show-research', ['slug' => $research->slug]) }}" wire:navigate
-                        wire:key="{{ $research->id }}">
+                @foreach ($latestResearches as $latestResearch)
+                    <x-card href="{{ route('show-research', ['slug' => $latestResearch->slug]) }}" wire:navigate
+                        wire:key="{{ $latestResearch->id }}">
                         <x-badge>
-                            {{ optional($research->department)->name }}
+                            {{ optional($latestResearch->department)->name }}
                         </x-badge>
                         <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
-                            {{ $research->shortenedTitle() }}
+                            {{ $latestResearch->shortenedTitle() }}
                         </h4>
                         <p class="text-sm font-light text-gray-700">
-                            {{ $research->shortenedAbstract() }}
+                            {{ $latestResearch->shortenedAbstract() }}
                         </p>
                         <p class="text-xs font-extralight text-gray-700">
-                            {{ $research->formattedDate() }}
+                            {{ $latestResearch->formattedDate() }}
                         </p>
                     </x-card>
-                @empty
-                    <p class="text-base font-normal text-gray-700">
-                        No researches yet.
-                    </p>
-                @endforelse
+                @endforeach
             </div>
 
             <div class="pt-8 text-center">

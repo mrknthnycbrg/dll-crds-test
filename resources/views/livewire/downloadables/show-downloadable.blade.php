@@ -1,7 +1,7 @@
-<div>
+<div class="min-h-screen bg-gray-100">
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-black text-gray-900">
+            <h1 class="text-4xl font-black text-blue-800">
                 {{ $downloadable->name }}
             </h1>
             <p class="text-sm font-light text-gray-700">
