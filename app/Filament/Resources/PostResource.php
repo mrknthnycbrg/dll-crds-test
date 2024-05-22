@@ -159,9 +159,8 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\IconColumn::make('published')
-                    ->label('Published')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('published')
+                    ->label('Published'),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable()

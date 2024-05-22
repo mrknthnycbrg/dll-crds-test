@@ -8,7 +8,6 @@ use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
@@ -84,12 +83,7 @@ class ResearchResource extends Resource
                             ->schema([
                                 Forms\Components\Toggle::make('published')
                                     ->label('Published')
-                                    ->default(false)
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(function (Get $get, Set $set) {
-                                        $title = $get('title');
-                                        $set('slug', Str::slug($title));
-                                    }),
+                                    ->default(false),
                                 Forms\Components\DatePicker::make('date_submitted')
                                     ->label('Date Submitted')
                                     ->default(now())
@@ -242,9 +236,8 @@ class ResearchResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\IconColumn::make('published')
-                    ->label('Published')
-                    ->boolean(),
+                Tables\Columns\ToggleColumn::make('published')
+                    ->label('Published'),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Title')
                     ->searchable()
