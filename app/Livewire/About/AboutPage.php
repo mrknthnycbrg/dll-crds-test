@@ -9,6 +9,6 @@ class AboutPage extends Component
     public function render()
     {
         return view('livewire.about.about-page')
-            ->title('About - DLL-CRDS');
+            ->title('About Us - DLL-CRDS');
     }
 }
