@@ -87,7 +87,7 @@
 
                     <div class="hs-dropdown [--adaptive:none] [--strategy:static] lg:py-4 lg:[--strategy:fixed]">
                         <x-nav-button :active="request()->routeIs('profile.show')">
-                            Profile
+                            Your Profile
                         </x-nav-button>
 
                         <div

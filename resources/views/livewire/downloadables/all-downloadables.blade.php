@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
             <div class="col-span-1">
                 <h1 class="text-4xl font-black text-blue-800">
-                    All Resources
+                    Resources
                 </h1>
             </div>
 

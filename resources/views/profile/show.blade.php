@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-header>
         <h1 class="text-4xl font-black text-blue-800">
-            Profile
+            Your Profile
         </h1>
     </x-header>
 
