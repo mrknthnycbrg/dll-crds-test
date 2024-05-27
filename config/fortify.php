@@ -161,7 +161,7 @@ return [
     */
 
     'redirects' => [
-        'register' => '/email/verify',
+        'register' => 'email/verify',
     ],
 
 ];
