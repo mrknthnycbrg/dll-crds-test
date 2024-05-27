@@ -1,35 +1,35 @@
-<div class="min-h-screen bg-gray-100">
+<div class="bg-gray-100">
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-black text-blue-800">
+            <h1 class="text-4xl font-black text-gray-950">
                 {{ $research->title }}
             </h1>
 
             <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
                 <div class="space-y-4">
                     <div>
-                        <p class="font-medium text-gray-900">
+                        <p class="font-medium text-gray-950">
                             Department:
                         </p>
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             {{ optional($research->department)->name }}
                         </p>
                     </div>
 
                     <div>
-                        <p class="font-medium text-gray-900">
+                        <p class="font-medium text-gray-950">
                             Section:
                         </p>
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             {{ optional($research->yearSection)->name }}
                         </p>
                     </div>
 
                     <div>
-                        <p class="font-medium text-gray-900">
+                        <p class="font-medium text-gray-950">
                             Adviser:
                         </p>
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             {{ optional($research->adviser)->name }}
                         </p>
                     </div>
@@ -37,32 +37,32 @@
 
                 <div class="space-y-4">
                     <div>
-                        <p class="font-medium text-gray-900">
+                        <p class="font-medium text-gray-950">
                             Date Submitted:
                         </p>
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             {{ $research->formattedDate() }}
                         </p>
                     </div>
 
                     <div>
-                        <p class="font-medium text-gray-900">
+                        <p class="font-medium text-gray-950">
                             @if (count(explode(',', $research->author)) > 1)
                                 Authors:
                             @else
                                 Author:
                             @endif
                         </p>
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             {{ $research->author }}
                         </p>
                     </div>
 
                     <div>
-                        <p class="font-medium text-gray-900">
+                        <p class="font-medium text-gray-950">
                             Keywords:
                         </p>
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             {{ $research->keyword }}
                         </p>
                     </div>
@@ -70,14 +70,14 @@
             </div>
 
             <div>
-                <p class="text-base font-medium text-gray-900">
+                <p class="text-base font-medium text-gray-950">
                     Abstract:
                 </p>
 
                 @auth
                     <div class="space-y-4">
-                        <div class="prose max-w-none">
-                            <p class="text-base font-normal text-gray-700">
+                        <div class="prose max-w-none prose-p:text-gray-900">
+                            <p>
                                 {{ $research->abstract }}
                             </p>
                         </div>
@@ -92,8 +92,8 @@
                     </div>
                 @else
                     <div class="space-y-4">
-                        <div class="prose max-w-none">
-                            <p class="text-base font-normal text-gray-700">
+                        <div class="prose max-w-none prose-p:text-gray-900">
+                            <p>
                                 {{ $research->shortenedAbstract() }}
                             </p>
                         </div>
@@ -112,7 +112,7 @@
     @if ($otherResearches->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
             <div class="py-8 text-center">
-                <h1 class="text-4xl font-black text-blue-800">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
                     Other Researches
                 </h1>
             </div>
@@ -124,13 +124,13 @@
                         <x-badge>
                             {{ optional($otherResearch->department)->name }}
                         </x-badge>
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $otherResearch->shortenedTitle() }}
                         </h4>
-                        <p class="text-sm font-light text-gray-700">
+                        <p class="text-sm font-light text-gray-900">
                             {{ $otherResearch->shortenedAbstract() }}
                         </p>
-                        <p class="text-xs font-extralight text-gray-700">
+                        <p class="text-xs font-extralight text-gray-900">
                             {{ $otherResearch->formattedDate() }}
                         </p>
                     </x-card>

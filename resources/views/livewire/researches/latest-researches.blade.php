@@ -1,8 +1,8 @@
-<div class="min-h-screen bg-gray-100">
+<div class="bg-gray-100">
     @if ($latestResearches->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <div class="pb-8 text-center">
-                <h1 class="text-4xl font-black text-blue-800">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
                     Latest Researches
                 </h1>
             </div>
@@ -16,13 +16,13 @@
                                 {{ optional($latestResearch->department)->name }}
                             </x-badge>
                         @endif
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $latestResearch->shortenedTitle() }}
                         </h4>
-                        <p class="text-sm font-light text-gray-700">
+                        <p class="text-sm font-light text-gray-900">
                             {{ $latestResearch->shortenedAbstract() }}
                         </p>
-                        <p class="text-xs font-extralight text-gray-700">
+                        <p class="text-xs font-extralight text-gray-900">
                             {{ $latestResearch->formattedDate() }}
                         </p>
                     </x-card>

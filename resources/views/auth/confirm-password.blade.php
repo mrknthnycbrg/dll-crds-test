@@ -4,7 +4,7 @@
             <x-application-logo class="size-28 block" href="{{ route('home') }}" role="button" wire:navigate />
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-700">
+        <div class="mb-4 text-sm text-gray-900">
             {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
 

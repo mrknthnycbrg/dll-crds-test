@@ -30,11 +30,11 @@
             <div class="mt-4 flex items-center justify-between">
                 <label class="flex items-center" for="remember_me">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-700">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-900">Remember me</span>
                 </label>
 
                 @if (Route::has('password.request'))
-                    <a class="rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                    <a class="rounded-sm text-sm text-gray-900 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                         href="{{ route('password.request') }}" wire:navigate>
                         Forgot your password?
                     </a>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="mt-4 flex items-center justify-center">
-                <a class="rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                <a class="rounded-sm text-sm text-gray-900 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                     href="{{ route('register') }}" wire:navigate>
                     Not yet registered?
                 </a>

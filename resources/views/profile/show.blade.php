@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-header>
-        <h1 class="text-4xl font-black text-blue-800">
+        <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
             Your Profile
         </h1>
     </x-header>

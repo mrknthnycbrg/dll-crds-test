@@ -6,6 +6,6 @@
     timeout = setTimeout(() => { shown = false }, 2000);
 })"
     x-show.transition.out.opacity.duration.1500ms="shown" x-transition:leave.opacity.duration.1500ms
-    {{ $attributes->twMerge('text-sm text-gray-600') }}>
+    {{ $attributes->twMerge('text-sm text-gray-900') }}>
     {{ $slot->isEmpty() ? 'Saved.' : $slot }}
 </div>

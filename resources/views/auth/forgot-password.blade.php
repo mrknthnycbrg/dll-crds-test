@@ -4,7 +4,7 @@
             <x-application-logo class="size-28 block" href="{{ route('home') }}" role="button" wire:navigate />
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-700">
+        <div class="mb-4 text-sm text-gray-900">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
 
@@ -32,7 +32,7 @@
             </div>
 
             <div class="mt-4 flex items-center justify-center">
-                <a class="rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                <a class="rounded-sm text-sm text-gray-900 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                     href="{{ route('login') }}" wire:navigate>
                     Remembered your password?
                 </a>

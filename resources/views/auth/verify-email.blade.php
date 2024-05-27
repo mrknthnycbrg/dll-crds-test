@@ -4,7 +4,7 @@
             <x-application-logo class="size-28 block" href="{{ route('home') }}" role="button" wire:navigate />
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-700">
+        <div class="mb-4 text-sm text-gray-900">
             {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
         </div>
 
@@ -27,7 +27,7 @@
         </div>
 
         <div class="mt-4 flex items-center justify-between">
-            <a class="rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+            <a class="rounded-sm text-sm text-gray-900 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                 href="{{ route('profile.show') }}" wire:navigate>
                 Edit Profile
             </a>
@@ -36,7 +36,7 @@
                 @csrf
 
                 <button
-                    class="ml-2 rounded-sm text-sm text-gray-700 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
+                    class="ml-2 rounded-sm text-sm text-gray-900 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2"
                     type="submit">
                     Log Out
                 </button>

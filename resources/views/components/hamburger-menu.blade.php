@@ -1,5 +1,5 @@
 <button
-    class="hs-collapse-toggle size-8 flex items-center justify-center rounded-sm text-sm font-semibold text-gray-700 hover:bg-gray-200 hover:text-blue-800 focus:bg-gray-200 focus:text-blue-800 disabled:pointer-events-none disabled:opacity-50"
+    class="hs-collapse-toggle size-8 flex items-center justify-center rounded-sm text-sm font-semibold text-gray-50 hover:bg-blue-900 hover:text-yellow-400 focus:bg-blue-900 focus:text-yellow-400 disabled:pointer-events-none disabled:opacity-50"
     data-hs-collapse="#navbar" type="button">
 
     <svg class="size-6 hs-collapse-open:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

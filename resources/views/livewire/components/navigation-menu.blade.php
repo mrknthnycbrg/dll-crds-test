@@ -1,14 +1,14 @@
-<nav class="sticky inset-x-0 top-0 z-50 flex w-full flex-wrap bg-gray-50 py-2 shadow-sm lg:flex-nowrap lg:justify-start">
+<nav class="sticky inset-x-0 top-0 z-50 flex w-full flex-wrap bg-blue-800 py-2 lg:flex-nowrap lg:justify-start">
     <div class="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:px-8">
         <div class="flex items-center justify-between">
             <a class="group inline-flex items-center gap-x-2" href="{{ route('home') }}" wire:navigate>
                 <x-application-logo class="size-14" />
                 <div class="flex flex-col whitespace-nowrap">
-                    <p class="text-base font-black text-blue-800">
+                    <p class="text-base font-black text-gray-50 group-hover:text-yellow-400">
                         College Research and Development Services
                     </p>
-                    <hr class="border-blue-800">
-                    <p class="text-sm font-extrabold text-gray-900">
+                    <hr class="border-gray-50">
+                    <p class="text-sm font-extrabold text-gray-50">
                         Dalubhasaan ng Lungsod ng Lucena
                     </p>
                 </div>
@@ -28,7 +28,7 @@
                     </x-nav-button>
 
                     <div
-                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-blue-800 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                         <x-dropdown-link href="{{ route('about') }}" wire:navigate>
                             About Us
                         </x-dropdown-link>
@@ -44,7 +44,7 @@
                     </x-nav-button>
 
                     <div
-                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-blue-800 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                         <x-dropdown-link href="{{ route('all-posts') }}" wire:navigate>
                             All News
                         </x-dropdown-link>
@@ -63,7 +63,7 @@
                     </x-nav-button>
 
                     <div
-                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                        class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-blue-800 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                         <x-dropdown-link href="{{ route('all-researches') }}" wire:navigate>
                             All Researches
                         </x-dropdown-link>
@@ -91,9 +91,9 @@
                         </x-nav-button>
 
                         <div
-                            class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-gray-50 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
+                            class="hs-dropdown-menu lg: top-full z-10 hidden rounded-sm bg-blue-800 p-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 lg:max-h-[75vh] lg:w-48 lg:overflow-y-auto lg:duration-[150ms]">
                             <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate>
-                                Profile
+                                Your Profile
                             </x-dropdown-link>
 
                             <form method="POST" action="{{ route('logout') }}" x-data>

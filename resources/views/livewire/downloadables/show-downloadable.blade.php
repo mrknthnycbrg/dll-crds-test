@@ -1,14 +1,15 @@
-<div class="min-h-screen bg-gray-100">
+<div class="bg-gray-100">
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-black text-blue-800">
+            <h1 class="text-4xl font-black text-gray-950">
                 {{ $downloadable->name }}
             </h1>
-            <p class="text-sm font-light text-gray-700">
+            <p class="text-sm font-light text-gray-900">
                 {{ $downloadable->formattedDate() }}
             </p>
 
-            <div class="prose max-w-none">
+            <div
+                class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-blockquote:text-gray-900 prose-pre:bg-gray-200 prose-pre:text-gray-900 prose-li:text-gray-900">
                 {!! $downloadable->description !!}
             </div>
 
@@ -33,7 +34,7 @@
     @if ($otherDownloadables->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
             <div class="py-8 text-center">
-                <h1 class="text-4xl font-black text-blue-800">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
                     Other Resources
                 </h1>
             </div>
@@ -42,13 +43,13 @@
                 @foreach ($otherDownloadables as $otherDownloadable)
                     <x-card href="{{ route('show-downloadable', ['slug' => $otherDownloadable->slug]) }}" wire:navigate
                         wire:key="{{ $otherDownloadable->id }}">
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $otherDownloadable->shortenedName() }}
                         </h4>
-                        <p class="text-sm font-light text-gray-700">
+                        <p class="text-sm font-light text-gray-900">
                             {{ $otherDownloadable->shortenedDescription() }}
                         </p>
-                        <p class="text-xs font-extralight text-gray-700">
+                        <p class="text-xs font-extralight text-gray-900">
                             {{ $otherDownloadable->formattedDate() }}
                         </p>
                     </x-card>

@@ -1,13 +1,13 @@
 <div>
     <x-header>
-        <h1 class="text-4xl font-black text-blue-800">
+        <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
             Tools
         </h1>
     </x-header>
 
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between space-y-2 pb-8">
-            <h2 class="text-3xl font-extrabold text-blue-800">
+            <h2 class="text-3xl font-extrabold text-gray-950">
                 Title Generator
             </h2>
         </div>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="flex items-center justify-between space-y-2 pb-8">
-            <h2 class="text-3xl font-extrabold text-blue-800">
+            <h2 class="text-3xl font-extrabold text-gray-950">
                 Title Similarity Checker
             </h2>
         </div>
@@ -46,7 +46,7 @@
 
             @if (!empty($similarTitles))
                 <div class="w-full space-y-4">
-                    <h3 class="text-2xl font-bold text-blue-800">
+                    <h3 class="text-2xl font-bold text-gray-950">
                         Similar Titles:
                     </h3>
                     <table class="w-full border-collapse text-left">
@@ -73,7 +73,7 @@
             @else
                 @if (!empty($titleCheckInput))
                     <div class="w-full space-y-4">
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             No similar titles.
                         </p>
                     </div>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="flex items-center justify-between space-y-2 pb-8">
-            <h2 class="text-3xl font-extrabold text-blue-800">
+            <h2 class="text-3xl font-extrabold text-gray-950">
                 Abstract Similarity Checker
             </h2>
         </div>
@@ -99,7 +99,7 @@
 
             @if (!empty($similarAbstracts))
                 <div class="w-full space-y-4">
-                    <h3 class="text-2xl font-bold text-blue-800">
+                    <h3 class="text-2xl font-bold text-gray-950">
                         Similar Abstracts:
                     </h3>
                     <table class="w-full border-collapse text-left">
@@ -126,13 +126,12 @@
             @else
                 @if (!empty($abstractCheckInput))
                     <div class="w-full space-y-4">
-                        <p class="text-base font-normal text-gray-700">
+                        <p class="text-base font-normal text-gray-900">
                             No similar abstracts.
                         </p>
                     </div>
                 @endif
             @endif
         </div>
-
     </div>
 </div>

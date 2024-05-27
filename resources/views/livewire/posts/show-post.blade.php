@@ -1,10 +1,10 @@
-<div class="min-h-screen bg-gray-100">
+<div class="bg-gray-100">
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-black text-blue-800">
+            <h1 class="text-4xl font-black text-gray-950">
                 {{ $post->title }}
             </h1>
-            <p class="text-sm font-light text-gray-700">
+            <p class="text-sm font-light text-gray-900">
                 {{ $post->formattedDate() }}
             </p>
 
@@ -13,7 +13,8 @@
                     src="{{ $post->formattedImage() }}" alt="{{ $post->title }}">
             @endif
 
-            <div class="prose max-w-none">
+            <div
+                class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-blockquote:text-gray-900 prose-pre:bg-gray-200 prose-pre:text-gray-900 prose-li:text-gray-900">
                 {!! $post->content !!}
             </div>
 
@@ -28,7 +29,7 @@
     @if ($otherPosts->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
             <div class="py-8 text-center">
-                <h1 class="text-4xl font-black text-blue-800">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
                     Other News
                 </h1>
             </div>
@@ -47,13 +48,13 @@
                         <x-badge>
                             {{ optional($otherPost->category)->name }}
                         </x-badge>
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $otherPost->shortenedTitle() }}
                         </h4>
-                        <p class="text-sm font-light text-gray-700">
+                        <p class="text-sm font-light text-gray-900">
                             {{ $otherPost->shortenedContent() }}
                         </p>
-                        <p class="text-xs font-extralight text-gray-700">
+                        <p class="text-xs font-extralight text-gray-900">
                             {{ $otherPost->formattedDate() }}
                         </p>
                     </x-card>

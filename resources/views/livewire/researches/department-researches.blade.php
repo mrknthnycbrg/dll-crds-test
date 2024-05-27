@@ -1,8 +1,8 @@
-<div class="min-h-screen bg-gray-100">
+<div class="bg-gray-100">
     <x-header>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
-            <div class="col-span-1">
-                <h1 class="text-4xl font-black text-blue-800">
+            <div class="col-span-1 space-y-4">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
                     Researches
                 </h1>
                 <x-badge>
@@ -47,18 +47,18 @@
                                 {{ optional($research->department)->name }}
                             </x-badge>
                         @endif
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $research->shortenedTitle() }}
                         </h4>
-                        <p class="text-sm font-light text-gray-700">
+                        <p class="text-sm font-light text-gray-900">
                             {{ $research->shortenedAbstract() }}
                         </p>
-                        <p class="text-xs font-extralight text-gray-700">
+                        <p class="text-xs font-extralight text-gray-900">
                             {{ $research->formattedDate() }}
                         </p>
                     </x-card>
                 @empty
-                    <p class="text-base font-normal text-gray-700">
+                    <p class="text-base font-normal text-gray-900">
                         No researches yet.
                     </p>
                 @endforelse
@@ -83,18 +83,18 @@
                                 {{ optional($research->department)->name }}
                             </x-badge>
                         @endif
-                        <h4 class="text-xl font-semibold text-gray-700 group-hover:text-blue-800">
+                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $research->shortenedTitle() }}
                         </h4>
-                        <p class="text-sm font-light text-gray-700">
+                        <p class="text-sm font-light text-gray-900">
                             {{ $research->shortenedAbstract() }}
                         </p>
-                        <p class="text-xs font-extralight text-gray-700">
+                        <p class="text-xs font-extralight text-gray-900">
                             {{ $research->formattedDate() }}
                         </p>
                     </x-card>
                 @empty
-                    <p class="text-base font-normal text-gray-700">
+                    <p class="text-base font-normal text-gray-900">
                         No researches found.
                     </p>
                 @endforelse
