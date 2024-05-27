@@ -19,7 +19,7 @@ class ShowDownloadable extends Component
         $otherDownloadables = Downloadable::where('published', true)
             ->where('id', '!=', $this->downloadable->id)
             ->inRandomOrder()
-            ->take(3)
+            ->take(6)
             ->get();
 
         return view('livewire.downloadables.show-downloadable', compact('otherDownloadables'))

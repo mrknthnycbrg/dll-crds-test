@@ -53,7 +53,7 @@ class CategoryPosts extends Component
                     $query->whereYear('date_published', $this->selectedYear);
                 })
                 ->latest('date_published')
-                ->paginate(6);
+                ->paginate(12);
         } else {
             $posts = Post::search(trim($this->search))
                 ->query(function ($query) {
@@ -67,7 +67,7 @@ class CategoryPosts extends Component
                         ->where('category_id', $this->category->id)
                         ->latest('date_published');
                 })
-                ->paginate(6);
+                ->paginate(12);
 
             return view('livewire.posts.category-posts', compact('posts'));
         }

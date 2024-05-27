@@ -62,7 +62,7 @@ class AllPosts extends Component
                     $query->whereYear('date_published', $this->selectedYear);
                 })
                 ->latest('date_published')
-                ->paginate(6);
+                ->paginate(12);
         } else {
             $posts = Post::search(trim($this->search))
                 ->query(function ($query) {
@@ -75,7 +75,7 @@ class AllPosts extends Component
                         ->where('published', true)
                         ->latest('date_published');
                 })
-                ->paginate(6);
+                ->paginate(12);
 
             return view('livewire.posts.all-posts', compact('posts'));
         }

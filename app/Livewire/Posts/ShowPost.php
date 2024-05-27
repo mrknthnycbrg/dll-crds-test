@@ -21,7 +21,7 @@ class ShowPost extends Component
             ->where('category_id', $this->post->category_id)
             ->where('id', '!=', $this->post->id)
             ->inRandomOrder()
-            ->take(3)
+            ->take(6)
             ->get();
 
         return view('livewire.posts.show-post', compact('otherPosts'))

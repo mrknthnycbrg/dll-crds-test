@@ -23,7 +23,7 @@ class ShowResearch extends Component
             ->where('department_id', $this->research->department_id)
             ->where('id', '!=', $this->research->id)
             ->inRandomOrder()
-            ->take(3)
+            ->take(6)
             ->get();
 
         return view('livewire.researches.show-research', compact('otherResearches'))
