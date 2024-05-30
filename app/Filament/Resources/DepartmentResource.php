@@ -77,6 +77,10 @@ class DepartmentResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('abbreviation')
+                    ->label('Abbreviation')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable()
