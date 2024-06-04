@@ -1,6 +1,6 @@
 <div>
     <x-header>
-        <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
+        <h1 class="text-4xl font-black text-blue-800 underline decoration-yellow-400 underline-offset-8">
             Tools
         </h1>
     </x-header>

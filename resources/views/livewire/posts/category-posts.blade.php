@@ -2,7 +2,7 @@
     <x-header>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
             <div class="col-span-1 space-y-4">
-                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-yellow-400 underline-offset-8">
                     News
                 </h1>
                 <x-badge>

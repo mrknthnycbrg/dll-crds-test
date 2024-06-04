@@ -34,7 +34,7 @@
     @if ($otherDownloadables->isNotEmpty())
         <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
             <div class="py-8 text-center">
-                <h1 class="text-4xl font-black text-blue-800 underline decoration-blue-800 underline-offset-8">
+                <h1 class="text-4xl font-black text-blue-800 underline decoration-yellow-400 underline-offset-8">
                     Other Resources
                 </h1>
             </div>
