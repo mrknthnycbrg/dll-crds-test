@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('file_path')->nullable();
-            $table->longText('description')->nullable()->fullText();
+            $table->longText('description')->nullable();
             $table->boolean('published')->default(false);
             $table->date('date_published');
             $table->timestamps();

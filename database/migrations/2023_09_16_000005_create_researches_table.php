@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->string('keyword')->nullable();
             $table->string('file_path')->nullable();
-            $table->longText('abstract')->nullable()->fullText();
+            $table->longText('abstract')->nullable();
             $table->foreignId('department_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('year_section_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('adviser_id')->nullable()->constrained()->restrictOnDelete();
