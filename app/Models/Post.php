@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Searchable;
 
 #[ObservedBy([PostObserver::class])]
@@ -61,7 +60,6 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    #[SearchUsingFullText(['content'])]
     public function toSearchableArray()
     {
         return [
