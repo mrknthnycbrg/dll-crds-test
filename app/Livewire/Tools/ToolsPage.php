@@ -16,9 +16,15 @@ class ToolsPage extends Component
 
     public $abstractCheckInput = '';
 
-    public $similarTitles = [];
+    public $similarTitles;
 
-    public $similarAbstracts = [];
+    public $similarAbstracts;
+
+    public function mount()
+    {
+        $this->similarTitles = collect();
+        $this->similarAbstracts = collect();
+    }
 
     public function response()
     {
@@ -36,57 +42,56 @@ class ToolsPage extends Component
 
     public function titleCheckerResponse()
     {
-        $this->similarTitles = [];
-
         if (! empty($this->titleCheckInput)) {
-            $allTitles = Research::where('published', true)
-                ->pluck('title')
-                ->map(fn ($title) => trim($title));
+            $inputTitle = strtolower(trim($this->titleCheckInput));
 
-            $inputTitle = trim($this->titleCheckInput);
+            $this->similarTitles = Research::where('published', true)
+                ->select('title')
+                ->get()
+                ->filter(function ($research) use ($inputTitle) {
+                    similar_text($inputTitle, strtolower($research->title), $percentage);
 
-            $allTitles->each(function ($title) use ($inputTitle) {
-                similar_text(strtolower($inputTitle), strtolower($title), $percentage);
-
-                if ($percentage >= 50) {
+                    return $percentage >= 50;
+                })
+                ->map(function ($research) use ($inputTitle) {
+                    similar_text($inputTitle, strtolower($research->title), $percentage);
                     $formattedPercentage = $percentage == round($percentage)
                         ? number_format($percentage, 0).'%'
                         : number_format($percentage, 2, '.', '').'%';
 
-                    $this->similarTitles[] = [
-                        'title' => $title,
+                    return (object) [
+                        'title' => $research->title,
                         'percentage' => $formattedPercentage,
                     ];
-                }
-            });
+                });
         }
     }
 
     public function abstractCheckerResponse()
     {
-        $this->similarAbstracts = [];
-
         if (! empty($this->abstractCheckInput)) {
-            $allAbstracts = Research::where('published', true)
-                ->pluck('abstract')
-                ->map(fn ($abstract) => trim(strip_tags($abstract)));
+            $inputAbstract = strtolower(trim($this->abstractCheckInput));
 
-            $inputAbstract = trim(strip_tags($this->abstractCheckInput));
+            $this->similarAbstracts = Research::where('published', true)
+                ->select('title', 'abstract')
+                ->get()
+                ->filter(function ($research) use ($inputAbstract) {
+                    similar_text($inputAbstract, strtolower($research->abstract), $percentage);
 
-            $allAbstracts->each(function ($abstract) use ($inputAbstract) {
-                similar_text(strtolower($inputAbstract), strtolower($abstract), $percentage);
-
-                if ($percentage >= 50) {
+                    return $percentage >= 50;
+                })
+                ->map(function ($research) use ($inputAbstract) {
+                    similar_text($inputAbstract, strtolower($research->abstract), $percentage);
                     $formattedPercentage = $percentage == round($percentage)
                         ? number_format($percentage, 0).'%'
                         : number_format($percentage, 2, '.', '').'%';
 
-                    $this->similarAbstracts[] = [
-                        'abstract' => $abstract,
+                    return (object) [
+                        'title' => $research->title,
+                        'abstract' => $research->abstract,
                         'percentage' => $formattedPercentage,
                     ];
-                }
-            });
+                });
         }
     }
 
