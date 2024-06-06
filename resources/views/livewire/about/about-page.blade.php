@@ -76,7 +76,7 @@
                 <h3 class="text-2xl font-bold">
                     Objectives
                 </h3>
-                <ul class="list-inside list-disc space-y-2 text-base font-normal text-gray-900 marker:text-gray-900">
+                <ul class="list-outside list-disc space-y-2 text-base font-normal text-gray-900 marker:text-gray-900">
                     <li>
                         Improve the research capacity of faculty members for local and international competitiveness.
                     </li>

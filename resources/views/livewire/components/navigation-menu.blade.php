@@ -1,4 +1,5 @@
-<nav class="sticky inset-x-0 top-0 z-50 flex w-full flex-wrap bg-blue-800 py-2 lg:flex-nowrap lg:justify-start">
+<nav
+    class="sticky inset-x-0 top-0 z-50 flex w-full flex-wrap bg-blue-800 py-2 shadow-sm lg:flex-nowrap lg:justify-start">
     <div class="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:px-8">
         <div class="flex items-center justify-between">
             <a class="group inline-flex items-center gap-x-2" href="{{ route('home') }}" wire:navigate>
