@@ -30,8 +30,9 @@ class AdminPanelProvider extends PanelProvider
             ->passwordReset()
             ->emailVerification()
             ->profile(EditProfile::class)
-            ->favicon(asset('images/logo.png'))
+            ->favicon(asset('favicon.ico'))
             ->brandName('DLL-CRDS Admin')
+            ->font('Figtree')
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 'Research Management',
