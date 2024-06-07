@@ -72,7 +72,7 @@
             </div>
         @else
             <div class="space-y-2 pb-8">
-                <h2 class="text-3xl font-extrabold text-blue-800">
+                <h2 class="text-3xl font-extrabold text-gray-950">
                     Search Results
                 </h2>
             </div>
