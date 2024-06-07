@@ -4,13 +4,19 @@
         <div class="flex items-center justify-between">
             <a class="group inline-flex items-center gap-x-2" href="{{ route('home') }}" wire:navigate>
                 <x-application-logo class="size-14" />
-                <div class="flex flex-col whitespace-nowrap">
+                <div class="hidden flex-col whitespace-nowrap lg:flex">
                     <p class="text-base font-black text-gray-50 group-hover:text-yellow-400">
                         College Research and Development Services
                     </p>
                     <hr class="border-gray-50">
                     <p class="text-sm font-extrabold text-gray-50">
                         Dalubhasaan ng Lungsod ng Lucena
+                    </p>
+                </div>
+
+                <div class="whitespace-nowrap lg:hidden">
+                    <p class="text-base font-black text-gray-50 group-hover:text-yellow-400">
+                        DLL-CRDS
                     </p>
                 </div>
             </a>
