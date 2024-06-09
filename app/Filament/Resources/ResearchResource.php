@@ -83,7 +83,8 @@ class ResearchResource extends Resource
                             ->schema([
                                 Forms\Components\Toggle::make('published')
                                     ->label('Published')
-                                    ->default(false),
+                                    ->required()
+                                    ->default(true),
                                 Forms\Components\DatePicker::make('date_submitted')
                                     ->label('Date Submitted')
                                     ->default(now())

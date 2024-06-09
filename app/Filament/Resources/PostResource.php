@@ -94,9 +94,11 @@ class PostResource extends Resource
                             ->schema([
                                 Forms\Components\Toggle::make('published')
                                     ->label('Published')
-                                    ->default(false),
+                                    ->required()
+                                    ->default(true),
                                 Forms\Components\DatePicker::make('date_published')
                                     ->label('Date Published')
+                                    ->required()
                                     ->default(now())
                                     ->maxDate(now())
                                     ->format('Y-m-d')
@@ -105,6 +107,7 @@ class PostResource extends Resource
                                 Forms\Components\Select::make('category_id')
                                     ->label('Category')
                                     ->placeholder('Select category')
+                                    ->required()
                                     ->relationship(
                                         name: 'category',
                                         titleAttribute: 'name'

@@ -60,6 +60,7 @@ class DownloadableResource extends Resource
                                     ->unique(ignoreRecord: true),
                                 Forms\Components\RichEditor::make('description')
                                     ->label('Description')
+                                    ->required()
                                     ->placeholder('Enter description')
                                     ->disableToolbarButtons([
                                         'attachFiles',
@@ -86,9 +87,11 @@ class DownloadableResource extends Resource
                             ->schema([
                                 Forms\Components\Toggle::make('published')
                                     ->label('Published')
-                                    ->default(false),
+                                    ->required()
+                                    ->default(true),
                                 Forms\Components\DatePicker::make('date_published')
                                     ->label('Date Published')
+                                    ->required()
                                     ->default(now())
                                     ->maxDate(now())
                                     ->format('Y-m-d')
