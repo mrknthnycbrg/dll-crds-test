@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('researches', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->nullable()->unique();
+            $table->string('slug')->unique();
             $table->string('author')->nullable();
             $table->string('keyword')->nullable();
             $table->string('file_path')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('department_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('year_section_id')->nullable()->constrained()->restrictOnDelete();
             $table->foreignId('adviser_id')->nullable()->constrained()->restrictOnDelete();
-            $table->boolean('published')->default(false);
+            $table->boolean('published')->default(true);
             $table->date('date_submitted')->nullable();
             $table->timestamps();
             $table->softDeletes();
