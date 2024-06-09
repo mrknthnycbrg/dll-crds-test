@@ -42,7 +42,7 @@ class PostChart extends ChartWidget
                 ->dateColumn('date_published')
                 ->between(
                     start: Carbon::parse(Post::min('date_published')),
-                    end: today(),
+                    end: Carbon::parse(Post::max('date_published')),
                 )
                 ->perMonth()
                 ->count(),
@@ -74,7 +74,7 @@ class PostChart extends ChartWidget
                 ->dateColumn('date_published')
                 ->between(
                     start: Carbon::parse(Post::min('date_published')),
-                    end: today(),
+                    end: Carbon::parse(Post::max('date_published')),
                 )
                 ->perMonth()
                 ->count(),

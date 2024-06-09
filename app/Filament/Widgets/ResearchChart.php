@@ -42,7 +42,7 @@ class ResearchChart extends ChartWidget
                 ->dateColumn('date_submitted')
                 ->between(
                     start: Carbon::parse(Research::min('date_submitted')),
-                    end: today(),
+                    end: Carbon::parse(Research::max('date_submitted')),
                 )
                 ->perMonth()
                 ->count(),
@@ -74,7 +74,7 @@ class ResearchChart extends ChartWidget
                 ->dateColumn('date_submitted')
                 ->between(
                     start: Carbon::parse(Research::min('date_submitted')),
-                    end: today(),
+                    end: Carbon::parse(Research::max('date_submitted')),
                 )
                 ->perMonth()
                 ->count(),
