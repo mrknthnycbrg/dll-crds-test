@@ -18,11 +18,9 @@
                 {!! $post->content !!}
             </div>
 
-            @if ($post->category)
-                <x-badge>
-                    {{ optional($post->category)->name }}
-                </x-badge>
-            @endif
+            <x-badge>
+                {{ $post->category->name }}
+            </x-badge>
         </div>
     </div>
 
@@ -46,7 +44,7 @@
                                 src="{{ asset('images/logo.png') }}" alt="{{ $otherPost->title }}">
                         @endif
                         <x-badge>
-                            {{ optional($otherPost->category)->name }}
+                            {{ $otherPost->category->name }}
                         </x-badge>
                         <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $otherPost->shortenedTitle() }}

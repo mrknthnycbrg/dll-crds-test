@@ -46,12 +46,9 @@
                             <img class="aspect-video w-full rounded-sm object-cover"
                                 src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
                         @endif
-
-                        @if ($post->category)
-                            <x-badge>
-                                {{ optional($post->category)->name }}
-                            </x-badge>
-                        @endif
+                        <x-badge>
+                            {{ $post->category->name }}
+                        </x-badge>
                         <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $post->shortenedTitle() }}
                         </h4>
@@ -90,12 +87,9 @@
                             <img class="aspect-video w-full rounded-sm object-cover"
                                 src="{{ asset('images/logo.png') }}" alt="{{ $post->title }}">
                         @endif
-
-                        @if ($post->category)
-                            <x-badge>
-                                {{ optional($post->category)->name }}
-                            </x-badge>
-                        @endif
+                        <x-badge>
+                            {{ $post->category->name }}
+                        </x-badge>
                         <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
                             {{ $post->shortenedTitle() }}
                         </h4>
