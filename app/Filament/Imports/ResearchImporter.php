@@ -18,18 +18,15 @@ class ResearchImporter extends Importer
             ImportColumn::make('title')
                 ->label('Title')
                 ->requiredMapping()
-                ->rules(['required', 'max:255']),
+                ->rules(['required']),
             ImportColumn::make('author')
-                ->label('Authors')
-                ->rules(['max:255']),
+                ->label('Authors'),
             ImportColumn::make('keyword')
-                ->label('Keywords')
-                ->rules(['max:255']),
+                ->label('Keywords'),
             ImportColumn::make('abstract')
                 ->label('Abstract'),
             ImportColumn::make('date_submitted')
-                ->label('Date Submitted')
-                ->rules(['date']),
+                ->label('Date Submitted'),
             ImportColumn::make('department')
                 ->label('Department')
                 ->relationship(resolveUsing: ['name', 'abbreviation']),
@@ -46,6 +43,7 @@ class ResearchImporter extends Importer
     {
         return Research::firstOrNew([
             'slug' => Str::slug($this->data['title']),
+            'published' => true,
         ]);
     }
 

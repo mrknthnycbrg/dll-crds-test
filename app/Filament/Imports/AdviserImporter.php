@@ -17,7 +17,7 @@ class AdviserImporter extends Importer
             ImportColumn::make('name')
                 ->label('Name')
                 ->requiredMapping()
-                ->rules(['required', 'max:255']),
+                ->rules(['required']),
         ];
     }
 
