@@ -19,10 +19,13 @@ class ManageYearSections extends ManageRecords
             Actions\ExportAction::make()
                 ->label('Export Sections')
                 ->exporter(YearSectionExporter::class)
+                ->chunkSize(25)
                 ->columnMapping(false),
             Actions\ImportAction::make()
                 ->label('Import Sections')
-                ->importer(YearSectionImporter::class),
+                ->importer(YearSectionImporter::class)
+                ->maxRows(100)
+                ->chunkSize(25),
             Actions\CreateAction::make()
                 ->label('Add Section')
                 ->successNotification(null)

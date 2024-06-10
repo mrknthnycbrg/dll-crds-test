@@ -18,10 +18,13 @@ class ListResearch extends ListRecords
             Actions\ExportAction::make()
                 ->label('Export Researches')
                 ->exporter(ResearchExporter::class)
+                ->chunkSize(25)
                 ->columnMapping(false),
             Actions\ImportAction::make()
                 ->label('Import Researches')
-                ->importer(ResearchImporter::class),
+                ->importer(ResearchImporter::class)
+                ->maxRows(100)
+                ->chunkSize(25),
             Actions\CreateAction::make()
                 ->label('Add Research'),
         ];

@@ -19,10 +19,13 @@ class ManageDepartments extends ManageRecords
             Actions\ExportAction::make()
                 ->label('Export Departments')
                 ->exporter(DepartmentExporter::class)
+                ->chunkSize(25)
                 ->columnMapping(false),
             Actions\ImportAction::make()
                 ->label('Import Departments')
-                ->importer(DepartmentImporter::class),
+                ->importer(DepartmentImporter::class)
+                ->maxRows(100)
+                ->chunkSize(25),
             Actions\CreateAction::make()
                 ->label('Add Department')
                 ->successNotification(null)

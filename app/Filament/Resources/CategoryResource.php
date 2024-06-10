@@ -157,7 +157,9 @@ class CategoryResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ])
             ->defaultSort('name', 'asc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->poll('60s')
+            ->deferLoading();
     }
 
     public static function getPages(): array

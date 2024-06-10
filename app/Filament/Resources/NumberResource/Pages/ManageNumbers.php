@@ -19,10 +19,12 @@ class ManageNumbers extends ManageRecords
             Actions\ExportAction::make()
                 ->label('Export Numbers')
                 ->exporter(NumberExporter::class)
+                ->chunkSize(25)
                 ->columnMapping(false),
             Actions\ImportAction::make()
                 ->label('Import Numbers')
-                ->importer(NumberImporter::class),
+                ->importer(NumberImporter::class)
+                ->chunkSize(25),
             Actions\CreateAction::make()
                 ->label('Add Number')
                 ->successNotification(null)

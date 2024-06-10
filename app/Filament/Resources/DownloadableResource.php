@@ -228,7 +228,9 @@ class DownloadableResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ])
             ->defaultSort('date_published', 'desc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->poll('60s')
+            ->deferLoading();
     }
 
     public static function getRelations(): array

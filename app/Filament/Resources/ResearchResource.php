@@ -400,7 +400,9 @@ class ResearchResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ])
             ->defaultSort('date_submitted', 'desc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->poll('60s')
+            ->deferLoading();
     }
 
     public static function getRelations(): array

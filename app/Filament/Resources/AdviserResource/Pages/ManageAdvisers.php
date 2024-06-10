@@ -19,10 +19,13 @@ class ManageAdvisers extends ManageRecords
             Actions\ExportAction::make()
                 ->label('Export Advisers')
                 ->exporter(AdviserExporter::class)
+                ->chunkSize(25)
                 ->columnMapping(false),
             Actions\ImportAction::make()
                 ->label('Import Advisers')
-                ->importer(AdviserImporter::class),
+                ->importer(AdviserImporter::class)
+                ->maxRows(100)
+                ->chunkSize(25),
             Actions\CreateAction::make()
                 ->label('Add Adviser')
                 ->successNotification(null)

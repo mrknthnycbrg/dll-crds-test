@@ -246,7 +246,9 @@ class NumberResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ])
             ->defaultSort('id_number', 'desc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->poll('60s')
+            ->deferLoading();
     }
 
     public static function getPages(): array

@@ -137,7 +137,9 @@ class ViewResource extends Resource
             ->bulkActions([])
             ->emptyStateActions([])
             ->defaultSort('date_viewed', 'desc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->poll('60s')
+            ->deferLoading();
     }
 
     public static function getPages(): array

@@ -211,7 +211,9 @@ class UserResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ])
             ->defaultSort('created_at', 'desc')
-            ->persistSortInSession();
+            ->persistSortInSession()
+            ->poll('60s')
+            ->deferLoading();
     }
 
     public static function getRelations(): array
