@@ -7,8 +7,7 @@
 
     <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
         <div class="aspect-auto w-full space-y-4 rounded-sm bg-gray-50 p-4 shadow-sm">
-            <div
-                class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-li:text-gray-900">
+            <div class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900">
                 <p>
                     The College Research and Development Services (CRDS) at Dalubhasaan ng Lungsod ng Lucena provides a
                     broad range of research support and resources for faculty, staff, and students under the leadership
@@ -44,8 +43,7 @@
 
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <div class="aspect-auto w-full space-y-4 rounded-sm bg-gray-50 p-4 shadow-sm">
-                <div
-                    class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-li:text-gray-900">
+                <div class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900">
                     <h3 class="text-2xl font-bold">
                         Mission
                     </h3>
@@ -57,8 +55,7 @@
                 </div>
             </div>
             <div class="aspect-auto w-full space-y-4 rounded-sm bg-gray-50 p-4 shadow-sm">
-                <div
-                    class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-li:text-gray-900">
+                <div class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900">
                     <h3 class="text-2xl font-bold">
                         Vision
                     </h3>
@@ -72,11 +69,11 @@
 
         <div class="aspect-auto w-full space-y-4 rounded-sm bg-gray-50 p-4 shadow-sm">
             <div
-                class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-li:text-gray-900">
+                class="prose max-w-none marker:text-gray-900 prose-headings:text-gray-950 prose-p:text-gray-900 prose-li:text-gray-900">
                 <h3 class="text-2xl font-bold">
                     Objectives
                 </h3>
-                <ul class="list-outside list-disc space-y-2 text-base font-normal text-gray-900 marker:text-gray-900">
+                <ul class="list-outside list-disc space-y-2 text-base font-normal">
                     <li>
                         Improve the research capacity of faculty members for local and international competitiveness.
                     </li>

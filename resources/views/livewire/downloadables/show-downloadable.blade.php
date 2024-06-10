@@ -9,7 +9,7 @@
             </p>
 
             <div
-                class="prose max-w-none prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-blockquote:text-gray-900 prose-pre:bg-gray-200 prose-pre:text-gray-900 prose-li:text-gray-900">
+                class="prose max-w-none marker:text-gray-900 prose-headings:text-gray-950 prose-p:text-gray-900 prose-a:text-gray-900 hover:prose-a:text-blue-800 prose-blockquote:text-gray-900 prose-pre:bg-gray-200 prose-pre:text-gray-900 prose-li:text-gray-900">
                 {!! $downloadable->description !!}
             </div>
 
