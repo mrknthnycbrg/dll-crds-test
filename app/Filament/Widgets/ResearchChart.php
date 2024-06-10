@@ -13,6 +13,8 @@ class ResearchChart extends ChartWidget
 {
     use HasWidgetShield;
 
+    protected static ?string $pollingInterval = '60s';
+
     protected static ?int $sort = 2;
 
     protected int|string|array $columnSpan = 3;

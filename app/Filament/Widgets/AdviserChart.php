@@ -10,6 +10,8 @@ class AdviserChart extends ChartWidget
 {
     use HasWidgetShield;
 
+    protected static ?string $pollingInterval = '60s';
+
     protected static ?int $sort = 5;
 
     protected int|string|array $columnSpan = 'full';

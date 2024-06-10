@@ -10,6 +10,8 @@ class DepartmentChart extends ChartWidget
 {
     use HasWidgetShield;
 
+    protected static ?string $pollingInterval = '60s';
+
     protected static ?int $sort = 4;
 
     protected int|string|array $columnSpan = 'full';

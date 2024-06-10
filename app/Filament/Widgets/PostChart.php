@@ -13,6 +13,8 @@ class PostChart extends ChartWidget
 {
     use HasWidgetShield;
 
+    protected static ?string $pollingInterval = '60s';
+
     protected static ?int $sort = 3;
 
     protected int|string|array $columnSpan = 3;
