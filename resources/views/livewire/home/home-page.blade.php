@@ -21,7 +21,7 @@
                     </svg>
 
                     <div class="relative z-10">
-                        <p class="text-2xl font-black italic leading-normal text-gray-50 lg:text-4xl">
+                        <p class="text-4xl font-black italic leading-normal text-gray-50">
                             Welcome to the official website of the Dalubhasaan ng Lungsod ng Lucena's College Research
                             and Development Services office. Here, you are not just researchers but pioneers in
                             innovation. Join us in redefining the possibilities of research and education.
@@ -36,10 +36,10 @@
                             </div>
 
                             <div class="ms-4 lg:ms-0">
-                                <div class="text-base font-semibold text-yellow-400 lg:text-xl">
+                                <div class="text-xl font-semibold text-yellow-400">
                                     Dr. Florian E. Manzanilla
                                 </div>
-                                <div class="text-sm font-medium text-gray-50 lg:text-lg">
+                                <div class="text-lg font-medium text-gray-50">
                                     Research Director
                                 </div>
                             </div>
