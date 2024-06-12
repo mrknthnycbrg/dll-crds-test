@@ -2,16 +2,14 @@
     <livewire:posts.latest-posts />
 
     <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:items-center lg:gap-16">
-            <div class="hidden lg:block">
-                <div class="relative">
-                    <img class="aspect-square rounded-sm object-cover" src="{{ asset('images/research-director.jpg') }}"
-                        alt="Research Director">
-                </div>
+        <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
+            <div class="relative">
+                <img class="mx-auto aspect-square w-full rounded-sm object-cover"
+                    src="{{ asset('images/research-director.jpg') }}" alt="Research Director">
             </div>
 
-            <div>
-                <blockquote class="relative">
+            <div class="relative">
+                <blockquote>
                     <svg class="size-20 absolute start-0 top-0 -translate-x-6 -translate-y-6 transform text-yellow-400 opacity-75"
                         aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -29,21 +27,12 @@
                     </div>
 
                     <div class="mt-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 lg:hidden">
-                                <img class="size-16 rounded-sm" src="{{ asset('images/research-director.jpg') }}"
-                                    alt="Research Director">
-                            </div>
-
-                            <div class="ms-4 lg:ms-0">
-                                <div class="text-xl font-semibold text-yellow-400">
-                                    Dr. Florian E. Manzanilla
-                                </div>
-                                <div class="text-lg font-medium text-gray-50">
-                                    Research Director
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-xl font-semibold text-yellow-400">
+                            Dr. Florian E. Manzanilla
+                        </p>
+                        <p class="text-lg font-medium text-gray-50">
+                            Research Director
+                        </p>
                     </div>
                 </blockquote>
             </div>
