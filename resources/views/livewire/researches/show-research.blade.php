@@ -13,6 +13,7 @@
                         </p>
                         <p class="text-base font-normal text-gray-900">
                             {{ optional($research->department)->name }}
+                            ({{ optional($research->department)->abbreviation }})
                         </p>
                     </div>
 
