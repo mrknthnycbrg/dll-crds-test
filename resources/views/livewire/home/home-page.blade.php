@@ -21,8 +21,8 @@
                     <div class="relative z-10">
                         <p class="text-4xl font-black italic leading-normal text-gray-50">
                             Welcome to the official website of the Dalubhasaan ng Lungsod ng Lucena's College Research
-                            and Development Services office. Here, you are not just researchers but pioneers in
-                            innovation. Join us in redefining the possibilities of research and education.
+                            and Development Services. Here, you are not just researchers but pioneers in innovation.
+                            Join us in redefining the possibilities of research and education.
                         </p>
                     </div>
 
