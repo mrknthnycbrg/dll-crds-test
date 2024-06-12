@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             YearSectionSeeder::class,
             // AdviserSeeder::class,
             CategorySeeder::class,
+            AuthorSeeder::class,
             // NumberSeeder::class,
             // ResearchSeeder::class,
             // PostSeeder::class,

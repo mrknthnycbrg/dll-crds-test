@@ -36,8 +36,9 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 'Research Management',
-                'Post Management',
+                'Content Management',
                 'User Management',
+                'View Management',
             ])
             ->colors([
                 'danger' => Color::hex('#dc2626'),
@@ -48,6 +49,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
+            ->spa()
             ->unsavedChangesAlerts()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

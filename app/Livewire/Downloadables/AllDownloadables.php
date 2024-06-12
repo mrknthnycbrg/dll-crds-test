@@ -42,8 +42,11 @@ class AllDownloadables extends Component
                 ->paginate(12);
         } else {
             $downloadables = Downloadable::search(trim($this->search))
-                ->where('published', true)
-                ->latest('date_published')
+                ->query(function ($query) {
+                    $query->leftJoin('authors', 'downloadables.author_id', '=', 'authors.id')
+                        ->where('published', true)
+                        ->latest('date_published');
+                })
                 ->paginate(12);
 
             return view('livewire.downloadables.all-downloadables', compact('downloadables'));

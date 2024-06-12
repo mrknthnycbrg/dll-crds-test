@@ -58,6 +58,7 @@ class CategoryPosts extends Component
             $posts = Post::search(trim($this->search))
                 ->query(function ($query) {
                     $query->leftJoin('categories', 'posts.category_id', '=', 'categories.id')
+                        ->leftJoin('authors', 'posts.author_id', '=', 'authors.id')
                         ->select(
                             'posts.*',
                             'categories.name as category_name',

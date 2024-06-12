@@ -2,10 +2,11 @@
     <div class="bg-gray-50">
         <div class="mx-auto max-w-7xl space-y-4 px-4 py-8 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-black text-gray-950">
-                {{ $downloadable->name }}
+                {{ $downloadable->title }}
             </h1>
             <p class="text-sm font-light text-gray-900">
-                {{ $downloadable->formattedDate() }}
+                By <span class="font-medium">{{ $downloadable->author->name }}</span>,
+                published on <span class="font-medium">{{ $downloadable->formattedDate() }}</span>
             </p>
 
             <div
@@ -44,7 +45,7 @@
                     <x-card href="{{ route('show-downloadable', ['slug' => $otherDownloadable->slug]) }}" wire:navigate
                         wire:key="{{ $otherDownloadable->id }}">
                         <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
-                            {{ $otherDownloadable->shortenedName() }}
+                            {{ $otherDownloadable->shortenedTitle() }}
                         </h4>
                         <p class="text-sm font-light text-gray-900">
                             {{ $otherDownloadable->shortenedDescription() }}

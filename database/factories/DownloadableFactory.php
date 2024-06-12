@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
 use App\Models\Downloadable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -26,14 +27,17 @@ class DownloadableFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->realText(50),
+            'title' => $this->faker->unique()->realText(50),
             'slug' => function (array $attributes) {
-                return Str::slug($attributes['name']);
+                return Str::slug($attributes['title']);
             },
             'file_path' => null,
             'description' => $this->faker->unique()->realText(500),
             'published' => true,
             'date_published' => $this->faker->dateTimeBetween('-4 years'),
+            'author_id' => function () {
+                return Author::inRandomOrder()->first()->id;
+            },
         ];
     }
 }

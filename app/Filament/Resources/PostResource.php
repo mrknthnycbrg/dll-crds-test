@@ -33,9 +33,9 @@ class PostResource extends Resource
 
     protected static ?string $navigationLabel = 'Posts';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 5;
 
-    protected static ?string $navigationGroup = 'Post Management';
+    protected static ?string $navigationGroup = 'Content Management';
 
     public static function form(Form $form): Form
     {
@@ -151,6 +151,40 @@ class PostResource extends Resource
                                                     ->unique(ignoreRecord: true),
                                             ]),
                                     ]),
+                                Forms\Components\Select::make('author_id')
+                                    ->label('Author')
+                                    ->placeholder('Select author')
+                                    ->relationship(
+                                        name: 'author',
+                                        titleAttribute: 'name'
+                                    )
+                                    ->searchable()
+                                    ->preload()
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
+                                            ]),
+                                    ]),
                             ]),
                     ])
                     ->columnSpan(1),
@@ -174,6 +208,11 @@ class PostResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('author.name')
+                    ->label('Author')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -241,6 +280,12 @@ class PostResource extends Resource
                 Tables\Filters\SelectFilter::make('category')
                     ->label('Category')
                     ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
+                Tables\Filters\SelectFilter::make('author')
+                    ->label('Author')
+                    ->relationship('author', 'name')
                     ->searchable()
                     ->preload()
                     ->native(false),

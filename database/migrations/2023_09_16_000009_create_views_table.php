@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('views', function (Blueprint $table) {
             $table->id();
+            $table->string('user');
+            $table->string('type');
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('image_path')->nullable();
-            $table->longText('content');
-            $table->foreignId('category_id')->nullable()->constrained()->restrictOnDelete();
-            $table->boolean('published')->default(true);
-            $table->date('date_published');
+            $table->timestamp('date_viewed');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('views');
     }
 };

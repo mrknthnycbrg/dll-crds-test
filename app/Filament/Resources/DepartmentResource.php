@@ -34,8 +34,6 @@ class DepartmentResource extends Resource
 
     protected static ?string $navigationGroup = 'Research Management';
 
-    protected static ?string $navigationParentItem = 'Researches';
-
     public static function form(Form $form): Form
     {
         return $form

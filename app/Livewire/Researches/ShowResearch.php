@@ -35,8 +35,9 @@ class ShowResearch extends Component
         $this->redirectRoute('research-file', ['slug' => $this->research->slug]);
 
         View::create([
-            'user_email' => Auth::user()->email,
-            'research_title' => $this->research->title,
+            'user' => Auth::user()->email,
+            'type' => 'Research',
+            'title' => $this->research->title,
             'date_viewed' => now(),
         ]);
     }

@@ -37,6 +37,8 @@ class ResearchFactory extends Factory
             'keyword' => $this->faker->words(3, true),
             'file_path' => null,
             'abstract' => $this->faker->unique()->realText(2000),
+            'published' => true,
+            'date_submitted' => $this->faker->dateTimeBetween('-4 years'),
             'department_id' => function () {
                 return Department::inRandomOrder()->first()->id;
             },
@@ -46,8 +48,6 @@ class ResearchFactory extends Factory
             'adviser_id' => function () {
                 return Adviser::inRandomOrder()->first()->id;
             },
-            'published' => true,
-            'date_submitted' => $this->faker->dateTimeBetween('-4 years'),
         ];
     }
 }

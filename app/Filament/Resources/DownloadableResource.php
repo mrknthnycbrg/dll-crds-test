@@ -33,9 +33,9 @@ class DownloadableResource extends Resource
 
     protected static ?string $navigationLabel = 'Downloadables';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 6;
 
-    protected static ?string $navigationGroup = 'Post Management';
+    protected static ?string $navigationGroup = 'Content Management';
 
     public static function form(Form $form): Form
     {
@@ -45,9 +45,9 @@ class DownloadableResource extends Resource
                     ->schema([
                         Section::make()
                             ->schema([
-                                Forms\Components\TextInput::make('name')
-                                    ->label('Name')
-                                    ->placeholder('Enter name')
+                                Forms\Components\TextInput::make('title')
+                                    ->label('Title')
+                                    ->placeholder('Enter title')
                                     ->maxLength(255)
                                     ->required()
                                     ->live(onBlur: true)
@@ -60,8 +60,8 @@ class DownloadableResource extends Resource
                                     ->unique(ignoreRecord: true),
                                 Forms\Components\RichEditor::make('description')
                                     ->label('Description')
-                                    ->required()
                                     ->placeholder('Enter description')
+                                    ->required()
                                     ->disableToolbarButtons([
                                         'attachFiles',
                                     ])
@@ -97,6 +97,40 @@ class DownloadableResource extends Resource
                                     ->format('Y-m-d')
                                     ->native(false)
                                     ->closeOnDateSelection(),
+                                Forms\Components\Select::make('author_id')
+                                    ->label('Author')
+                                    ->placeholder('Select author')
+                                    ->relationship(
+                                        name: 'author',
+                                        titleAttribute: 'name'
+                                    )
+                                    ->searchable()
+                                    ->preload()
+                                    ->native(false)
+                                    ->createOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
+                                            ]),
+                                    ])
+                                    ->editOptionForm([
+                                        Section::make()
+                                            ->schema([
+                                                Forms\Components\TextInput::make('name')
+                                                    ->label('Name')
+                                                    ->placeholder('Enter name')
+                                                    ->maxLength(255)
+                                                    ->required()
+                                                    ->unique(ignoreRecord: true)
+                                                    ->autofocus(),
+                                            ]),
+                                    ]),
                             ]),
                     ])
                     ->columnSpan(1),
@@ -110,19 +144,24 @@ class DownloadableResource extends Resource
             ->columns([
                 Tables\Columns\ToggleColumn::make('published')
                     ->label('Published'),
-                Tables\Columns\TextColumn::make('name')
-                    ->label('Name')
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Title')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('date_published')
+                    ->label('Date Published')
+                    ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('author.name')
+                    ->label('Author')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('date_published')
-                    ->label('Date Published')
-                    ->date()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()
@@ -179,6 +218,12 @@ class DownloadableResource extends Resource
 
                         return $indicators;
                     }),
+                Tables\Filters\SelectFilter::make('author')
+                    ->label('Author')
+                    ->relationship('author', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Published')
                     ->placeholder('All downloadables')

@@ -4,9 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ViewResource\Pages;
 use App\Models\View;
-use Filament\Forms;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -28,57 +25,29 @@ class ViewResource extends Resource
 
     protected static ?string $navigationLabel = 'Views';
 
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 12;
 
-    protected static ?string $navigationGroup = 'Research Management';
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\Group::make()
-                    ->schema([
-                        Section::make()
-                            ->schema([
-                                Forms\Components\TextInput::make('user_email')
-                                    ->label('Email')
-                                    ->placeholder('Enter email')
-                                    ->email()
-                                    ->maxLength(255)
-                                    ->required()
-                                    ->autofocus(),
-                                Forms\Components\TextInput::make('research_title')
-                                    ->label('Title')
-                                    ->placeholder('Enter title')
-                                    ->maxLength(255)
-                                    ->required(),
-                                Forms\Components\DateTimePicker::make('date_viewed')
-                                    ->label('Date Viewed')
-                                    ->default(now())
-                                    ->maxDate(now())
-                                    ->native(false)
-                                    ->closeOnDateSelection(),
-                            ]),
-                    ])
-                    ->columnSpanFull(),
-            ]);
-    }
+    protected static ?string $navigationGroup = 'View Management';
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_email')
-                    ->label('User')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('research_title')
-                    ->label('Research')
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('date_viewed')
                     ->label('Date Viewed')
                     ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user')
+                    ->label('User')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Type')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Title')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
@@ -102,7 +71,6 @@ class ViewResource extends Resource
                     ->native(false),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make()
                     ->successNotification(null)
                     ->after(function () {

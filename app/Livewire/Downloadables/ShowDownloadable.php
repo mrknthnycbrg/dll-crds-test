@@ -3,6 +3,8 @@
 namespace App\Livewire\Downloadables;
 
 use App\Models\Downloadable;
+use App\Models\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ShowDownloadable extends Component
@@ -23,11 +25,18 @@ class ShowDownloadable extends Component
             ->get();
 
         return view('livewire.downloadables.show-downloadable', compact('otherDownloadables'))
-            ->title($this->downloadable->name.' - DLL-CRDS');
+            ->title($this->downloadable->title.' - DLL-CRDS');
     }
 
     public function file()
     {
         $this->redirectRoute('downloadable-file', ['slug' => $this->downloadable->slug]);
+
+        View::create([
+            'user' => Auth::user()->email,
+            'type' => 'Downloadable',
+            'title' => $this->downloadable->title,
+            'date_viewed' => now(),
+        ]);
     }
 }

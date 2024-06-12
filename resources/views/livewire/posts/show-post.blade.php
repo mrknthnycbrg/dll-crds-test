@@ -5,7 +5,8 @@
                 {{ $post->title }}
             </h1>
             <p class="text-sm font-light text-gray-900">
-                {{ $post->formattedDate() }}
+                By <span class="font-medium">{{ $post->author->name }}</span>,
+                published on <span class="font-medium">{{ $post->formattedDate() }}</span>
             </p>
 
             @if ($post->image_path)

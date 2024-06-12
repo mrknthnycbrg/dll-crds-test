@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AdviserResource\Pages;
-use App\Models\Adviser;
+use App\Filament\Resources\AuthorResource\Pages;
+use App\Models\Author;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -14,23 +14,23 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AdviserResource extends Resource
+class AuthorResource extends Resource
 {
-    protected static ?string $model = Adviser::class;
+    protected static ?string $model = Author::class;
 
-    protected static ?string $slug = 'advisers';
+    protected static ?string $slug = 'authors';
 
-    protected static ?string $modelLabel = 'adviser';
+    protected static ?string $modelLabel = 'author';
 
-    protected static ?string $pluralModelLabel = 'advisers';
+    protected static ?string $pluralModelLabel = 'authors';
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationIcon = 'heroicon-o-pencil';
 
-    protected static ?string $navigationLabel = 'Advisers';
+    protected static ?string $navigationLabel = 'Authors';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 8;
 
-    protected static ?string $navigationGroup = 'Research Management';
+    protected static ?string $navigationGroup = 'Content Management';
 
     public static function form(Form $form): Form
     {
@@ -88,8 +88,8 @@ class AdviserResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Adviser updated')
-                            ->body('An adviser has been updated successfully.')
+                            ->title('Author updated')
+                            ->body('An author has been updated successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -98,17 +98,17 @@ class AdviserResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Adviser deleted')
-                            ->body('An adviser has been deleted successfully.')
+                            ->title('Author deleted')
+                            ->body('An author has been deleted successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
-                    ->before(function (Tables\Actions\DeleteAction $action, Adviser $record) {
-                        if ($record->researches()->exists()) {
+                    ->before(function (Tables\Actions\DeleteAction $action, Author $record) {
+                        if ($record->posts()->exists() || $record->downloadables()->exists()) {
                             Notification::make()
-                                ->title('Adviser not deleted')
-                                ->body('An adviser is not allowed to be deleted.')
+                                ->title('Author not deleted')
+                                ->body('An author is not allowed to be deleted.')
                                 ->danger()
                                 ->send()
                                 ->sendToDatabase(auth()->user());
@@ -120,8 +120,8 @@ class AdviserResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Adviser force deleted')
-                            ->body('An adviser has been force deleted successfully.')
+                            ->title('Author force deleted')
+                            ->body('An author has been force deleted successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -130,8 +130,8 @@ class AdviserResource extends Resource
                     ->successNotification(null)
                     ->after(function () {
                         Notification::make()
-                            ->title('Adviser restored')
-                            ->body('An adviser has been restored successfully.')
+                            ->title('Author restored')
+                            ->body('An author has been restored successfully.')
                             ->success()
                             ->send()
                             ->sendToDatabase(auth()->user());
@@ -150,7 +150,7 @@ class AdviserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageAdvisers::route('/'),
+            'index' => Pages\ManageAuthors::route('/'),
         ];
     }
 

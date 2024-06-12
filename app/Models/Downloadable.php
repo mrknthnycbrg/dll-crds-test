@@ -6,6 +6,7 @@ use App\Observers\DownloadableObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -31,12 +32,13 @@ class Downloadable extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'title',
         'slug',
         'file_path',
         'description',
         'published',
         'date_published',
+        'author_id',
     ];
 
     /**
@@ -52,17 +54,23 @@ class Downloadable extends Model
         ];
     }
 
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
+    }
+
     public function toSearchableArray()
     {
         return [
-            'name' => '',
+            'title' => '',
             'description' => '',
+            'authors.name' => '',
         ];
     }
 
-    public function shortenedName()
+    public function shortenedTitle()
     {
-        return Str::of($this->name)->words(10);
+        return Str::of($this->title)->words(10);
     }
 
     public function shortenedDescription()

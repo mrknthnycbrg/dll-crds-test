@@ -40,6 +40,7 @@ class Post extends Model
         'published',
         'date_published',
         'category_id',
+        'author_id',
     ];
 
     /**
@@ -60,12 +61,18 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
+    }
+
     public function toSearchableArray()
     {
         return [
             'title' => '',
             'content' => '',
             'categories.name' => '',
+            'authors.name' => '',
         ];
     }
 

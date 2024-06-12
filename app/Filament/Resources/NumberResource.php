@@ -34,8 +34,6 @@ class NumberResource extends Resource
 
     protected static ?string $navigationGroup = 'User Management';
 
-    protected static ?string $navigationParentItem = 'Users';
-
     public static function form(Form $form): Form
     {
         return $form

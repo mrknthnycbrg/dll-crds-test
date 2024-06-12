@@ -34,7 +34,7 @@
                     <x-card href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
                         wire:key="{{ $downloadable->id }}">
                         <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
-                            {{ $downloadable->shortenedName() }}
+                            {{ $downloadable->shortenedTitle() }}
                         </h4>
                         <p class="text-sm font-light text-gray-900">
                             {{ $downloadable->shortenedDescription() }}
@@ -65,7 +65,7 @@
                     <x-card href="{{ route('show-downloadable', ['slug' => $downloadable->slug]) }}" wire:navigate
                         wire:key="{{ $downloadable->id }}">
                         <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
-                            {{ $downloadable->shortenedName() }}
+                            {{ $downloadable->shortenedTitle() }}
                         </h4>
                         <p class="text-sm font-light text-gray-900">
                             {{ $downloadable->shortenedDescription() }}

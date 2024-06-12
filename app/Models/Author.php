@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class View extends Model
+class Author extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -16,7 +17,7 @@ class View extends Model
      *
      * @var string
      */
-    protected $table = 'views';
+    protected $table = 'authors';
 
     /**
      * The attributes that are mass assignable.
@@ -24,9 +25,16 @@ class View extends Model
      * @var array
      */
     protected $fillable = [
-        'user',
-        'type',
-        'title',
-        'date_viewed',
+        'name',
     ];
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function downloadables(): HasMany
+    {
+        return $this->hasMany(Downloadable::class);
+    }
 }
