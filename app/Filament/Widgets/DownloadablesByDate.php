@@ -2,26 +2,26 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Research;
+use App\Models\Downloadable;
 use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 use Illuminate\Support\Carbon;
 
-class ResearchChart extends ChartWidget
+class DownloadablesByDate extends ChartWidget
 {
     use HasWidgetShield;
 
     protected static ?string $pollingInterval = '60s';
 
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 8;
 
-    protected int|string|array $columnSpan = 3;
+    protected int|string|array $columnSpan = 'full';
 
-    protected static ?string $maxHeight = '300px';
+    protected static ?string $maxHeight = '50vh';
 
-    protected static ?string $heading = 'Researches by Date';
+    protected static ?string $heading = 'Downloadables by Date';
 
     public ?string $filter = 'all';
 
@@ -40,43 +40,43 @@ class ResearchChart extends ChartWidget
         $activeFilter = $this->filter;
 
         $data = match ($activeFilter) {
-            'all' => Trend::model(Research::class)
-                ->dateColumn('date_submitted')
+            'all' => Trend::model(Downloadable::class)
+                ->dateColumn('date_published')
                 ->between(
-                    start: Carbon::parse(Research::min('date_submitted')),
-                    end: Carbon::parse(Research::max('date_submitted')),
+                    start: Carbon::parse(Downloadable::min('date_published')),
+                    end: Carbon::parse(Downloadable::max('date_published')),
                 )
                 ->perMonth()
                 ->count(),
-            'year' => Trend::model(Research::class)
-                ->dateColumn('date_submitted')
+            'year' => Trend::model(Downloadable::class)
+                ->dateColumn('date_published')
                 ->between(
                     start: today()->startOfYear(),
                     end: today()->endOfYear(),
                 )
                 ->perMonth()
                 ->count(),
-            'month' => Trend::model(Research::class)
-                ->dateColumn('date_submitted')
+            'month' => Trend::model(Downloadable::class)
+                ->dateColumn('date_published')
                 ->between(
                     start: today()->startOfMonth(),
                     end: today()->endOfMonth(),
                 )
                 ->perDay()
                 ->count(),
-            'week' => Trend::model(Research::class)
-                ->dateColumn('date_submitted')
+            'week' => Trend::model(Downloadable::class)
+                ->dateColumn('date_published')
                 ->between(
                     start: today()->startOfWeek(0),
                     end: today()->endOfWeek(6),
                 )
                 ->perDay()
                 ->count(),
-            default => Trend::model(Research::class)
-                ->dateColumn('date_submitted')
+            default => Trend::model(Downloadable::class)
+                ->dateColumn('date_published')
                 ->between(
-                    start: Carbon::parse(Research::min('date_submitted')),
-                    end: Carbon::parse(Research::max('date_submitted')),
+                    start: Carbon::parse(Downloadable::min('date_published')),
+                    end: Carbon::parse(Downloadable::max('date_published')),
                 )
                 ->perMonth()
                 ->count(),
@@ -85,7 +85,7 @@ class ResearchChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Researches',
+                    'label' => 'Downloadables',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                     'backgroundColor' => '#1e40af',
                     'borderColor' => '#e5e7eb',

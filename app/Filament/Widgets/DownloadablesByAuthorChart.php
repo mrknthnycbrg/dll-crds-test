@@ -2,33 +2,33 @@
 
 namespace App\Filament\Widgets;
 
-use App\Models\Department;
+use App\Models\Author;
 use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Filament\Widgets\ChartWidget;
 
-class DepartmentChart extends ChartWidget
+class DownloadablesByAuthorChart extends ChartWidget
 {
     use HasWidgetShield;
 
     protected static ?string $pollingInterval = '60s';
 
-    protected static ?int $sort = 4;
+    protected static ?int $sort = 9;
 
     protected int|string|array $columnSpan = 'full';
 
-    protected static ?string $maxHeight = '300px';
+    protected static ?string $maxHeight = '50vh';
 
-    protected static ?string $heading = 'Researches by Department';
+    protected static ?string $heading = 'Downloadables by Author';
 
     protected function getData(): array
     {
-        $data = Department::withCount('researches')->get();
+        $data = Author::withCount('downloadables')->get();
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Departments',
-                    'data' => $data->pluck('researches_count')->toArray(),
+                    'label' => 'Authors',
+                    'data' => $data->pluck('downloadables_count')->toArray(),
                     'backgroundColor' => ['#1e40af', '#3730a3', '#2563eb', '#4f46e5', '#60a5fa', '#818cf8', '#1d4ed8', '#4338ca', '#3b82f6', '#6366f1'],
                     'borderColor' => '#e5e7eb',
                     'animation' => [
