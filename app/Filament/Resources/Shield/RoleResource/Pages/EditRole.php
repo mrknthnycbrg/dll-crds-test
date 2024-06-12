@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Shield\RoleResource\Pages;
 use App\Filament\Resources\Shield\RoleResource;
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -20,6 +21,15 @@ class EditRole extends EditRecord
         return [
             Actions\ViewAction::make(),
         ];
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->title('Role updated')
+            ->body('A role has been updated successfully.')
+            ->success()
+            ->sendToDatabase(auth()->user());
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
