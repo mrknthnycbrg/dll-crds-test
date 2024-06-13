@@ -111,40 +111,42 @@
     </div>
 
     @if ($research->department)
-        <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-            <div class="py-8 text-center">
-                <h1 class="text-4xl font-black text-blue-800 underline decoration-yellow-400 underline-offset-8">
-                    Other Researches
-                </h1>
-            </div>
+        @if ($otherResearches->count() > 1)
+            <div class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+                <div class="py-8 text-center">
+                    <h1 class="text-4xl font-black text-blue-800 underline decoration-yellow-400 underline-offset-8">
+                        Other Researches
+                    </h1>
+                </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
-                @foreach ($otherResearches as $otherResearch)
-                    <x-card href="{{ route('show-research', ['slug' => $otherResearch->slug]) }}" wire:navigate
-                        wire:key="{{ $otherResearch->id }}">
-                        <x-badge>
-                            {{ optional($otherResearch->department)->name }}
-                        </x-badge>
-                        <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
-                            {{ $otherResearch->shortenedTitle() }}
-                        </h4>
-                        <p class="text-sm font-light text-gray-900">
-                            {{ $otherResearch->shortenedAbstract() }}
-                        </p>
-                        <p class="text-xs font-extralight text-gray-900">
-                            {{ $otherResearch->formattedDate() }}
-                        </p>
-                    </x-card>
-                @endforeach
-            </div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+                    @foreach ($otherResearches as $otherResearch)
+                        <x-card href="{{ route('show-research', ['slug' => $otherResearch->slug]) }}" wire:navigate
+                            wire:key="{{ $otherResearch->id }}">
+                            <x-badge>
+                                {{ optional($otherResearch->department)->name }}
+                            </x-badge>
+                            <h4 class="text-xl font-semibold text-gray-950 group-hover:text-blue-800">
+                                {{ $otherResearch->shortenedTitle() }}
+                            </h4>
+                            <p class="text-sm font-light text-gray-900">
+                                {{ $otherResearch->shortenedAbstract() }}
+                            </p>
+                            <p class="text-xs font-extralight text-gray-900">
+                                {{ $otherResearch->formattedDate() }}
+                            </p>
+                        </x-card>
+                    @endforeach
+                </div>
 
-            <div class="pt-8 text-center">
-                <x-button type="button"
-                    href="{{ route('department-researches', ['slug' => $otherResearch->department->slug]) }}"
-                    wire:navigate>
-                    View all other researches
-                </x-button>
+                <div class="pt-8 text-center">
+                    <x-button type="button"
+                        href="{{ route('department-researches', ['slug' => $otherResearch->department->slug]) }}"
+                        wire:navigate>
+                        View all other researches
+                    </x-button>
+                </div>
             </div>
-        </div>
+        @endif
     @endif
 </div>
