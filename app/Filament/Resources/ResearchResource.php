@@ -119,7 +119,7 @@ class ResearchResource extends Resource
                                         name: 'department',
                                         titleAttribute: 'name'
                                     )
-                                    ->searchable()
+                                    ->searchable(['name', 'abbreviation'])
                                     ->preload()
                                     ->native(false)
                                     ->createOptionForm([

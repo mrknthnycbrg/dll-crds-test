@@ -100,6 +100,7 @@ class DownloadableResource extends Resource
                                 Forms\Components\Select::make('author_id')
                                     ->label('Author')
                                     ->placeholder('Select author')
+                                    ->required()
                                     ->relationship(
                                         name: 'author',
                                         titleAttribute: 'name'
