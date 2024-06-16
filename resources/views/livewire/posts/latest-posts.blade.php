@@ -1,6 +1,6 @@
 <div class="relative" data-hs-carousel='{"loadingClasses": "opacity-0","isAutoPlay": true}'>
     @if ($latestPosts->isNotEmpty())
-        <div class="hs-carousel relative min-h-[50vh] w-full overflow-hidden bg-gray-50 lg:min-h-[75vh]">
+        <div class="hs-carousel relative min-h-[75vh] w-full overflow-hidden bg-gray-50">
             <div
                 class="hs-carousel-body absolute bottom-0 start-0 top-0 flex flex-nowrap opacity-0 transition-transform duration-700">
                 @foreach ($latestPosts as $latestPost)
