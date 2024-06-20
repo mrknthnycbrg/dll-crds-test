@@ -6,6 +6,7 @@ use App\Filament\Exports\DepartmentExporter;
 use App\Filament\Imports\DepartmentImporter;
 use App\Filament\Resources\DepartmentResource;
 use Filament\Actions;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ManageRecords;
 
@@ -34,6 +35,11 @@ class ManageDepartments extends ManageRecords
                         ->title('Department added')
                         ->body('A department has been added successfully.')
                         ->success()
+                        ->actions([
+                            Action::make('view')
+                                ->label('Go to Departments')
+                                ->url(fn (): string => route('filament.admin.resources.departments.index')),
+                        ])
                         ->send()
                         ->sendToDatabase(auth()->user());
                 }),

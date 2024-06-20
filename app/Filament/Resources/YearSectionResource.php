@@ -7,6 +7,7 @@ use App\Models\YearSection;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -91,6 +92,11 @@ class YearSectionResource extends Resource
                             ->title('Section updated')
                             ->body('A section has been updated successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Sections')
+                                    ->url(fn (): string => route('filament.admin.resources.sections.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -101,6 +107,11 @@ class YearSectionResource extends Resource
                             ->title('Section deleted')
                             ->body('A section has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Sections')
+                                    ->url(fn (): string => route('filament.admin.resources.sections.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
@@ -110,6 +121,11 @@ class YearSectionResource extends Resource
                                 ->title('Section not deleted')
                                 ->body('A section is not allowed to be deleted.')
                                 ->danger()
+                                ->actions([
+                                    Action::make('view')
+                                        ->label('Go to Sections')
+                                        ->url(fn (): string => route('filament.admin.resources.sections.index')),
+                                ])
                                 ->send()
                                 ->sendToDatabase(auth()->user());
 
@@ -123,6 +139,11 @@ class YearSectionResource extends Resource
                             ->title('Section force deleted')
                             ->body('A section has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Sections')
+                                    ->url(fn (): string => route('filament.admin.resources.sections.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -133,6 +154,11 @@ class YearSectionResource extends Resource
                             ->title('Section restored')
                             ->body('A section has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Sections')
+                                    ->url(fn (): string => route('filament.admin.resources.sections.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

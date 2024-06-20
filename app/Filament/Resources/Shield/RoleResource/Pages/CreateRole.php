@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Shield\RoleResource\Pages;
 
 use App\Filament\Resources\Shield\RoleResource;
 use BezhanSalleh\FilamentShield\Support\Utils;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Arr;
@@ -26,6 +27,11 @@ class CreateRole extends CreateRecord
             ->title('Role added')
             ->body('A role has been added successfully.')
             ->success()
+            ->actions([
+                Action::make('view')
+                    ->label('View Role')
+                    ->url(fn (): string => route('filament.admin.resources.roles.view', ['record' => $this->record])),
+            ])
             ->sendToDatabase(auth()->user());
     }
 

@@ -9,6 +9,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -371,6 +372,11 @@ class ResearchResource extends Resource
                             ->title('Research deleted')
                             ->body('A research has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Researches')
+                                    ->url(fn (): string => route('filament.admin.resources.researches.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -381,6 +387,11 @@ class ResearchResource extends Resource
                             ->title('Research force deleted')
                             ->body('A research has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Researches')
+                                    ->url(fn (): string => route('filament.admin.resources.researches.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -391,6 +402,11 @@ class ResearchResource extends Resource
                             ->title('Research restored')
                             ->body('A research has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Researches')
+                                    ->url(fn (): string => route('filament.admin.resources.researches.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

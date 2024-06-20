@@ -9,6 +9,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -245,6 +246,11 @@ class DownloadableResource extends Resource
                             ->title('Downloadable deleted')
                             ->body('A downloadable has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Downloadables')
+                                    ->url(fn (): string => route('filament.admin.resources.downloadables.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -255,6 +261,11 @@ class DownloadableResource extends Resource
                             ->title('Downloadable force deleted')
                             ->body('A downloadable has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Downloadables')
+                                    ->url(fn (): string => route('filament.admin.resources.downloadables.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -265,6 +276,11 @@ class DownloadableResource extends Resource
                             ->title('Downloadable restored')
                             ->body('A downloadable has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Downloadables')
+                                    ->url(fn (): string => route('filament.admin.resources.downloadables.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

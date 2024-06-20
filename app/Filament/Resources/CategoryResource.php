@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -104,6 +105,11 @@ class CategoryResource extends Resource
                             ->title('Category updated')
                             ->body('A category has been updated successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Categories')
+                                    ->url(fn (): string => route('filament.admin.resources.categories.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -114,6 +120,11 @@ class CategoryResource extends Resource
                             ->title('Category deleted')
                             ->body('A category has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Categories')
+                                    ->url(fn (): string => route('filament.admin.resources.categories.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
@@ -123,6 +134,11 @@ class CategoryResource extends Resource
                                 ->title('Category not deleted')
                                 ->body('A category is not allowed to be deleted.')
                                 ->danger()
+                                ->actions([
+                                    Action::make('view')
+                                        ->label('Go to Categories')
+                                        ->url(fn (): string => route('filament.admin.resources.categories.index')),
+                                ])
                                 ->send()
                                 ->sendToDatabase(auth()->user());
 
@@ -136,6 +152,11 @@ class CategoryResource extends Resource
                             ->title('Category force deleted')
                             ->body('A category has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Categories')
+                                    ->url(fn (): string => route('filament.admin.resources.categories.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -146,6 +167,11 @@ class CategoryResource extends Resource
                             ->title('Category restored')
                             ->body('A category has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Categories')
+                                    ->url(fn (): string => route('filament.admin.resources.categories.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

@@ -7,6 +7,7 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -170,6 +171,11 @@ class UserResource extends Resource
                             ->title('User deleted')
                             ->body('A user has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Users')
+                                    ->url(fn (): string => route('filament.admin.resources.users.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
@@ -179,6 +185,11 @@ class UserResource extends Resource
                                 ->title('User not deleted')
                                 ->body('A user is not allowed to be deleted.')
                                 ->danger()
+                                ->actions([
+                                    Action::make('view')
+                                        ->label('Go to Users')
+                                        ->url(fn (): string => route('filament.admin.resources.users.index')),
+                                ])
                                 ->send()
                                 ->sendToDatabase(auth()->user());
 
@@ -192,6 +203,11 @@ class UserResource extends Resource
                             ->title('User force deleted')
                             ->body('A user has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Users')
+                                    ->url(fn (): string => route('filament.admin.resources.users.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -202,6 +218,11 @@ class UserResource extends Resource
                             ->title('User restored')
                             ->body('A user has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Users')
+                                    ->url(fn (): string => route('filament.admin.resources.users.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

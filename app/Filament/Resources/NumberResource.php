@@ -7,6 +7,7 @@ use App\Models\Number;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -193,6 +194,11 @@ class NumberResource extends Resource
                             ->title('Number updated')
                             ->body('A number has been updated successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Numbers')
+                                    ->url(fn (): string => route('filament.admin.resources.numbers.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -203,6 +209,11 @@ class NumberResource extends Resource
                             ->title('Number deleted')
                             ->body('A number has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Numbers')
+                                    ->url(fn (): string => route('filament.admin.resources.numbers.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
@@ -212,6 +223,11 @@ class NumberResource extends Resource
                                 ->title('Number not deleted')
                                 ->body('A number is not allowed to be deleted.')
                                 ->danger()
+                                ->actions([
+                                    Action::make('view')
+                                        ->label('Go to Numbers')
+                                        ->url(fn (): string => route('filament.admin.resources.numbers.index')),
+                                ])
                                 ->send()
                                 ->sendToDatabase(auth()->user());
 
@@ -225,6 +241,11 @@ class NumberResource extends Resource
                             ->title('Number force deleted')
                             ->body('A number has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Numbers')
+                                    ->url(fn (): string => route('filament.admin.resources.numbers.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -235,6 +256,11 @@ class NumberResource extends Resource
                             ->title('Number restored')
                             ->body('A number has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Numbers')
+                                    ->url(fn (): string => route('filament.admin.resources.numbers.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

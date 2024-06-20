@@ -7,6 +7,7 @@ use App\Models\Author;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -91,6 +92,11 @@ class AuthorResource extends Resource
                             ->title('Author updated')
                             ->body('An author has been updated successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Authors')
+                                    ->url(fn (): string => route('filament.admin.resources.authors.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -101,6 +107,11 @@ class AuthorResource extends Resource
                             ->title('Author deleted')
                             ->body('An author has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Authors')
+                                    ->url(fn (): string => route('filament.admin.resources.authors.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
@@ -110,6 +121,11 @@ class AuthorResource extends Resource
                                 ->title('Author not deleted')
                                 ->body('An author is not allowed to be deleted.')
                                 ->danger()
+                                ->actions([
+                                    Action::make('view')
+                                        ->label('Go to Authors')
+                                        ->url(fn (): string => route('filament.admin.resources.authors.index')),
+                                ])
                                 ->send()
                                 ->sendToDatabase(auth()->user());
 
@@ -123,6 +139,11 @@ class AuthorResource extends Resource
                             ->title('Author force deleted')
                             ->body('An author has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Authors')
+                                    ->url(fn (): string => route('filament.admin.resources.authors.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -133,6 +154,11 @@ class AuthorResource extends Resource
                             ->title('Author restored')
                             ->body('An author has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Authors')
+                                    ->url(fn (): string => route('filament.admin.resources.authors.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),

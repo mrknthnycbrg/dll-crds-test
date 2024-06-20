@@ -11,6 +11,7 @@ use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Forms;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Form;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -121,6 +122,11 @@ class RoleResource extends Resource implements HasShieldPermissions
                             ->title('Role deleted')
                             ->body('A role has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Roles')
+                                    ->url(fn (): string => route('filament.admin.resources.roles.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     })
@@ -132,6 +138,11 @@ class RoleResource extends Resource implements HasShieldPermissions
                                 ->title('Role not deleted')
                                 ->body('A role is not allowed to be deleted.')
                                 ->danger()
+                                ->actions([
+                                    Action::make('view')
+                                        ->label('Go to Roles')
+                                        ->url(fn (): string => route('filament.admin.resources.roles.index')),
+                                ])
                                 ->send()
                                 ->sendToDatabase(auth()->user());
 

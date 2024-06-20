@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ViewResource\Pages;
 use App\Models\View;
+use Filament\Notifications\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -78,6 +79,11 @@ class ViewResource extends Resource
                             ->title('View deleted')
                             ->body('A view has been deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Views')
+                                    ->url(fn (): string => route('filament.admin.resources.views.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -88,6 +94,11 @@ class ViewResource extends Resource
                             ->title('View force deleted')
                             ->body('A view has been force deleted successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Views')
+                                    ->url(fn (): string => route('filament.admin.resources.views.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
@@ -98,6 +109,11 @@ class ViewResource extends Resource
                             ->title('View restored')
                             ->body('A view has been restored successfully.')
                             ->success()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Go to Views')
+                                    ->url(fn (): string => route('filament.admin.resources.views.index')),
+                            ])
                             ->send()
                             ->sendToDatabase(auth()->user());
                     }),
