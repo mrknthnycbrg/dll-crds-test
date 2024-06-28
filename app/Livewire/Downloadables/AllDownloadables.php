@@ -39,7 +39,7 @@ class AllDownloadables extends Component
                     $query->whereYear('date_published', $this->selectedYear);
                 })
                 ->latest('date_published')
-                ->paginate(12);
+                ->paginate(6);
         } else {
             $downloadables = Downloadable::search(trim($this->search))
                 ->query(function ($query) {
@@ -47,7 +47,7 @@ class AllDownloadables extends Component
                         ->where('published', true)
                         ->latest('date_published');
                 })
-                ->paginate(12);
+                ->paginate(6);
 
             return view('livewire.downloadables.all-downloadables', compact('downloadables'));
         }

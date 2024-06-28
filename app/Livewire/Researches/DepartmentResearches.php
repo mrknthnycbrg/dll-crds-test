@@ -74,7 +74,7 @@ class DepartmentResearches extends Component
                     $query->whereYear('date_submitted', $this->selectedYear);
                 })
                 ->latest('date_submitted')
-                ->paginate(12);
+                ->paginate(6);
         } else {
             $researches = Research::search(trim($this->search))
                 ->query(function ($query) {
@@ -91,7 +91,7 @@ class DepartmentResearches extends Component
                         ->where('department_id', $this->department->id)
                         ->latest('date_submitted');
                 })
-                ->paginate(12);
+                ->paginate(6);
 
             return view('livewire.researches.department-researches', compact('researches'));
         }
