@@ -52,7 +52,10 @@ class ResearchResource extends Resource
                                     ->maxLength(255)
                                     ->required()
                                     ->live(onBlur: true)
-                                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                    ->afterStateUpdated(function (Forms\Components\TextInput $component, Set $set, ?string $state) {
+                                        $component->state(Str::upper($state));
+                                        $set('slug', Str::slug($state));
+                                    })
                                     ->autofocus(),
                                 Forms\Components\TextInput::make('slug')
                                     ->label('Slug')
