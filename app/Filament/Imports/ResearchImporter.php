@@ -17,6 +17,9 @@ class ResearchImporter extends Importer
         return [
             ImportColumn::make('title')
                 ->label('Title')
+                ->fillRecordUsing(function (Research $record, string $state): void {
+                    $record->title = Str::upper($state);
+                })
                 ->requiredMapping()
                 ->rules(['required']),
             ImportColumn::make('author')
@@ -43,7 +46,6 @@ class ResearchImporter extends Importer
     {
         return Research::firstOrNew([
             'slug' => Str::slug($this->data['title']),
-            'published' => true,
         ]);
     }
 
