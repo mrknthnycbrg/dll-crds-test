@@ -17,15 +17,13 @@ class NumberImporter extends Importer
             ImportColumn::make('id_number')
                 ->label('ID Number')
                 ->requiredMapping()
-                ->rules(['required']),
+                ->rules(['required', 'unique:numbers']),
         ];
     }
 
     public function resolveRecord(): ?Number
     {
-        return Number::firstOrNew([
-            'id_number' => $this->data['id_number'],
-        ]);
+        return new Number();
     }
 
     public static function getCompletedNotificationBody(Import $import): string
