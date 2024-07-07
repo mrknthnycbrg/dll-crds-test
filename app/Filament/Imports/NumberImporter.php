@@ -17,7 +17,7 @@ class NumberImporter extends Importer
             ImportColumn::make('id_number')
                 ->label('ID Number')
                 ->requiredMapping()
-                ->rules(['required', 'unique:numbers']),
+                ->rules(['required', 'unique:numbers,id_number']),
         ];
     }
 
