@@ -29,6 +29,10 @@
             id="navbar">
             <div
                 class="mt-5 flex flex-col gap-x-0 gap-y-4 lg:mt-0 lg:flex-row lg:items-center lg:justify-end lg:gap-x-7 lg:gap-y-0 lg:ps-7">
+                <x-nav-link href="{{ route('home') }}" wire:navigate :active="request()->routeIs('home')">
+                    Home
+                </x-nav-link>
+
                 <div class="hs-dropdown [--adaptive:none] [--strategy:static] lg:py-4 lg:[--strategy:fixed]">
                     <x-nav-button :active="request()->routeIs(['about', 'contact'])">
                         About

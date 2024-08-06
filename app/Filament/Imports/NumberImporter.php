@@ -23,7 +23,7 @@ class NumberImporter extends Importer
 
     public function resolveRecord(): ?Number
     {
-        return new Number();
+        return new Number;
     }
 
     public static function getCompletedNotificationBody(Import $import): string
